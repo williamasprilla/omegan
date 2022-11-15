@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Omegan.API.props" />
+</Project>
