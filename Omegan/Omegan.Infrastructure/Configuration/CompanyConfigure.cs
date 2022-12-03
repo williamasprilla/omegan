@@ -1,12 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Omegan.Domain;
-using System.Reflection.Emit;
 
 namespace Omegan.Infrastructure.Configuration
 {
@@ -25,6 +19,11 @@ namespace Omegan.Infrastructure.Configuration
               .HasForeignKey(m => m.CompanyId)
               .IsRequired()
               .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+              .HasMany(m => m.Announcements)
+              .WithOne(m => m.Company)
+              .HasForeignKey(m => m.CompanyId);
 
             builder
                 .HasOne(a => a.User)

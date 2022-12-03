@@ -6,11 +6,8 @@ namespace Omegan.Domain.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        public string Nombre { get; set; } = string.Empty;
+        public string FullName { get; set; } = string.Empty;
 
-        public string Apellidos { get; set; } = string.Empty;
-
-        [NotMapped]
-        public  Company? Company { get; set; } 
+        public  virtual Company? Company { get; set; } 
     }
 }

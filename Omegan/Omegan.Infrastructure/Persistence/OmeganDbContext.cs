@@ -1,31 +1,41 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Omegan.Application.Interfaces.Common;
 using Omegan.Domain;
 using Omegan.Domain.Common;
+using Omegan.Domain.Models;
 using System.Reflection;
 
 namespace Omegan.Infrastructure.Persistence
 {
 
-    public class OmeganDbContext : DbContext
+    public class OmeganDbContext : IdentityDbContext<ApplicationUser>
     {
-        public OmeganDbContext(DbContextOptions<OmeganDbContext> options) : base(options)
+        private readonly ICurrentUserService _currentUserService;
+        private readonly IDateTime _dateTime;
+
+
+        public OmeganDbContext(DbContextOptions<OmeganDbContext> options, ICurrentUserService currentUserService,
+            IDateTime dateTime) : base(options)
         {
+            _currentUserService = currentUserService;
+            _dateTime = dateTime;
         }
 
-        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            foreach (var entry in ChangeTracker.Entries<BaseDomainModel>())
+            foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
             {
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.CreatedDate = DateTime.Now;
-                        entry.Entity.CreatedBy = "system";
+                        entry.Entity.CreatedBy = "System";//_currentUserService.UserId;
+                        entry.Entity.CreatedDate = _dateTime.Now;
                         break;
-
                     case EntityState.Modified:
-                        entry.Entity.LastModifiedDate = DateTime.Now;
-                        entry.Entity.LastModifiedBy = "system";
+                        entry.Entity.LastModifiedBy = "System";//_currentUserService.UserId;
+                        entry.Entity.LastModifiedDate = _dateTime.Now;
                         break;
                 }
             }
@@ -38,6 +48,7 @@ namespace Omegan.Infrastructure.Persistence
         {
 
             base.OnModelCreating(modelBuilder);
+
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
         }
@@ -45,6 +56,8 @@ namespace Omegan.Infrastructure.Persistence
 
         public DbSet<Company> Companies  => Set<Company>();
         public DbSet<Archive> Archives  => Set<Archive>();
+        public DbSet<Product> Products => Set<Product>();
+        public DbSet<ProductAnnouncement> ProductAnnouncements => Set<ProductAnnouncement>();
 
 
     }

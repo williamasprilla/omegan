@@ -2,7 +2,7 @@
 
 namespace Omegan.Domain
 {
-    public class Archive : BaseDomainModel
+    public class Archive : AuditableEntity, IEntity<int>
     {
         public string Name { get; set; } = string.Empty;
 
@@ -10,9 +10,7 @@ namespace Omegan.Domain
 
         public string Type { get; set; } = string.Empty;
 
-        public bool Status { get; set; } 
-
-        public bool Active { get; set; }
+        public bool State { get; set; } 
 
         public int CompanyId { get; set; }
 

@@ -19,14 +19,252 @@ namespace Omegan.Infrastructure.Migrations
                 .HasAnnotation("ProductVersion", "6.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("Omegan.Domain.Archive", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex");
+
+                    b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "b947fb18-600f-4057-b05e-d306abffedb6",
+                            ConcurrencyStamp = "2f3b2048-b5d3-4215-a70c-ca6d31bb0f60",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        },
+                        new
+                        {
+                            Id = "aebfc368-0c43-4b94-8cce-26c277ec2e33",
+                            ConcurrencyStamp = "9b909a35-4f10-414f-b31a-ea520f191495",
+                            Name = "Empresa Exportadora",
+                            NormalizedName = "EMPRESA EXPORTADORA"
+                        },
+                        new
+                        {
+                            Id = "93296f46-5fd1-4b67-bb8d-9a9008adc8e6",
+                            ConcurrencyStamp = "4a5f0882-b42b-45e0-916d-cbd13ff86d36",
+                            Name = "Representante Lejal",
+                            NormalizedName = "Representante Lejal"
+                        },
+                        new
+                        {
+                            Id = "a0b13f5f-1fdc-4937-99ac-91c4a5c8e1bc",
+                            ConcurrencyStamp = "27b9a705-3bbd-48f3-b261-f0b51ae96eb4",
+                            Name = "Comite Directivo",
+                            NormalizedName = "COMITE DIRECTIVO"
+                        },
+                        new
+                        {
+                            Id = "b344f3b4-1df4-449e-8553-9dd7640820a2",
+                            ConcurrencyStamp = "26be2d8e-ed2e-4ede-87ea-46776c5416e5",
+                            Name = "Secretaria Tecnica",
+                            NormalizedName = "SECRETARIA TECNICA"
+                        },
+                        new
+                        {
+                            Id = "10096115-e173-4e82-903f-8b4c8f8e2ceb",
+                            ConcurrencyStamp = "47ac954c-30fc-4505-bfe0-69fd417203fe",
+                            Name = "Coordinacion Operactiva",
+                            NormalizedName = "COORDINACION OPERACTIVA"
+                        },
+                        new
+                        {
+                            Id = "9cd3b078-3254-4c05-b404-e527ec616c89",
+                            ConcurrencyStamp = "be4ea0b3-f422-4bb3-94a2-86f711409541",
+                            Name = "Profesional I",
+                            NormalizedName = "PROFESIONAL I"
+                        },
+                        new
+                        {
+                            Id = "3a52dfb8-8595-487e-bd07-2e876c8291a5",
+                            ConcurrencyStamp = "424a2a5e-8c89-4145-aa71-0e32e1b9ff7b",
+                            Name = "Auditoria Interna",
+                            NormalizedName = "AUDITORIA INTERNA"
+                        });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<bool>("Active")
-                        .HasColumnType("tinyint(1)");
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "7fa985ac-095c-469b-b98d-8e09a947d66a",
+                            RoleId = "b947fb18-600f-4057-b05e-d306abffedb6"
+                        });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("Omegan.Domain.Announcement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("DestinationCountry")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("LastModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("LastModifiedDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Observation")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PortShipment")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("ShippingDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("State")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.ToTable("Announcement");
+                });
+
+            modelBuilder.Entity("Omegan.Domain.Archive", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
                     b.Property<string>("Base64")
                         .IsRequired()
@@ -53,7 +291,7 @@ namespace Omegan.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<bool>("Status")
+                    b.Property<bool>("State")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Type")
@@ -72,6 +310,14 @@ namespace Omegan.Infrastructure.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -99,11 +345,297 @@ namespace Omegan.Infrastructure.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("Companies");
+                });
+
+            modelBuilder.Entity("Omegan.Domain.Models.ApplicationUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex");
+
+                    b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "7fa985ac-095c-469b-b98d-8e09a947d66a",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "785a703b-ddc2-45de-8df1-ccf0fe3edd94",
+                            Email = "admin@locahost.com",
+                            EmailConfirmed = true,
+                            FullName = "Omegan Admin",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "admin@locahost.com",
+                            NormalizedUserName = "omeganadmin",
+                            PasswordHash = "AQAAAAEAACcQAAAAELF8cQgzS04CmII+YyR7JHMm14QsipBfpDv5nr2cZt96nLjLWRn5fjdmVhBqzQ23Zg==",
+                            PhoneNumber = "3175226569",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "da17fb08-df21-4e54-96a8-110f279a7ee2",
+                            TwoFactorEnabled = false,
+                            UserName = "OmeganAdmin"
+                        });
+                });
+
+            modelBuilder.Entity("Omegan.Domain.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("LastModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("LastModifiedDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("TariffItem")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Companies");
+                    b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedBy = "",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Carne en canal",
+                            LastModifiedBy = "",
+                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TariffItem = "001"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedBy = "",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Carne industrial",
+                            LastModifiedBy = "",
+                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TariffItem = "002"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedBy = "",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Carne empacada al vacio extra",
+                            LastModifiedBy = "",
+                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TariffItem = "003"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedBy = "",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Carne empacada al vacio primera",
+                            LastModifiedBy = "",
+                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TariffItem = "004"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedBy = "",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Carne empacada al vacio segunda",
+                            LastModifiedBy = "",
+                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TariffItem = "005"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedBy = "",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Leche en polvo",
+                            LastModifiedBy = "",
+                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TariffItem = "006"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedBy = "",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Leche UHT",
+                            LastModifiedBy = "",
+                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TariffItem = "007"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedBy = "",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Quesos maduros",
+                            LastModifiedBy = "",
+                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TariffItem = "008"
+                        });
+                });
+
+            modelBuilder.Entity("Omegan.Domain.ProductAnnouncement", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AnnouncementId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Kilogram")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.HasKey("ProductId", "AnnouncementId");
+
+                    b.HasIndex("AnnouncementId");
+
+                    b.ToTable("ProductAnnouncements");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("Omegan.Domain.Models.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("Omegan.Domain.Models.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Omegan.Domain.Models.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("Omegan.Domain.Models.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Omegan.Domain.Announcement", b =>
+                {
+                    b.HasOne("Omegan.Domain.Company", "Company")
+                        .WithMany("Announcements")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("Omegan.Domain.Archive", b =>
@@ -119,7 +651,54 @@ namespace Omegan.Infrastructure.Migrations
 
             modelBuilder.Entity("Omegan.Domain.Company", b =>
                 {
+                    b.HasOne("Omegan.Domain.Models.ApplicationUser", "User")
+                        .WithOne("Company")
+                        .HasForeignKey("Omegan.Domain.Company", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Omegan.Domain.ProductAnnouncement", b =>
+                {
+                    b.HasOne("Omegan.Domain.Announcement", "Announcement")
+                        .WithMany("ProductAnnouncements")
+                        .HasForeignKey("AnnouncementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Omegan.Domain.Product", "Product")
+                        .WithMany("ProductAnnouncements")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Announcement");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Omegan.Domain.Announcement", b =>
+                {
+                    b.Navigation("ProductAnnouncements");
+                });
+
+            modelBuilder.Entity("Omegan.Domain.Company", b =>
+                {
+                    b.Navigation("Announcements");
+
                     b.Navigation("Archives");
+                });
+
+            modelBuilder.Entity("Omegan.Domain.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("Omegan.Domain.Product", b =>
+                {
+                    b.Navigation("ProductAnnouncements");
                 });
 #pragma warning restore 612, 618
         }

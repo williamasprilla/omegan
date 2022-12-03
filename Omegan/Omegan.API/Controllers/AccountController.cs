@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Omegan.Application.Contracts.Identity;
 using Omegan.Application.Models.Identity;
-using System.Threading.Tasks;
+using Omegan.Application.Utils;
 
 namespace Omegan.API.Controllers
 {
@@ -16,15 +16,19 @@ namespace Omegan.API.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<ActionResult<AuthResponse>> Login([FromBody] AuthRequest request)
+        public async Task<IActionResult> Login([FromBody] AuthRequest request)
         {
-            return Ok(await _authService.Login(request));
+            var result = await _authService.Login(request);
+
+            return new OkObjectResult(new ResultResponse(result));
         }
 
         [HttpPost("Register")]
-        public async Task<ActionResult<RegistrationResponse>> Register([FromBody] RegistrationRequest request)
+        public async Task<IActionResult> Register([FromBody] RegistrationRequest request)
         {
-            return Ok(await _authService.Register(request));
+            var result = await _authService.Register(request);
+
+            return new OkObjectResult(new ResultResponse(result) { Message = string.Format(ResultResponse.ENTITY_INSERT_OK, result.UserId) });
         }
 
     }

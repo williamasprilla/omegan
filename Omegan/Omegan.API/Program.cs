@@ -1,5 +1,6 @@
+using Omegan.API.Services;
 using Omegan.Application;
-using Omegan.Identity;
+using Omegan.Application.Interfaces.Common;
 using Omegan.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +15,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddApplicationServices();
-builder.Services.ConfigureIdentityServices(builder.Configuration);
+
+
+builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
 
 // Configure the HTTP request pipeline.
 builder.Services.AddCors(options =>

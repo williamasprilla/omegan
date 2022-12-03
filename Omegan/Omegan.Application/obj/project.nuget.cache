@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "FZUrKF0JeY8KifcepCnO9vfqQMu7wlFLgKUuIX442lHeYiJoZcUGfT2DFJ3Cngssnp+A+j03tLSi6mlukUUEMg==",
+  "dgSpecHash": "Ppzig4YPb3Nid8zIkKK+1l5uWpV/q/kfd1pePIgqZT3Amvl2EpCzS9nm8j083859o8Jsy6VDmbjJTu+Bp5ZDYQ==",
   "success": true,
   "projectFilePath": "D:\\Fedegan\\Omegan\\Omegan.Application\\Omegan.Application.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\wasprilla\\.nuget\\packages\\ardalis.specification\\6.1.0\\ardalis.specification.6.1.0.nupkg.sha512",
     "C:\\Users\\wasprilla\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\wasprilla\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\wasprilla\\.nuget\\packages\\fluentvalidation\\11.3.0\\fluentvalidation.11.3.0.nupkg.sha512",

@@ -6,39 +6,34 @@ using Omegan.Domain;
 
 namespace Omegan.Application.Features.Companies.Commands.CreateCompany
 {
-    internal class CreateCompanyCommandHandler
+   
+    public class CreateCompanyCommandHandler : IRequestHandler<CreateCompanyCommandMapper, int>
     {
-    }
-
-    public class CreateDirectorCommandHandler : IRequestHandler<CreateCompanyCommandMapper, int>
-    {
-        private readonly ILogger<CreateDirectorCommandHandler> _logger;
+        private readonly ILogger<CreateCompanyCommandHandler> _logger;
+        private readonly IGenericRepository<Company, int> _companyRepository;
         private readonly IMapper _mapper;
-        private readonly IUnitOfWork _unitOfWork;
 
-        public CreateDirectorCommandHandler(ILogger<CreateDirectorCommandHandler> logger, IMapper mapper, IUnitOfWork unitOfWork)
+        public CreateCompanyCommandHandler(ILogger<CreateCompanyCommandHandler> logger, IGenericRepository<Company, int> companyRepository, IMapper mapper)
         {
             _logger = logger;
+            _companyRepository = companyRepository;
             _mapper = mapper;
-            _unitOfWork = unitOfWork;
         }
 
         public async Task<int> Handle(CreateCompanyCommandMapper request, CancellationToken cancellationToken)
         {
 
-                var directorEntity = _mapper.Map<Company>(request);
+                var companyEntity = _mapper.Map<Company>(request);
 
-                _unitOfWork.Repository<Company>().AddEntity(directorEntity);
+                var result = await _companyRepository.AddAsync(companyEntity, cancellationToken); 
 
-                var result = await _unitOfWork.Complete();
-
-                if (result <= 0)
+                if (result is null)
                 {
-                    _logger.LogError("No se inserto el record del director");
-                    throw new Exception("No se pudo insertar el record del director");
+                    _logger.LogError("No se inserto el record de la empresa");
+                    throw new Exception("No se pudo insertar el record de la empresa");
                 }
 
-                return directorEntity.Id;
+                return companyEntity.Id;
         }
     }
 }

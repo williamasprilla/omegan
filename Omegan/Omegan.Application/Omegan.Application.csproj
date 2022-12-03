@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Ardalis.Specification" Version="6.1.0" />
     <PackageReference Include="AutoMapper" Version="12.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
     <PackageReference Include="FluentValidation" Version="11.3.0" />
@@ -21,10 +22,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Announcements\Queries\" />
     <Folder Include="Features\Companies\Commands\DeleteCompany\" />
     <Folder Include="Features\Companies\Commands\UpdateStreamer\" />
-    <Folder Include="Features\Companies\Queries\" />
     <Folder Include="Features\Archives\" />
+    <Folder Include="Features\Products\Commands\" />
   </ItemGroup>
 
 </Project>

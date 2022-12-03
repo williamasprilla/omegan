@@ -2,6 +2,37 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "Ardalis.Specification/6.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Ardalis.Specification.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Ardalis.Specification.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "Ardalis.Specification.EntityFrameworkCore/6.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Ardalis.Specification": "6.1.0",
+          "Microsoft.EntityFrameworkCore": "6.0.6",
+          "Microsoft.EntityFrameworkCore.Relational": "6.0.6"
+        },
+        "compile": {
+          "lib/net6.0/Ardalis.Specification.EntityFrameworkCore.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Ardalis.Specification.EntityFrameworkCore.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
       "AutoMapper/12.0.0": {
         "type": "package",
         "dependencies": {
@@ -310,7 +341,7 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Http/2.2.0": {
+      "Microsoft.AspNetCore.Http/2.2.2": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
@@ -591,22 +622,6 @@
           }
         }
       },
-      "Microsoft.Extensions.Configuration.Binder/6.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.Configuration.Abstractions": "6.0.0"
-        },
-        "compile": {
-          "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "Microsoft.Extensions.DependencyInjection/6.0.1": {
         "type": "package",
         "dependencies": {
@@ -776,26 +791,6 @@
         },
         "runtime": {
           "lib/netstandard2.1/Microsoft.Extensions.Options.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Microsoft.Extensions.Options.ConfigurationExtensions/6.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.Configuration.Abstractions": "6.0.0",
-          "Microsoft.Extensions.Configuration.Binder": "6.0.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
-          "Microsoft.Extensions.Options": "6.0.0",
-          "Microsoft.Extensions.Primitives": "6.0.0"
-        },
-        "compile": {
-          "lib/netstandard2.0/Microsoft.Extensions.Options.ConfigurationExtensions.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.Options.ConfigurationExtensions.dll": {
             "related": ".xml"
           }
         }
@@ -1362,6 +1357,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "Ardalis.Specification": "6.1.0",
           "AutoMapper": "12.0.0",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.0",
           "FluentValidation": "11.3.0",
@@ -1392,33 +1388,19 @@
           "bin/placeholder/Omegan.Domain.dll": {}
         }
       },
-      "Omegan.Identity/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.11",
-          "Microsoft.AspNetCore.Identity": "2.2.0",
-          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.11",
-          "Microsoft.Extensions.Options.ConfigurationExtensions": "6.0.0",
-          "Newtonsoft.Json": "13.0.1",
-          "Omegan.Application": "1.0.0",
-          "Pomelo.EntityFrameworkCore.MySql": "6.0.2",
-          "System.IdentityModel.Tokens.Jwt": "6.25.0"
-        },
-        "compile": {
-          "bin/placeholder/Omegan.Identity.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Omegan.Identity.dll": {}
-        }
-      },
       "Omegan.Infrastructure/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "Ardalis.Specification": "6.1.0",
+          "Ardalis.Specification.EntityFrameworkCore": "6.1.0",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.11",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.11",
           "Microsoft.EntityFrameworkCore": "6.0.11",
+          "Newtonsoft.Json": "13.0.1",
           "Omegan.Application": "1.0.0",
-          "Pomelo.EntityFrameworkCore.MySql": "6.0.2"
+          "Pomelo.EntityFrameworkCore.MySql": "6.0.2",
+          "System.IdentityModel.Tokens.Jwt": "6.25.0"
         },
         "compile": {
           "bin/placeholder/Omegan.Infrastructure.dll": {}
@@ -1430,6 +1412,42 @@
     }
   },
   "libraries": {
+    "Ardalis.Specification/6.1.0": {
+      "sha512": "3+DIYrDWwqXMSki3v+kjP8MhKcCoUHLGp6Lhz1+rwjMTHKe8pYUEJWjOxsS5umyL+IIzvaVZUZmwXCs7rGHy4Q==",
+      "type": "package",
+      "path": "ardalis.specification/6.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ardalis.specification.6.1.0.nupkg.sha512",
+        "ardalis.specification.nuspec",
+        "icon.png",
+        "lib/netstandard2.0/Ardalis.Specification.dll",
+        "lib/netstandard2.0/Ardalis.Specification.pdb",
+        "lib/netstandard2.0/Ardalis.Specification.xml"
+      ]
+    },
+    "Ardalis.Specification.EntityFrameworkCore/6.1.0": {
+      "sha512": "/d67ScQWCZaUiNqWoBo3vThRuhKou5hW2XGt6a5ibRp62n7vXd+W8c2Votj52ooaxusitE476uCNJAGt3r0CdA==",
+      "type": "package",
+      "path": "ardalis.specification.entityframeworkcore/6.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ardalis.specification.entityframeworkcore.6.1.0.nupkg.sha512",
+        "ardalis.specification.entityframeworkcore.nuspec",
+        "icon.png",
+        "lib/net6.0/Ardalis.Specification.EntityFrameworkCore.dll",
+        "lib/net6.0/Ardalis.Specification.EntityFrameworkCore.pdb",
+        "lib/net6.0/Ardalis.Specification.EntityFrameworkCore.xml",
+        "lib/netstandard2.0/Ardalis.Specification.EntityFrameworkCore.dll",
+        "lib/netstandard2.0/Ardalis.Specification.EntityFrameworkCore.pdb",
+        "lib/netstandard2.0/Ardalis.Specification.EntityFrameworkCore.xml",
+        "lib/netstandard2.1/Ardalis.Specification.EntityFrameworkCore.dll",
+        "lib/netstandard2.1/Ardalis.Specification.EntityFrameworkCore.pdb",
+        "lib/netstandard2.1/Ardalis.Specification.EntityFrameworkCore.xml"
+      ]
+    },
     "AutoMapper/12.0.0": {
       "sha512": "0Rmg0zI5AFu1O/y//o9VGyhxKjhggWpk9mOA1tp0DEVx40c61bs+lnQv+0jUq8XbniF7FKgIVvI1perqiMtLrA==",
       "type": "package",
@@ -1715,16 +1733,16 @@
         "microsoft.aspnetcore.hosting.server.abstractions.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Http/2.2.0": {
-      "sha512": "YogBSMotWPAS/X5967pZ+yyWPQkThxhmzAwyCHCSSldzYBkW5W5d6oPfBaPqQOnSHYTpSOSOkpZoAce0vwb6+A==",
+    "Microsoft.AspNetCore.Http/2.2.2": {
+      "sha512": "BAibpoItxI5puk7YJbIGj95arZueM8B8M5xT1fXBn3hb3L2G3ucrZcYXv1gXdaroLbntUs8qeV8iuBrpjQsrKw==",
       "type": "package",
-      "path": "microsoft.aspnetcore.http/2.2.0",
+      "path": "microsoft.aspnetcore.http/2.2.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/netstandard2.0/Microsoft.AspNetCore.Http.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Http.xml",
-        "microsoft.aspnetcore.http.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.http.2.2.2.nupkg.sha512",
         "microsoft.aspnetcore.http.nuspec"
       ]
     },
@@ -2033,25 +2051,6 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.Configuration.Binder/6.0.0": {
-      "sha512": "b3ErKzND8LIC7o08QAVlKfaEIYEvLJbtmVbFZVBRXeu9YkKfSSzLZfR1SUfQPBIy9mKLhEtJgGYImkcMNaKE0A==",
-      "type": "package",
-      "path": "microsoft.extensions.configuration.binder/6.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "LICENSE.TXT",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/net461/Microsoft.Extensions.Configuration.Binder.dll",
-        "lib/net461/Microsoft.Extensions.Configuration.Binder.xml",
-        "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll",
-        "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.xml",
-        "microsoft.extensions.configuration.binder.6.0.0.nupkg.sha512",
-        "microsoft.extensions.configuration.binder.nuspec",
-        "useSharedDesignerContext.txt"
-      ]
-    },
     "Microsoft.Extensions.DependencyInjection/6.0.1": {
       "sha512": "vWXPg3HJQIpZkENn1KWq8SfbqVujVD7S7vIAyFXXqK5xkf1Vho+vG0bLBCHxU36lD1cLLtmGpfYf0B3MYFi9tQ==",
       "type": "package",
@@ -2288,25 +2287,6 @@
         "lib/netstandard2.1/Microsoft.Extensions.Options.xml",
         "microsoft.extensions.options.6.0.0.nupkg.sha512",
         "microsoft.extensions.options.nuspec",
-        "useSharedDesignerContext.txt"
-      ]
-    },
-    "Microsoft.Extensions.Options.ConfigurationExtensions/6.0.0": {
-      "sha512": "bXWINbTn0vC0FYc9GaQTISbxhQLAMrvtbuvD9N6JelEaIS/Pr62wUCinrq5bf1WRBGczt1v4wDhxFtVFNcMdUQ==",
-      "type": "package",
-      "path": "microsoft.extensions.options.configurationextensions/6.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "LICENSE.TXT",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/net461/Microsoft.Extensions.Options.ConfigurationExtensions.dll",
-        "lib/net461/Microsoft.Extensions.Options.ConfigurationExtensions.xml",
-        "lib/netstandard2.0/Microsoft.Extensions.Options.ConfigurationExtensions.dll",
-        "lib/netstandard2.0/Microsoft.Extensions.Options.ConfigurationExtensions.xml",
-        "microsoft.extensions.options.configurationextensions.6.0.0.nupkg.sha512",
-        "microsoft.extensions.options.configurationextensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
@@ -3280,11 +3260,6 @@
       "path": "../Omegan.Domain/Omegan.Domain.csproj",
       "msbuildProject": "../Omegan.Domain/Omegan.Domain.csproj"
     },
-    "Omegan.Identity/1.0.0": {
-      "type": "project",
-      "path": "../Omegan.Identity/Omegan.Identity.csproj",
-      "msbuildProject": "../Omegan.Identity/Omegan.Identity.csproj"
-    },
     "Omegan.Infrastructure/1.0.0": {
       "type": "project",
       "path": "../Omegan.Infrastructure/Omegan.Infrastructure.csproj",
@@ -3293,10 +3268,10 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Microsoft.AspNetCore.Http >= 2.2.2",
       "Microsoft.EntityFrameworkCore >= 6.0.11",
       "Microsoft.EntityFrameworkCore.Design >= 6.0.11",
       "Omegan.Application >= 1.0.0",
-      "Omegan.Identity >= 1.0.0",
       "Omegan.Infrastructure >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.2.3"
     ]
@@ -3339,9 +3314,6 @@
             "D:\\Fedegan\\Omegan\\Omegan.Application\\Omegan.Application.csproj": {
               "projectPath": "D:\\Fedegan\\Omegan\\Omegan.Application\\Omegan.Application.csproj"
             },
-            "D:\\Fedegan\\Omegan\\Omegan.Identity\\Omegan.Identity.csproj": {
-              "projectPath": "D:\\Fedegan\\Omegan\\Omegan.Identity\\Omegan.Identity.csproj"
-            },
             "D:\\Fedegan\\Omegan\\Omegan.Infrastructure\\Omegan.Infrastructure.csproj": {
               "projectPath": "D:\\Fedegan\\Omegan\\Omegan.Infrastructure\\Omegan.Infrastructure.csproj"
             }
@@ -3358,6 +3330,10 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "Microsoft.AspNetCore.Http": {
+            "target": "Package",
+            "version": "[2.2.2, )"
+          },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "[6.0.11, )"
