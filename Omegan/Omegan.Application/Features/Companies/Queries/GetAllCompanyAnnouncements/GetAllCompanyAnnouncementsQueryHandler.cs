@@ -4,6 +4,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using Omegan.Application.Contracts.Persistence;
 using Omegan.Application.Contracts.Specifications;
+using Omegan.Application.Features.Companies.Queries.GetCountries;
 using Omegan.Domain;
 
 
@@ -11,14 +12,14 @@ namespace Omegan.Application.Features.Companies.Queries.GetAllCompanyAnnouncemen
 {
     public class GetAllCompanyAnnouncementsQueryHandler: IRequestHandler<GetAllCompanyAnnouncementsQuery, List<CompanyAnnouncementsDTO>>
     {
-        //private readonly ILogger<GetAllCompanyAnnouncementsQuery> _logger;
+        private readonly ILogger<GetAllCompanyAnnouncementsQueryHandler> _logger;
         private readonly IGenericRepository<Company, int> _companyRepository;
         private readonly IMapper _mapper;
 
 
-        public GetAllCompanyAnnouncementsQueryHandler(IGenericRepository<Company, int> companyRepository, IMapper mapper)
+        public GetAllCompanyAnnouncementsQueryHandler(ILogger<GetAllCompanyAnnouncementsQueryHandler> logger, IGenericRepository<Company, int> companyRepository, IMapper mapper)
         {
-            //_logger = logger;
+            _logger = logger;
             _companyRepository = companyRepository;
             _mapper = mapper;
         }

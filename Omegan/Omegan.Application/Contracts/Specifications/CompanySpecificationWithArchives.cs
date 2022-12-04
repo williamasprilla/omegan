@@ -12,18 +12,8 @@ namespace Omegan.Application.Contracts.Specifications
     {
         public CompanySpecificationWithArchives(int userid)
         {
-
-            //Query.Include(a => a.Archives)
-                 //.Include(n => n.Announcements);
-                 //.ThenInclude(pa => pa.ProductAnnouncements)
-                 //.ThenInclude(p => p.Product);
-
-
             Query.Where(c => c.CompanyId == userid);
-
-
         }
-
 
     }
 }

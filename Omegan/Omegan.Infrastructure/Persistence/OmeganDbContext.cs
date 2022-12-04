@@ -58,6 +58,7 @@ namespace Omegan.Infrastructure.Persistence
         public DbSet<Archive> Archives  => Set<Archive>();
         public DbSet<Product> Products => Set<Product>();
         public DbSet<ProductAnnouncement> ProductAnnouncements => Set<ProductAnnouncement>();
+        public DbSet<Country> Countrys => Set<Country>();   
 
 
     }

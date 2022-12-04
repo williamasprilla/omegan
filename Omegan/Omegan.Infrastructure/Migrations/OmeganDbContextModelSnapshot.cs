@@ -48,56 +48,56 @@ namespace Omegan.Infrastructure.Migrations
                         new
                         {
                             Id = "b947fb18-600f-4057-b05e-d306abffedb6",
-                            ConcurrencyStamp = "2f3b2048-b5d3-4215-a70c-ca6d31bb0f60",
+                            ConcurrencyStamp = "ae32c0f9-b0b7-4b5b-8e46-d503e45393a3",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "aebfc368-0c43-4b94-8cce-26c277ec2e33",
-                            ConcurrencyStamp = "9b909a35-4f10-414f-b31a-ea520f191495",
+                            ConcurrencyStamp = "82d3956e-65f5-4a97-bbe7-58272f7db2af",
                             Name = "Empresa Exportadora",
                             NormalizedName = "EMPRESA EXPORTADORA"
                         },
                         new
                         {
                             Id = "93296f46-5fd1-4b67-bb8d-9a9008adc8e6",
-                            ConcurrencyStamp = "4a5f0882-b42b-45e0-916d-cbd13ff86d36",
+                            ConcurrencyStamp = "7ad7aaf6-649c-4e60-8100-a3c7116914bd",
                             Name = "Representante Lejal",
                             NormalizedName = "Representante Lejal"
                         },
                         new
                         {
                             Id = "a0b13f5f-1fdc-4937-99ac-91c4a5c8e1bc",
-                            ConcurrencyStamp = "27b9a705-3bbd-48f3-b261-f0b51ae96eb4",
+                            ConcurrencyStamp = "f9621b9f-ba73-403c-9fea-c7413d441eab",
                             Name = "Comite Directivo",
                             NormalizedName = "COMITE DIRECTIVO"
                         },
                         new
                         {
                             Id = "b344f3b4-1df4-449e-8553-9dd7640820a2",
-                            ConcurrencyStamp = "26be2d8e-ed2e-4ede-87ea-46776c5416e5",
+                            ConcurrencyStamp = "36cccf7a-4974-43ce-b06e-eba2c41d034a",
                             Name = "Secretaria Tecnica",
                             NormalizedName = "SECRETARIA TECNICA"
                         },
                         new
                         {
                             Id = "10096115-e173-4e82-903f-8b4c8f8e2ceb",
-                            ConcurrencyStamp = "47ac954c-30fc-4505-bfe0-69fd417203fe",
+                            ConcurrencyStamp = "a07af83a-6cb3-4ef6-8846-1334e456fe51",
                             Name = "Coordinacion Operactiva",
                             NormalizedName = "COORDINACION OPERACTIVA"
                         },
                         new
                         {
                             Id = "9cd3b078-3254-4c05-b404-e527ec616c89",
-                            ConcurrencyStamp = "be4ea0b3-f422-4bb3-94a2-86f711409541",
+                            ConcurrencyStamp = "2ce5ffa6-cf50-4780-a723-49e1d8609d60",
                             Name = "Profesional I",
                             NormalizedName = "PROFESIONAL I"
                         },
                         new
                         {
                             Id = "3a52dfb8-8595-487e-bd07-2e876c8291a5",
-                            ConcurrencyStamp = "424a2a5e-8c89-4145-aa71-0e32e1b9ff7b",
+                            ConcurrencyStamp = "3ec0bd29-0afc-4336-be52-a0a3c6b3fb05",
                             Name = "Auditoria Interna",
                             NormalizedName = "AUDITORIA INTERNA"
                         });
@@ -355,6 +355,41 @@ namespace Omegan.Infrastructure.Migrations
                     b.ToTable("Companies");
                 });
 
+            modelBuilder.Entity("Omegan.Domain.Country", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<double>("CurrentValue")
+                        .HasColumnType("double");
+
+                    b.Property<string>("LastModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("LastModifiedDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("State")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("nameCountry")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Countrys");
+                });
+
             modelBuilder.Entity("Omegan.Domain.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -427,17 +462,17 @@ namespace Omegan.Infrastructure.Migrations
                         {
                             Id = "7fa985ac-095c-469b-b98d-8e09a947d66a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "785a703b-ddc2-45de-8df1-ccf0fe3edd94",
+                            ConcurrencyStamp = "fd44b531-f4c2-4a67-bd76-a47d067b43dd",
                             Email = "admin@locahost.com",
                             EmailConfirmed = true,
                             FullName = "Omegan Admin",
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@locahost.com",
                             NormalizedUserName = "omeganadmin",
-                            PasswordHash = "AQAAAAEAACcQAAAAELF8cQgzS04CmII+YyR7JHMm14QsipBfpDv5nr2cZt96nLjLWRn5fjdmVhBqzQ23Zg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDtAjWAH+NF8aYAKB/9LYq0Ew73uew7opOb0L4HTfhTYNIkgrGkuhpolnl/rug64uQ==",
                             PhoneNumber = "3175226569",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "da17fb08-df21-4e54-96a8-110f279a7ee2",
+                            SecurityStamp = "d6b11512-981e-4c02-ac86-c63c347578f4",
                             TwoFactorEnabled = false,
                             UserName = "OmeganAdmin"
                         });

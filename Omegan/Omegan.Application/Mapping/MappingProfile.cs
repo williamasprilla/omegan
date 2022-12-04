@@ -5,6 +5,10 @@ using Omegan.Application.Features.Companies.Commands.CreateCompany;
 using Omegan.Application.Features.Companies.Queries.GetAllCompanyAnnouncements;
 using Omegan.Application.Features.Companies.Queries.GetCompanyByIdWithArchives;
 using Omegan.Application.Features.Companies.Queries.GetCompanyByUserId;
+using Omegan.Application.Features.Companies.Queries.GetCountries;
+using Omegan.Application.Features.Countries.Commands.CreateCountry;
+using Omegan.Application.Features.Countries.Commands.DeleteCountry;
+using Omegan.Application.Features.Countries.Commands.UpdateCountry;
 using Omegan.Application.Features.Products.Queries.GetProductList;
 using Omegan.Domain;
 using System.Reflection;
@@ -32,6 +36,14 @@ namespace Omegan.Application.Mapping
 
 
             CreateMap<Archive, ArchivesByCompanyDTO>();
+
+            CreateMap<CreateCountryCommandMapper, Country>();
+
+            CreateMap<UpdateCountryCommandMapper, Country>();
+
+            CreateMap<DeleteCountryCommandMapper, Country>();
+
+            CreateMap<Country, GetCountriesDTO>();
 
             //CreateMap<List<Company>, List<CompanyAnnouncementsDTO>>().ReverseMap();
 
