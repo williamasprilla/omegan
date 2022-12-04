@@ -17,6 +17,8 @@ namespace Omegan.Application.Features.Companies.Queries.GetAllCompanyAnnouncemen
         public string City { get; set; } = string.Empty;
 
         public string Address { get; set; } = string.Empty;
+        
+        public int State { get; set; }
 
         //public virtual ICollection<ArchiveOutputDTO>? Archives { get; set; }
 
