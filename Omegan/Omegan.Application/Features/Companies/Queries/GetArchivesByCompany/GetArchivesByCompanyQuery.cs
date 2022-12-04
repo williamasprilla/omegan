@@ -10,12 +10,12 @@ namespace Omegan.Application.Features.Companies.Queries.GetCompanyByIdWithArchiv
 {
     public class GetArchivesByCompanyQuery: IRequest<List<ArchivesByCompanyDTO>>
     {
-        public GetArchivesByCompanyQuery(int userid)
+        public GetArchivesByCompanyQuery(int companyId)
         {
-            UserId = userid;     //?? throw new ArgumentNullException(nameof(userid));
+            CompanyId = companyId;     
         }
 
-        public int UserId { get; set; }
+        public int CompanyId { get; set; }
 
     }
 }

@@ -12,8 +12,6 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Omegan.API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class ArchivesController : ApiControllerBase
     {
         private IMediator _mediator;
@@ -24,9 +22,9 @@ namespace Omegan.API.Controllers
         }
 
         [HttpGet("GetArchivesByCompany")]
-        public async Task<IActionResult> GetArchivesByCompany(int userid)
+        public async Task<IActionResult> GetArchivesByCompany(int companyId)
         {
-            var query = new GetArchivesByCompanyQuery(userid);
+            var query = new GetArchivesByCompanyQuery(companyId);
             var archive = await _mediator.Send(query);
             return new OkObjectResult(new ResultResponse(archive) { Message = string.Format(ResultResponse.ENTITY_GET, archive) });
         }

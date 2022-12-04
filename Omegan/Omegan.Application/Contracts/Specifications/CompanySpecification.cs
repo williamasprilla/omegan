@@ -22,16 +22,21 @@ namespace Omegan.Application.Contracts.Specifications
 
         public CompanySpecification()
         {
-
             Query.Include(n => n.Announcements)
                  .ThenInclude(pa => pa.ProductAnnouncements)
                  .ThenInclude(p => p.Product);
-
-
-
         }
 
 
-       
+
+        public CompanySpecification(int id)
+        {
+            Query.Include(a => a.Archives)
+                 .Include(n => n.Announcements)
+                 .ThenInclude(pa => pa.ProductAnnouncements)
+                 .ThenInclude(p => p.Product);
+
+            Query.Where(c => c.Id == id);
+        }
     }
 }

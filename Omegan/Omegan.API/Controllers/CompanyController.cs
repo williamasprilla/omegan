@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Omegan.Application.Features.Companies.Commands.CreateCompany;
 using Omegan.Application.Features.Companies.Queries.GetAllCompanyAnnouncements;
+using Omegan.Application.Features.Companies.Queries.GetCompanyById;
 using Omegan.Application.Features.Companies.Queries.GetCompanyByIdWithArchives;
 using Omegan.Application.Features.Companies.Queries.GetCompanyByUserId;
 using Omegan.Application.Utils;
@@ -50,13 +51,14 @@ namespace Omegan.API.Controllers
         }
 
 
-        //[HttpGet("GetCompanyByIdWithArchives")]
-        //public async Task<IActionResult> GetCompanyByIdWithArchives(string userid)
-        //{
-        //    var query = new GetArchivesByCompanyQuery(userid);
-        //    var company = await _mediator.Send(query);
-        //    return new OkObjectResult(new ResultResponse(company) { Message = string.Format(ResultResponse.ENTITY_GET, company) });
-        //}
+        //[HttpGet("{id}", Name = "GetCompanyById")]
+        [HttpGet("GetCompanyById")]
+        public async Task<IActionResult> GetCompanyById(int id)
+        {
+            var query = new GetCompanyByIdQuery(id);
+            var company = await _mediator.Send(query);
+            return new OkObjectResult(new ResultResponse(company) { Message = string.Format(ResultResponse.ENTITY_GET, company) });
+        }
 
 
     }

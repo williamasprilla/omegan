@@ -31,7 +31,7 @@ namespace Omegan.Application.Features.Companies.Queries.GetCompanyByIdWithArchiv
 
         public async Task<List<ArchivesByCompanyDTO>> Handle(GetArchivesByCompanyQuery request, CancellationToken cancellationToken)
         {
-            var specification = new CompanySpecificationWithArchives(request.UserId);
+            var specification = new CompanySpecificationWithArchives(request.CompanyId);
 
             var archives = await _archiveRepository.ListAsync(specification, cancellationToken);
 

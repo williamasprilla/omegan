@@ -12,8 +12,6 @@ using System.Net;
 
 namespace Omegan.API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class CountryController : ApiControllerBase
     {
         private IMediator _mediator;
