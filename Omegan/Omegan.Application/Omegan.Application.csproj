@@ -24,7 +24,6 @@
   <ItemGroup>
     <Folder Include="Features\Announcements\Queries\" />
     <Folder Include="Features\Companies\Commands\DeleteCompany\" />
-    <Folder Include="Features\Companies\Commands\UpdateStreamer\" />
     <Folder Include="Features\Archives\" />
     <Folder Include="Features\Products\Commands\" />
   </ItemGroup>

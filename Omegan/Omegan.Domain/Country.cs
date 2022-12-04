@@ -11,7 +11,7 @@ namespace Omegan.Domain
     {
         public string nameCountry { get; set; } = string.Empty;
         public double CurrentValue { get; set; }
-        public bool State { get; set; }
+        public int State { get; set; }
 
     }
 }

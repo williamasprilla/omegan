@@ -15,6 +15,8 @@ namespace Omegan.Domain
 
         public string UserId { get; set; } = string.Empty;
 
+        public int State { get; set; }
+
         public virtual ApplicationUser? User { get; set; }
 
         public virtual ICollection<Archive>? Archives { get; set; }
