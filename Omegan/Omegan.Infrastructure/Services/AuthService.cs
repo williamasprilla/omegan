@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using Omegan.Application.Constants;
 using Omegan.Application.Contracts.Identity;
 using Omegan.Application.Models.Identity;
+using Omegan.Application.Utils;
 using Omegan.Domain.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -94,6 +95,8 @@ namespace Omegan.Infrastructure.Services
 
         }
 
+       
+
         private async Task<JwtSecurityToken> GenerateToken(ApplicationUser user)
         {
 
@@ -126,6 +129,35 @@ namespace Omegan.Infrastructure.Services
 
 
             return jwtSecurityToken;
+        }
+
+
+        public async Task<bool> ResetPassword(ResetPasswordRequest request)
+        {
+            var user = await _userManager.FindByEmailAsync(request.Email);
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var resetPassResult = await _userManager.ResetPasswordAsync(user, token, "Colombia123+-");
+
+            if(!resetPassResult.Succeeded)
+            {
+                return false;
+            }
+
+
+
+            SendEmail email = new SendEmail();
+            string to = request.Email;
+            string subject = "Recuperar contraseña";
+            string EmailBody = "Señor usuario su nueva contraseña es : " + "Colombia123+-";
+            string from = "wasprilla@hotmail.com";
+            string servidor = "smtp.office365.com";
+            string password = "reuse_5050";
+            int port = 587;
+            await email.Send(to, subject, EmailBody, from, servidor, password, port);
+
+            return true;
+
+
         }
 
     }

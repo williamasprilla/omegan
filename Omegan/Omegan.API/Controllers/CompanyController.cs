@@ -27,9 +27,7 @@ namespace Omegan.API.Controllers
         [HttpPost("RegisterCompany")]
         public async Task<IActionResult> CreateCompany([FromBody] CreateCompanyCommandMapper command)
         {
-
             var result =  await _mediator.Send(command);
-
             return new OkObjectResult(new ResultResponse(result) { Message = string.Format(ResultResponse.ENTITY_INSERT_OK, result) });
         }
 
@@ -71,13 +69,7 @@ namespace Omegan.API.Controllers
         }
 
 
-        //[HttpGet("UpdateState")]
-        //public async Task<IActionResult> UpdateState(int id)
-        //{
-        //    var query = new GetCompanyByIdQuery(id);
-        //    var company = await _mediator.Send(query);
-        //    return new OkObjectResult(new ResultResponse(company) { Message = string.Format(ResultResponse.ENTITY_GET, company) });
-        //}
+        
 
     }
 }
