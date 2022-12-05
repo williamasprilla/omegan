@@ -8,5 +8,7 @@ namespace Omegan.Application.Contracts.Identity
         Task<RegistrationResponse> Register(RegistrationRequest request);
 
         Task<bool> ResetPassword(ResetPasswordRequest request);
+        Task<GetUsersByIdResponse> GetUsersById(GetUsersByIdRequest request);
+        
     }
 }

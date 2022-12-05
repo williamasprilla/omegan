@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json.Linq;
 using Omegan.Application.Constants;
 using Omegan.Application.Contracts.Identity;
 using Omegan.Application.Models.Identity;
@@ -160,5 +161,20 @@ namespace Omegan.Infrastructure.Services
 
         }
 
+        public async Task<GetUsersByIdResponse> GetUsersById(GetUsersByIdRequest request)
+        {
+
+            var user = await _userManager.FindByIdAsync(request.IdUser);
+
+            return new GetUsersByIdResponse
+            {
+                Email = user.Email,
+                UserId = user.Id,
+                Username = user.UserName,
+                FullName= user.FullName,
+                PhoneNumber= user.PhoneNumber
+            };
+
+        }
     }
 }

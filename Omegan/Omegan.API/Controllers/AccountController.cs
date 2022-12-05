@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Omegan.Application.Contracts.Identity;
+using Omegan.Application.Features.Companies.Queries.GetCompanyById;
 using Omegan.Application.Models.Identity;
 using Omegan.Application.Utils;
 
@@ -38,6 +39,14 @@ namespace Omegan.API.Controllers
             var result = await _authService.ResetPassword(request);
 
             return new OkObjectResult(new ResultResponse(result) { Message = string.Format(ResultResponse.ENTITY_INSERT_OK, request.Email) });
+        }
+
+
+        [HttpPost("GetUsersById")]
+        public async Task<IActionResult> GetUsersById(GetUsersByIdRequest request)
+        {
+            var company = await _authService.GetUsersById(request);
+            return new OkObjectResult(new ResultResponse(company) { Message = string.Format(ResultResponse.ENTITY_GET, company) });
         }
 
     }
