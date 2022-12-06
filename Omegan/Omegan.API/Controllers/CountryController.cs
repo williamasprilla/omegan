@@ -27,9 +27,7 @@ namespace Omegan.API.Controllers
         [HttpPost("CreateCountry")]
         public async Task<IActionResult> CreateCountry([FromBody] CreateCountryCommandMapper command)
         {
-
             var result = await _mediator.Send(command);
-
             return NoContent();
         }
 
