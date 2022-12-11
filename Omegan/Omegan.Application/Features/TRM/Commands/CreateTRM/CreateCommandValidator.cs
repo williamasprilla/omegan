@@ -14,6 +14,15 @@ namespace Omegan.Application.Features.TRM.Commands.CreateTRM
         {
             RuleFor(p => p.TRMValue)
                 .NotNull().WithMessage("{TRMValue} no puede ser nulo");
+
+            RuleFor(p => p.NumberCompanies)
+                .NotNull().WithMessage("{NumberCompanies} no puede ser nulo");
+
+            RuleFor(p => p.MonthlyBudget)
+                .NotNull().WithMessage("{MonthlyBudget} no puede ser nulo");
+
+            RuleFor(p => p.InitialDivision)
+                .NotNull().WithMessage("{InitialDivision} no puede ser nulo");
         }
     }
 }
