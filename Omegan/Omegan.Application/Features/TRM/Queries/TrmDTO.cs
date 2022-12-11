@@ -14,5 +14,8 @@ namespace Omegan.Application.Features.TRM.Queries
     {
         public int Id { get; set; }
         public double TRMValue { get; set; }
+        public double MonthlyBudget { get; set; }
+        public int NumberCompanies { get; set; }
+        public double InitialDivision { get; set; }
     }
 }
