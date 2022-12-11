@@ -11,6 +11,8 @@ using Omegan.Application.Features.Companies.Queries.GetCompanyByIdWithArchives;
 using Omegan.Application.Features.Companies.Queries.GetCompanyByUserId;
 using Omegan.Application.Features.Companies.Queries.GetCountries;
 using Omegan.Application.Features.Compensation.Commands.CreateCompensation;
+using Omegan.Application.Features.Compensation.Commands.UpdateCompensation;
+using Omegan.Application.Features.Compensation.Querys;
 using Omegan.Application.Features.Countries.Commands.CreateCountry;
 using Omegan.Application.Features.Countries.Commands.DeleteCountry;
 using Omegan.Application.Features.Countries.Commands.UpdateCountry;
@@ -68,9 +70,13 @@ namespace Omegan.Application.Mapping
             CreateMap<CreateTRMCommandMapper, Trm>();
             CreateMap<UpdateTRMCommandMapper, Trm>();
 
+            //Compensation
+            CreateMap<Compensation, CompensationCompanyDTO>();
+            CreateMap<CreateCompensationCommandMapper, Compensation>();
+            CreateMap<UpdateCompensationCommandMapper, Compensation>();
+
             //Announcement
-            
-            CreateMap<Announcement, AnnouncementOuputDTO>()
+            CreateMap<Announcement, AnnouncementDTO>()
            .ForMember(x => x.ProductsList, options => options.MapFrom(MapProductList1));
 
 
@@ -98,11 +104,11 @@ namespace Omegan.Application.Mapping
 
 
 
-        private object MapProductList1(Announcement announcement, AnnouncementOuputDTO announcementOuputDTO)
+        private object MapProductList1(Announcement announcement, AnnouncementDTO announcementDTO)
         {
             var result = new List<ProductkDTO>();
 
-            if (announcementOuputDTO == null) { return result; }
+            if (announcementDTO == null) { return result; }
 
             foreach (var product in announcement.ProductAnnouncements!)
             {

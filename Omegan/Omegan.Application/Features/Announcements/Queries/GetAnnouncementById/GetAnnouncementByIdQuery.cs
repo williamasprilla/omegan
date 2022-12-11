@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Omegan.Application.Features.Announcements.Queries.GetAnnouncementsById
 {
-    public class GetAnnouncementByIdQuery: IRequest<AnnouncementOuputDTO>
+    public class GetAnnouncementByIdQuery: IRequest<AnnouncementDTO>
     {
         public GetAnnouncementByIdQuery(int id)
         {

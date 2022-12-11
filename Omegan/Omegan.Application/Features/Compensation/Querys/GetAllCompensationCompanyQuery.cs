@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Omegan.Application.Features.Compensation.Querys
 {
-    public class GetAllCompanyCompensationQuery: IRequest<List<CompanyCompensationDTO>>
+    public class GetAllCompensationCompanyQuery: IRequest<CompensationCompanyDTO>
     {
 
     }

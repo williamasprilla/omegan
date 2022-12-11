@@ -5,6 +5,7 @@ using Omegan.Application.Features.Announcements.Commands.UpdateAnnouncement;
 using Omegan.Application.Features.Companies.Queries.GetAllCompanyAnnouncements;
 using Omegan.Application.Features.Compensation.Commands.CreateCompensation;
 using Omegan.Application.Features.Compensation.Commands.UpdateCompensation;
+using Omegan.Application.Features.Compensation.Querys;
 using Omegan.Application.Utils;
 using System.Net;
 
@@ -41,13 +42,13 @@ namespace Omegan.API.Controllers
 
 
 
-        //[HttpGet("GetAllCompanyCompensation")]
-        //public async Task<IActionResult> GetAllCompanyCompensation()
-        //{
-        //    var query = new GetAllCompanyAnnouncementsQuery();
-        //    var company = await _mediator.Send(query);
-        //    return new OkObjectResult(new ResultResponse(company) { Message = string.Format(ResultResponse.ENTITY_GET, company) });
-        //}
+        [HttpGet("GetAllCompensations")]
+        public async Task<IActionResult> GetAllCompensations()
+        {
+            var query = new GetAllCompensationCompanyQuery();
+            var compensation = await _mediator.Send(query);
+            return new OkObjectResult(new ResultResponse(compensation) { Message = string.Format(ResultResponse.ENTITY_GET, compensation) });
+        }
 
 
 

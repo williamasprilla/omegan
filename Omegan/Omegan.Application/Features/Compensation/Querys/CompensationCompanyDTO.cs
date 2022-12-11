@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Omegan.Application.Features.Compensation.Querys
 {
-    public class CompanyCompensationDTO
+    public class CompensationCompanyDTO
     {
         public int Id { get; set; }
         public DateTime ExporterDate { get; set; }

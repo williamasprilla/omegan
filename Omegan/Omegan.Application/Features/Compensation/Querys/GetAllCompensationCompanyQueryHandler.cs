@@ -13,25 +13,25 @@ using System.Threading.Tasks;
 
 namespace Omegan.Application.Features.Compensation.Querys
 {
-    public class GetAllCompanyCompensationQueryHandler : IRequestHandler<GetAllCompanyCompensationQuery, List<CompanyCompensationDTO>>
+    public class GetAllCompensationCompanyQueryHandler : IRequestHandler<GetAllCompensationCompanyQuery, CompensationCompanyDTO>
     {
-        private readonly ILogger<GetAllCompanyCompensationQueryHandler> _logger;
+        private readonly ILogger<GetAllCompensationCompanyQueryHandler> _logger;
         private readonly IGenericRepository<Omegan.Domain.Compensation, int> _compensationRepository;
         private readonly IMapper _mapper;
 
-        public GetAllCompanyCompensationQueryHandler(ILogger<GetAllCompanyCompensationQueryHandler> logger, IGenericRepository<Domain.Compensation, int> compensationRepository, IMapper mapper)
+        public GetAllCompensationCompanyQueryHandler(ILogger<GetAllCompensationCompanyQueryHandler> logger, IGenericRepository<Domain.Compensation, int> compensationRepository, IMapper mapper)
         {
             _logger = logger;
             _compensationRepository = compensationRepository;
             _mapper = mapper;
         }
 
-        public async Task<List<CompanyCompensationDTO>> Handle(GetAllCompanyCompensationQuery request, CancellationToken cancellationToken)
+        public async Task<CompensationCompanyDTO> Handle(GetAllCompensationCompanyQuery request, CancellationToken cancellationToken)
         {
             var specification = new CompensationSpecification();
 
             var compensation = await _compensationRepository.ListAsync(specification, cancellationToken);
-            var result = _mapper.Map<List<CompanyCompensationDTO>>(compensation);
+            var result = _mapper.Map<CompensationCompanyDTO>(compensation);
             return result;
         }
     }

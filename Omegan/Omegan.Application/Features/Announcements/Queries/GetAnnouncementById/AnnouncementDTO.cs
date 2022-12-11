@@ -1,4 +1,5 @@
 ﻿using Omegan.Application.DTOs;
+using Omegan.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,12 @@ namespace Omegan.Application.Features.Announcements.Queries.GetAnnouncementById
         public string Observation { get; set; } = string.Empty;
         public int State { get; set; }
         public int CompanyId { get; set; }
-        //public List<ProductAnnouncementInputDTO>? ProductsAnnouncement { get; set; }
-        public virtual ICollection<ProductkDTO>? Announcements { get; set; }
+        public List<ProductkDTO>? ProductsList { get; set; }
+
+        //public virtual Company? Company { get; set; }
+        //public ICollection<ProductAnnouncement>? ProductAnnouncements { get; set; }
+
+
+      
     }
 }

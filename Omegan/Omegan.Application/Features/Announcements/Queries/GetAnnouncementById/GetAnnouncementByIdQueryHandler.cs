@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace Omegan.Application.Features.Announcements.Queries.GetAnnouncementById
 {
-    public class GetAnnouncementByIdQueryHandler: IRequestHandler<GetAnnouncementByIdQuery, AnnouncementOuputDTO>
+    public class GetAnnouncementByIdQueryHandler: IRequestHandler<GetAnnouncementByIdQuery, AnnouncementDTO>
     {
         private readonly ILogger<GetAnnouncementByIdQueryHandler> _logger;
         private readonly IGenericRepository<Announcement, int> _announcementRepository;
@@ -30,18 +30,18 @@ namespace Omegan.Application.Features.Announcements.Queries.GetAnnouncementById
             _mapper = mapper;
         }
 
-        public async Task<AnnouncementOuputDTO> Handle(GetAnnouncementByIdQuery request, CancellationToken cancellationToken)
+        public async Task<AnnouncementDTO> Handle(GetAnnouncementByIdQuery request, CancellationToken cancellationToken)
         {
             var specification = new AnnouncementSpecification(request.Id);
 
-            var announcement = await _announcementRepository.ListAsync(specification, cancellationToken);
-            var result = _mapper.Map<AnnouncementOuputDTO>(announcement);
-            return result;
-
-
-            //var announcement = await _announcementRepository.FirstAsync(specification, cancellationToken);
+            //var announcement = await _announcementRepository.ListAsync(specification, cancellationToken);
             //var result = _mapper.Map<AnnouncementDTO>(announcement);
             //return result;
+
+
+            var announcement = await _announcementRepository.FirstAsync(specification, cancellationToken);
+            var result = _mapper.Map<AnnouncementDTO>(announcement);
+            return result;
         }
     }
 }
