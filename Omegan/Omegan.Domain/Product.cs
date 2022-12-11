@@ -9,6 +9,7 @@ namespace Omegan.Domain
         public string Description { get; set; } = string.Empty;
 
         public virtual ICollection<ProductAnnouncement>? ProductAnnouncements { get; set; }
+        public virtual ICollection<ProductCompensation>? ProductCompensation { get; set; }
 
     }
 }

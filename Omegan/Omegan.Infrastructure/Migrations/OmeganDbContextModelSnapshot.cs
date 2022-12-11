@@ -48,56 +48,56 @@ namespace Omegan.Infrastructure.Migrations
                         new
                         {
                             Id = "b947fb18-600f-4057-b05e-d306abffedb6",
-                            ConcurrencyStamp = "c1ad8074-89f6-4ef4-af07-ea2ac9d7c199",
+                            ConcurrencyStamp = "10d5d60a-44ac-4666-a05e-69100857ddd8",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "aebfc368-0c43-4b94-8cce-26c277ec2e33",
-                            ConcurrencyStamp = "23362b3f-f3bf-4b9d-bfb3-4202fbc56a1e",
+                            ConcurrencyStamp = "64d748cc-e14b-4ebf-84c4-6d4812cc1eef",
                             Name = "Empresa Exportadora",
                             NormalizedName = "EMPRESA EXPORTADORA"
                         },
                         new
                         {
                             Id = "93296f46-5fd1-4b67-bb8d-9a9008adc8e6",
-                            ConcurrencyStamp = "e22a2adf-bd98-4730-a5aa-04da93df304d",
+                            ConcurrencyStamp = "b3aa2890-1647-4bcf-aa9c-438e2ac81fb8",
                             Name = "Representante Lejal",
                             NormalizedName = "Representante Lejal"
                         },
                         new
                         {
                             Id = "a0b13f5f-1fdc-4937-99ac-91c4a5c8e1bc",
-                            ConcurrencyStamp = "052d0357-672c-4a27-9c24-feff76fa29cd",
+                            ConcurrencyStamp = "9b088155-8777-4188-a0b0-2ebc14800246",
                             Name = "Comite Directivo",
                             NormalizedName = "COMITE DIRECTIVO"
                         },
                         new
                         {
                             Id = "b344f3b4-1df4-449e-8553-9dd7640820a2",
-                            ConcurrencyStamp = "04425c24-ffde-4661-a86a-251fbe852491",
+                            ConcurrencyStamp = "5ea4c583-eed9-4948-b5f0-952c3b4e036f",
                             Name = "Secretaria Tecnica",
                             NormalizedName = "SECRETARIA TECNICA"
                         },
                         new
                         {
                             Id = "10096115-e173-4e82-903f-8b4c8f8e2ceb",
-                            ConcurrencyStamp = "51702432-b495-43cd-abaf-67dab94d9018",
+                            ConcurrencyStamp = "f3ba04ae-49d8-4ee4-9338-5bddba1e780e",
                             Name = "Coordinacion Operactiva",
                             NormalizedName = "COORDINACION OPERACTIVA"
                         },
                         new
                         {
                             Id = "9cd3b078-3254-4c05-b404-e527ec616c89",
-                            ConcurrencyStamp = "9fba1547-6dc9-42e4-a123-b7ed18771150",
+                            ConcurrencyStamp = "36776ab3-67a2-480d-9261-417ef13a6fec",
                             Name = "Profesional I",
                             NormalizedName = "PROFESIONAL I"
                         },
                         new
                         {
                             Id = "3a52dfb8-8595-487e-bd07-2e876c8291a5",
-                            ConcurrencyStamp = "27a0d322-a356-4f2c-b902-b749e5ad0c52",
+                            ConcurrencyStamp = "2c5027a9-3153-43f5-acf7-64ace6dfcdea",
                             Name = "Auditoria Interna",
                             NormalizedName = "AUDITORIA INTERNA"
                         });
@@ -358,6 +358,50 @@ namespace Omegan.Infrastructure.Migrations
                     b.ToTable("Companies");
                 });
 
+            modelBuilder.Entity("Omegan.Domain.Compensation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("AnnouncementDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("AnnouncementNumber")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("DestinationCountry")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("ExporterDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("LastModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("LastModifiedDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.ToTable("Compensation");
+                });
+
             modelBuilder.Entity("Omegan.Domain.Country", b =>
                 {
                     b.Property<int>("Id")
@@ -465,17 +509,17 @@ namespace Omegan.Infrastructure.Migrations
                         {
                             Id = "7fa985ac-095c-469b-b98d-8e09a947d66a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ee7cedc4-c6b6-4a87-83dd-2b6f14a151b8",
+                            ConcurrencyStamp = "b414a5c8-2161-40e1-a184-12e0c8f82236",
                             Email = "admin@locahost.com",
                             EmailConfirmed = true,
                             FullName = "Omegan Admin",
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@locahost.com",
                             NormalizedUserName = "omeganadmin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDlx+33FnQ2+adt/DC+zKHNPiQ1BGUgE7LD9TB+vJ43tWHCohHPwjBi9OM2sOPhs2g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHyOHu7jodPfioM1MHLlGAjrYpjU5z7CXmGABtS6N5dOOq+w1iLBW6sQ8qH19Jnaow==",
                             PhoneNumber = "3175226569",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a72d8553-4ac2-4c14-8329-110d27b583ee",
+                            SecurityStamp = "72a632d1-e8ee-4545-b9fe-9c6e55f6b125",
                             TwoFactorEnabled = false,
                             UserName = "OmeganAdmin"
                         });
@@ -614,6 +658,58 @@ namespace Omegan.Infrastructure.Migrations
                     b.ToTable("ProductAnnouncements");
                 });
 
+            modelBuilder.Entity("Omegan.Domain.ProductCompensation", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CompensationId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("KilogramsExported")
+                        .HasColumnType("double");
+
+                    b.Property<double>("OffsetKilogram")
+                        .HasColumnType("double");
+
+                    b.Property<double>("Subtotal")
+                        .HasColumnType("double");
+
+                    b.HasKey("ProductId", "CompensationId");
+
+                    b.HasIndex("CompensationId");
+
+                    b.ToTable("ProductCompensation");
+                });
+
+            modelBuilder.Entity("Omegan.Domain.Trm", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("LastModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("LastModifiedDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<double>("TRMValue")
+                        .HasColumnType("double");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Trm");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -698,6 +794,17 @@ namespace Omegan.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Omegan.Domain.Compensation", b =>
+                {
+                    b.HasOne("Omegan.Domain.Company", "Company")
+                        .WithMany("Compensation")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
+                });
+
             modelBuilder.Entity("Omegan.Domain.ProductAnnouncement", b =>
                 {
                     b.HasOne("Omegan.Domain.Announcement", "Announcement")
@@ -717,6 +824,25 @@ namespace Omegan.Infrastructure.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("Omegan.Domain.ProductCompensation", b =>
+                {
+                    b.HasOne("Omegan.Domain.Compensation", "Compensation")
+                        .WithMany("ProductCompensation")
+                        .HasForeignKey("CompensationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Omegan.Domain.Product", "Product")
+                        .WithMany("ProductCompensation")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Compensation");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("Omegan.Domain.Announcement", b =>
                 {
                     b.Navigation("ProductAnnouncements");
@@ -727,6 +853,13 @@ namespace Omegan.Infrastructure.Migrations
                     b.Navigation("Announcements");
 
                     b.Navigation("Archives");
+
+                    b.Navigation("Compensation");
+                });
+
+            modelBuilder.Entity("Omegan.Domain.Compensation", b =>
+                {
+                    b.Navigation("ProductCompensation");
                 });
 
             modelBuilder.Entity("Omegan.Domain.Models.ApplicationUser", b =>
@@ -737,6 +870,8 @@ namespace Omegan.Infrastructure.Migrations
             modelBuilder.Entity("Omegan.Domain.Product", b =>
                 {
                     b.Navigation("ProductAnnouncements");
+
+                    b.Navigation("ProductCompensation");
                 });
 #pragma warning restore 612, 618
         }

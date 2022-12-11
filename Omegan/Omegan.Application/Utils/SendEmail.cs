@@ -10,11 +10,17 @@ namespace Omegan.Application.Utils
 {
     public class SendEmail
     {
-        public async Task<string> Send(string to, string subject, string body, string from, string servidor, string password, int port)
+        public async Task<string> Send(string to, string subject, string body)
         {
 
             try
             {
+                //Leer los valores desde el app.settings
+                string from = "wasprilla.asprilla@hotmail.com";
+                string servidor = "smtp.office365.com";
+                string password = "Desarrollo2022+-";
+                int port = 587;
+
                 // Se crea el mensaje
                 string[] direcciones = to.Split(',');
 

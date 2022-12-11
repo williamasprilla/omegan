@@ -10,17 +10,14 @@ namespace Omegan.API.Controllers
     {
 
         [HttpGet("SendEmail")]
-        public async Task<IActionResult> SendEmail()
+        public async Task<IActionResult> SendEmail(string to, string subject, string emailBody)
         {
             SendEmail email = new SendEmail();
-            string to = "william.asprilla.ceballos@gmail.com";
-            string subject = "Notificacion Omegan";
-            string EmailBody = "Esta es una prueba del envio de correos desde Omegan";
-            string from = "wasprilla@hotmail.com";
-            string servidor = "smtp.office365.com";
-            string password = "";
-            int  port = 587;
-            await email.Send(to, subject, EmailBody, from, servidor, password, port);
+            //string to = "william.asprilla.ceballos@gmail.com";
+            //string subject = "Notificacion Omegan";
+            //string EmailBody = "Esta es una prueba del envio de correos desde Omegan";
+            
+            await email.Send(to, subject, emailBody);
 
             return Ok("Correo enviado");
         }

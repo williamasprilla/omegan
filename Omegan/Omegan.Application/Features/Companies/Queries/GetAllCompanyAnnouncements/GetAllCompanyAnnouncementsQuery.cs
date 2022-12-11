@@ -5,6 +5,10 @@ namespace Omegan.Application.Features.Companies.Queries.GetAllCompanyAnnouncemen
 {
     public class GetAllCompanyAnnouncementsQuery: IRequest<List<CompanyAnnouncementsDTO>>
     {
-
+        public GetAllCompanyAnnouncementsQuery(int state)
+        {
+            State = state;
+        }
+        public int State { get; set; }
     }
 }

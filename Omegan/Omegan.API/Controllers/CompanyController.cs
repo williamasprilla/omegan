@@ -43,9 +43,9 @@ namespace Omegan.API.Controllers
 
 
         [HttpGet("GetAllCompanyAnnouncements")]
-        public async Task<IActionResult> GetAllCompanyAnnouncements()
+        public async Task<IActionResult> GetAllCompanyAnnouncements(int state)
         {
-            var query = new GetAllCompanyAnnouncementsQuery();
+            var query = new GetAllCompanyAnnouncementsQuery(state);
             var company = await _mediator.Send(query);
             return new OkObjectResult(new ResultResponse(company) { Message = string.Format(ResultResponse.ENTITY_GET, company) });
         }

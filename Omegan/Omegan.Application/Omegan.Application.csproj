@@ -22,9 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Announcements\Queries\" />
     <Folder Include="Features\Companies\Commands\DeleteCompany\" />
+    <Folder Include="Features\Compensation\Commands\DeleteCompensation\" />
     <Folder Include="Features\Products\Commands\" />
+    <Folder Include="Features\TRM\Commands\DeleteTRM\" />
   </ItemGroup>
 
 </Project>

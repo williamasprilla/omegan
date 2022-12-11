@@ -8,9 +8,9 @@ namespace Omegan.Application.Contracts.Specifications
         public CompanySpecification(string userid)
         {
 
-            Query.Include(a => a.Archives)
-                 .Include(n => n.Announcements)
-                 .ThenInclude(pa => pa.ProductAnnouncements)
+            Query.Include(a => a.Archives!)
+                 .Include(n => n.Announcements!)
+                 .ThenInclude(pa => pa.ProductAnnouncements!)
                  .ThenInclude(p => p.Product);
 
 

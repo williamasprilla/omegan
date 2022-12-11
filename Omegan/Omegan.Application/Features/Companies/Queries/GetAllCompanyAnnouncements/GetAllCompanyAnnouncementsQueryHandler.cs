@@ -27,7 +27,7 @@ namespace Omegan.Application.Features.Companies.Queries.GetAllCompanyAnnouncemen
         public async Task<List<CompanyAnnouncementsDTO>> Handle(GetAllCompanyAnnouncementsQuery request, CancellationToken cancellationToken)
         {
 
-            var specification = new CompanySpecification();
+            var specification = new CompanySpecification(request.State);
 
             var company = await _companyRepository.ListAsync(specification, cancellationToken);
             var result = _mapper.Map<List<CompanyAnnouncementsDTO>>(company);

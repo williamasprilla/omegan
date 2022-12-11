@@ -18,9 +18,8 @@ namespace Omegan.Domain
         public int State { get; set; }
 
         public virtual ApplicationUser? User { get; set; }
-
         public virtual ICollection<Archive>? Archives { get; set; }
-
         public virtual ICollection<Announcement>? Announcements { get; set; }
+        public virtual ICollection<Compensation>? Compensation { get; set; }
     }
 }
