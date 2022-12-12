@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Omegan.Application.Features.Companies.Queries.GetCompanyByIdWithArchives;
 using Omegan.Application.Utils;
 using Omegan.Domain;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Omegan.API.Controllers
 {
@@ -14,10 +15,11 @@ namespace Omegan.API.Controllers
         public async Task<IActionResult> SendEmail(string to, string subject, string emailBody)
         {
             SendEmail email = new SendEmail();
-            
-            await email.Send(to, subject, emailBody);
-            return new OkObjectResult(new ResultResponse("Correo enviado") { Message = string.Format(ResultResponse.ENTITY_GET, "Correo enviado") });
-            
+
+            var result = await _mediator.Send(command);
+
+            return new OkObjectResult(new ResultResponse(result) { Message = string.Format(ResultResponse.ENTITY_INSERT_OK, result) });
+
         }
     }
 }
