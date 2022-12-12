@@ -1,5 +1,4 @@
 ﻿using Ardalis.Specification;
-using Omegan.Application.Features.Announcements.Queries.GetAnnouncementById;
 using Omegan.Domain;
 using System;
 using System.Collections.Generic;
@@ -9,17 +8,14 @@ using System.Threading.Tasks;
 
 namespace Omegan.Application.Contracts.Specifications
 {
-    public class AnnouncementSpecification: Specification<Announcement>
+    public class AnnouncementSpecificationByIdCompany: Specification<Announcement>
     {
-        public AnnouncementSpecification(int AnnouncementId)
+        public AnnouncementSpecificationByIdCompany(int CompanytId)
         {
             Query.Include(pa => pa.ProductAnnouncements)
                  .ThenInclude(p => p.Product);
 
-            Query.Where(c => c.Id == AnnouncementId);
+            Query.Where(c => c.Id == CompanytId);
         }
-
-       
-
     }
 }

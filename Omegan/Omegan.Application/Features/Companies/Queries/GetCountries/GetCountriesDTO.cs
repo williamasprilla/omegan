@@ -8,6 +8,7 @@ namespace Omegan.Application.Features.Companies.Queries.GetCountries
 {
     public class GetCountriesDTO
     {
+        public int Id { get; set; }
         public string nameCountry { get; set; } = string.Empty;
         public double CurrentValue { get; set; }
         public bool State { get; set; }

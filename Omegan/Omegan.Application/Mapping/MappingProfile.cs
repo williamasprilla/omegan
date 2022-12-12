@@ -80,11 +80,6 @@ namespace Omegan.Application.Mapping
            .ForMember(x => x.ProductsList, options => options.MapFrom(MapProductList1));
 
 
-            //CreateMap<Announcement, List<AnnouncementDTO>>()
-            //.ForMember(x => x.ProductsList, options => options.MapFrom(MapProductList));
-
-            //CreateMap<List<Company>, List<CompanyAnnouncementsDTO>>().ReverseMap();
-
 
         }
 

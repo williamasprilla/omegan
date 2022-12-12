@@ -20,7 +20,7 @@ namespace Omegan.Application.Features.Companies.Queries.GetAllCompanyAnnouncemen
         
         public int State { get; set; }
 
-        //public virtual ICollection<ArchiveOutputDTO>? Archives { get; set; }
+        public string UserId { get; set; } = string.Empty;
 
         public virtual ICollection<AnnouncementOuputDTO>? Announcements { get; set; }
     }
