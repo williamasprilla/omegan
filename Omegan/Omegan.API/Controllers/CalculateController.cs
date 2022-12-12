@@ -39,7 +39,7 @@ namespace Omegan.API.Controllers
                 var query = new GetAnnouncementByCompanyQuery(IdCompany);
                 var announcement = await _mediator.Send(query);
 
-                //Round1 = (trm.First().TRMValue * )
+                Round1 = (trm.First().TRMValue * data.CurrentValue);
             }
 
             return new OkObjectResult(new ResultResponse(trm) { Message = string.Format(ResultResponse.ENTITY_GET, trm) });
