@@ -37,8 +37,11 @@ namespace Omegan.API.Controllers
         public async Task<IActionResult> CreateArchive([FromBody] CreateArchiveCommandMapper command)
         {
             var result = await _mediator.Send(command);
-            return NoContent();
+
+            return new OkObjectResult(new ResultResponse(result) { Message = string.Format(ResultResponse.ENTITY_INSERT_OK, result) });
         }
+
+
     }
 }
 
