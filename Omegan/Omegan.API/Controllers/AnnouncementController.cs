@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Omegan.Application.Features.Announcements.Commands;
 using Omegan.Application.Features.Announcements.Commands.UpdateAnnouncement;
 using Omegan.Application.Features.Announcements.Queries.GetAnnouncementByCompany;
+using Omegan.Application.Features.Announcements.Queries.GetAnnouncementByCompanyStateQuery;
 using Omegan.Application.Features.Announcements.Queries.GetAnnouncementsById;
 using Omegan.Application.Features.Companies.Commands.UpdateCompany;
 using Omegan.Application.Features.Companies.Queries.GetCompanyById;
@@ -58,6 +59,15 @@ namespace Omegan.API.Controllers
         public async Task<IActionResult> GetAnnouncementsByCompany(int idCompany)
         {
             var query = new GetAnnouncementByCompanyQuery(idCompany);
+            var announcement = await _mediator.Send(query);
+            return new OkObjectResult(new ResultResponse(announcement) { Message = string.Format(ResultResponse.ENTITY_GET, announcement) });
+        }
+
+
+        [HttpGet("GetAnnouncementsByCompanyState")]
+        public async Task<IActionResult> GetAnnouncementsByCompanyState(int idCompany, int State)
+        {
+            var query = new GetAnnouncementByCompanyStateQuery(idCompany, State);
             var announcement = await _mediator.Send(query);
             return new OkObjectResult(new ResultResponse(announcement) { Message = string.Format(ResultResponse.ENTITY_GET, announcement) });
         }

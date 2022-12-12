@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Omegan.Infrastructure.Persistence;
 
@@ -10,9 +11,10 @@ using Omegan.Infrastructure.Persistence;
 namespace Omegan.Infrastructure.Migrations
 {
     [DbContext(typeof(OmeganDbContext))]
-    partial class OmeganDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221212203752_AddFieldIdDestinationCountry")]
+    partial class AddFieldIdDestinationCountry
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

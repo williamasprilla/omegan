@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Omegan.Application.Features.Announcements.Queries.GetAnnouncementByCompany;
+using Omegan.Application.Features.Announcements.Queries.GetAnnouncementByCompanyStateQuery;
 using Omegan.Application.Features.Announcements.Queries.GetAnnouncementsById;
 using Omegan.Application.Features.Companies.Queries.GetCountries;
 using Omegan.Application.Features.TRM.Queries;
@@ -14,12 +15,10 @@ namespace Omegan.API.Controllers
     public class CalculateController : ApiControllerBase
     {
         private IMediator _mediator;
-
         public CalculateController(IMediator mediator)
-        {
+        {   
             _mediator = mediator;
         }
-
 
         [HttpGet("GetValuesTRM")]
         public async Task<IActionResult> GetValuesTRM()
@@ -36,7 +35,7 @@ namespace Omegan.API.Controllers
 
             foreach(var data in country)
             {
-                var query = new GetAnnouncementByCompanyQuery(IdCompany);
+                var query = new GetAnnouncementByCompanyStateQuery(IdCompany,1);
                 var announcement = await _mediator.Send(query);
 
                 Round1 = (trm.First().TRMValue * data.CurrentValue);
