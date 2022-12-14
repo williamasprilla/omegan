@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace Omegan.Application.Features.Announcements.Queries.GetAnnouncementByCompanyStateQuery
 {
-    public class GetAnnouncementByCompanyStateQuery: IRequest<AnnouncementDTO>
+    public class GetAnnouncementByCompanyStateQuery: IRequest<List<AnnouncementDTO>>
     {
-
         public GetAnnouncementByCompanyStateQuery(int idCompany, int state)
         {
             IdCompany = idCompany;

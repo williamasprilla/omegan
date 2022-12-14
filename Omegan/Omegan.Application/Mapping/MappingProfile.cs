@@ -79,6 +79,9 @@ namespace Omegan.Application.Mapping
             CreateMap<Announcement, AnnouncementDTO>()
            .ForMember(x => x.ProductsList, options => options.MapFrom(MapProductList1));
 
+            CreateMap<Announcement, AnnouncementDTO>()
+          .ForMember(x => x.ProductsList, options => options.MapFrom(MapProductList1));
+
 
 
         }
@@ -91,7 +94,7 @@ namespace Omegan.Application.Mapping
 
             foreach (var product in announcement.ProductAnnouncements!)
             {
-                result.Add(new ProductkDTO() { Id = product.ProductId, TariffItem = product.Product!.TariffItem, Description = product.Product.Description });
+                result.Add(new ProductkDTO() { Id = product.ProductId, TariffItem = product.Product!.TariffItem, Description = product.Product.Description, Kilogram = product.Kilogram });
             }
 
             return result;
@@ -107,7 +110,7 @@ namespace Omegan.Application.Mapping
 
             foreach (var product in announcement.ProductAnnouncements!)
             {
-                result.Add(new ProductkDTO() { Id = product.ProductId, TariffItem = product.Product!.TariffItem, Description = product.Product.Description });
+                result.Add(new ProductkDTO() { Id = product.ProductId, TariffItem = product.Product!.TariffItem, Description = product.Product.Description, Kilogram = product.Kilogram });
             }
 
             return result;

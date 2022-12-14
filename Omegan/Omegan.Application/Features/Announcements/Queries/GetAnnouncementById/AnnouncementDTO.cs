@@ -19,10 +19,6 @@ namespace Omegan.Application.Features.Announcements.Queries.GetAnnouncementById
         public int CompanyId { get; set; }
         public List<ProductkDTO>? ProductsList { get; set; }
 
-        //public virtual Company? Company { get; set; }
-        //public ICollection<ProductAnnouncement>? ProductAnnouncements { get; set; }
-
-
       
     }
 }

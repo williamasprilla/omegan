@@ -16,8 +16,8 @@ namespace Omegan.Application.Contracts.Specifications
             Query.Include(pa => pa.ProductAnnouncements!)
                  .ThenInclude(p => p.Product);
 
-            Query.Where(c => c.Id == CompanytId && c.State == state);
-                       
+            Query.Where(c => c.CompanyId == CompanytId && c.State == state);
+
         }
     }
 }

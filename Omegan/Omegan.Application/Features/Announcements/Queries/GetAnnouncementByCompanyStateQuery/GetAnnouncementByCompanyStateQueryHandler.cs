@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Omegan.Application.Features.Announcements.Queries.GetAnnouncementByCompanyStateQuery
 {
-    public class GetAnnouncementByCompanyStateQueryHandler : IRequestHandler<GetAnnouncementByCompanyStateQuery, AnnouncementDTO>
+    public class GetAnnouncementByCompanyStateQueryHandler : IRequestHandler<GetAnnouncementByCompanyStateQuery, List<AnnouncementDTO>>
     {
 
         private readonly ILogger<GetAnnouncementByCompanyStateQueryHandler> _logger;
@@ -28,12 +28,13 @@ namespace Omegan.Application.Features.Announcements.Queries.GetAnnouncementByCom
             _mapper = mapper;
         }
 
-        public async Task<AnnouncementDTO> Handle(GetAnnouncementByCompanyStateQuery request, CancellationToken cancellationToken)
+        public async Task<List<AnnouncementDTO>> Handle(GetAnnouncementByCompanyStateQuery request, CancellationToken cancellationToken)
         {
             var specification = new AnnouncementSpecificationByIdCompanyState(request.IdCompany, request.State);
+            //var specification = new AnnouncementSpecificationByIdCompanyState(request.IdCompany);
 
-            var announcement = await _announcementRepository.FirstAsync(specification, cancellationToken);
-            var result = _mapper.Map<AnnouncementDTO>(announcement);
+            var announcement = await _announcementRepository.ListAsync(specification, cancellationToken);
+            var result = _mapper.Map<List<AnnouncementDTO>>(announcement);
             return result;
         }
     }
