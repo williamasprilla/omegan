@@ -44,7 +44,7 @@ namespace Omegan.Application.Utils
 
                 // Establece la configuraci?n del cliente
                 cliente.DeliveryMethod = SmtpDeliveryMethod.Network;
-                cliente.EnableSsl = true;
+                cliente.EnableSsl = false;
                 cliente.UseDefaultCredentials = false;
                 cliente.Credentials = new NetworkCredential(from, password);
 

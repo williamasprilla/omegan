@@ -39,7 +39,7 @@ namespace Omegan.API.Controllers
             int contcompany = 0;
 
             //Obtener compañias activas
-            var queryCompanies = new GetAllCompanyAnnouncementsQuery(1);
+            var queryCompanies = new GetAllCompanyAnnouncementsQuery(2);
             var company = await _mediator.Send(queryCompanies);
             Round round = new Round();
             
@@ -52,7 +52,7 @@ namespace Omegan.API.Controllers
 
                 foreach(var co in country)
                 {
-                    var query = new GetAnnouncementByCompanyStateQuery(_company.Id, 1);
+                    var query = new GetAnnouncementByCompanyStateQuery(_company.Id, 2);
                     var announcement = await _mediator.Send(query);
                     foreach(var ann in announcement)
                     {

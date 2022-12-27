@@ -48,56 +48,56 @@ namespace Omegan.Infrastructure.Migrations
                         new
                         {
                             Id = "b947fb18-600f-4057-b05e-d306abffedb6",
-                            ConcurrencyStamp = "06463c6c-0e93-45c6-be25-bf0edd35c4fe",
+                            ConcurrencyStamp = "5998c8ce-38a3-4144-bbce-64f7b134d756",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "aebfc368-0c43-4b94-8cce-26c277ec2e33",
-                            ConcurrencyStamp = "36dac892-6c2d-4789-9c1b-02dbcc87ca2a",
+                            ConcurrencyStamp = "9d68e69a-a718-4916-b5d4-c10929c213f8",
                             Name = "Empresa Exportadora",
                             NormalizedName = "EMPRESA EXPORTADORA"
                         },
                         new
                         {
                             Id = "93296f46-5fd1-4b67-bb8d-9a9008adc8e6",
-                            ConcurrencyStamp = "fc2240ef-abc6-4b64-ac39-84e2e0b470d5",
+                            ConcurrencyStamp = "4b6fa706-9d02-4d77-8e57-ca627ade32d9",
                             Name = "Representante Lejal",
                             NormalizedName = "Representante Lejal"
                         },
                         new
                         {
                             Id = "a0b13f5f-1fdc-4937-99ac-91c4a5c8e1bc",
-                            ConcurrencyStamp = "2bcefc76-5f32-455c-b80a-6f52e0033aa8",
+                            ConcurrencyStamp = "e3055302-6d5c-4575-867f-600c968bf452",
                             Name = "Comite Directivo",
                             NormalizedName = "COMITE DIRECTIVO"
                         },
                         new
                         {
                             Id = "b344f3b4-1df4-449e-8553-9dd7640820a2",
-                            ConcurrencyStamp = "fde8e49b-e6d2-4d25-851b-b192dedd966f",
+                            ConcurrencyStamp = "04940fa4-414b-40a8-8454-b69a12d1a583",
                             Name = "Secretaria Tecnica",
                             NormalizedName = "SECRETARIA TECNICA"
                         },
                         new
                         {
                             Id = "10096115-e173-4e82-903f-8b4c8f8e2ceb",
-                            ConcurrencyStamp = "cccac0a6-54ab-430a-8212-cbf7b53fccf9",
+                            ConcurrencyStamp = "d69a79cd-1ccc-4033-acb0-df0ab0280e91",
                             Name = "Coordinacion Operactiva",
                             NormalizedName = "COORDINACION OPERACTIVA"
                         },
                         new
                         {
                             Id = "9cd3b078-3254-4c05-b404-e527ec616c89",
-                            ConcurrencyStamp = "c3dac6fd-0948-4dc7-bbaa-fd81d7b07305",
+                            ConcurrencyStamp = "b39908a6-d9b2-46b2-9ada-3e808bdc039c",
                             Name = "Profesional I",
                             NormalizedName = "PROFESIONAL I"
                         },
                         new
                         {
                             Id = "3a52dfb8-8595-487e-bd07-2e876c8291a5",
-                            ConcurrencyStamp = "396efaa6-5ceb-43ed-9345-8d6501218b35",
+                            ConcurrencyStamp = "7144cff9-6d08-461b-a10b-7c47d7c16f42",
                             Name = "Auditoria Interna",
                             NormalizedName = "AUDITORIA INTERNA"
                         });
@@ -512,17 +512,17 @@ namespace Omegan.Infrastructure.Migrations
                         {
                             Id = "7fa985ac-095c-469b-b98d-8e09a947d66a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5b20260b-ed64-42b4-ae10-41f29783889c",
+                            ConcurrencyStamp = "a0b7cb0c-a2c1-469d-a34a-1391b13139cf",
                             Email = "admin@locahost.com",
                             EmailConfirmed = true,
                             FullName = "Omegan Admin",
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@locahost.com",
                             NormalizedUserName = "omeganadmin",
-                            PasswordHash = "AQAAAAEAACcQAAAAECizck0EpJMEegH09fQ/sPxR8Fskz1o/Ra2moyr4vVYQIVdGURr2OvR77fVzRj9xAg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELHwXtE2NP2Vli08jo646TKYtIcqiI14GpnQJBE+Dx/mW5e/fXPbLBm8XwrFCE+O+w==",
                             PhoneNumber = "3175226569",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "298e5d73-0698-4f4f-8e6b-8774855d8534",
+                            SecurityStamp = "fcc2e459-8591-4aba-94bf-2a399b9e267d",
                             TwoFactorEnabled = false,
                             UserName = "OmeganAdmin"
                         });

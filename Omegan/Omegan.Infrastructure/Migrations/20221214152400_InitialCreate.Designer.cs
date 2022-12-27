@@ -11,8 +11,8 @@ using Omegan.Infrastructure.Persistence;
 namespace Omegan.Infrastructure.Migrations
 {
     [DbContext(typeof(OmeganDbContext))]
-    [Migration("20221210225549_AddTRMCompensationTable")]
-    partial class AddTRMCompensationTable
+    [Migration("20221214152400_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,56 +50,56 @@ namespace Omegan.Infrastructure.Migrations
                         new
                         {
                             Id = "b947fb18-600f-4057-b05e-d306abffedb6",
-                            ConcurrencyStamp = "10d5d60a-44ac-4666-a05e-69100857ddd8",
+                            ConcurrencyStamp = "5998c8ce-38a3-4144-bbce-64f7b134d756",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "aebfc368-0c43-4b94-8cce-26c277ec2e33",
-                            ConcurrencyStamp = "64d748cc-e14b-4ebf-84c4-6d4812cc1eef",
+                            ConcurrencyStamp = "9d68e69a-a718-4916-b5d4-c10929c213f8",
                             Name = "Empresa Exportadora",
                             NormalizedName = "EMPRESA EXPORTADORA"
                         },
                         new
                         {
                             Id = "93296f46-5fd1-4b67-bb8d-9a9008adc8e6",
-                            ConcurrencyStamp = "b3aa2890-1647-4bcf-aa9c-438e2ac81fb8",
+                            ConcurrencyStamp = "4b6fa706-9d02-4d77-8e57-ca627ade32d9",
                             Name = "Representante Lejal",
                             NormalizedName = "Representante Lejal"
                         },
                         new
                         {
                             Id = "a0b13f5f-1fdc-4937-99ac-91c4a5c8e1bc",
-                            ConcurrencyStamp = "9b088155-8777-4188-a0b0-2ebc14800246",
+                            ConcurrencyStamp = "e3055302-6d5c-4575-867f-600c968bf452",
                             Name = "Comite Directivo",
                             NormalizedName = "COMITE DIRECTIVO"
                         },
                         new
                         {
                             Id = "b344f3b4-1df4-449e-8553-9dd7640820a2",
-                            ConcurrencyStamp = "5ea4c583-eed9-4948-b5f0-952c3b4e036f",
+                            ConcurrencyStamp = "04940fa4-414b-40a8-8454-b69a12d1a583",
                             Name = "Secretaria Tecnica",
                             NormalizedName = "SECRETARIA TECNICA"
                         },
                         new
                         {
                             Id = "10096115-e173-4e82-903f-8b4c8f8e2ceb",
-                            ConcurrencyStamp = "f3ba04ae-49d8-4ee4-9338-5bddba1e780e",
+                            ConcurrencyStamp = "d69a79cd-1ccc-4033-acb0-df0ab0280e91",
                             Name = "Coordinacion Operactiva",
                             NormalizedName = "COORDINACION OPERACTIVA"
                         },
                         new
                         {
                             Id = "9cd3b078-3254-4c05-b404-e527ec616c89",
-                            ConcurrencyStamp = "36776ab3-67a2-480d-9261-417ef13a6fec",
+                            ConcurrencyStamp = "b39908a6-d9b2-46b2-9ada-3e808bdc039c",
                             Name = "Profesional I",
                             NormalizedName = "PROFESIONAL I"
                         },
                         new
                         {
                             Id = "3a52dfb8-8595-487e-bd07-2e876c8291a5",
-                            ConcurrencyStamp = "2c5027a9-3153-43f5-acf7-64ace6dfcdea",
+                            ConcurrencyStamp = "7144cff9-6d08-461b-a10b-7c47d7c16f42",
                             Name = "Auditoria Interna",
                             NormalizedName = "AUDITORIA INTERNA"
                         });
@@ -233,6 +233,9 @@ namespace Omegan.Infrastructure.Migrations
                     b.Property<string>("DestinationCountry")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int>("IdDestinationCountry")
+                        .HasColumnType("int");
 
                     b.Property<string>("LastModifiedBy")
                         .IsRequired()
@@ -511,17 +514,17 @@ namespace Omegan.Infrastructure.Migrations
                         {
                             Id = "7fa985ac-095c-469b-b98d-8e09a947d66a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b414a5c8-2161-40e1-a184-12e0c8f82236",
+                            ConcurrencyStamp = "a0b7cb0c-a2c1-469d-a34a-1391b13139cf",
                             Email = "admin@locahost.com",
                             EmailConfirmed = true,
                             FullName = "Omegan Admin",
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@locahost.com",
                             NormalizedUserName = "omeganadmin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHyOHu7jodPfioM1MHLlGAjrYpjU5z7CXmGABtS6N5dOOq+w1iLBW6sQ8qH19Jnaow==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELHwXtE2NP2Vli08jo646TKYtIcqiI14GpnQJBE+Dx/mW5e/fXPbLBm8XwrFCE+O+w==",
                             PhoneNumber = "3175226569",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "72a632d1-e8ee-4545-b9fe-9c6e55f6b125",
+                            SecurityStamp = "fcc2e459-8591-4aba-94bf-2a399b9e267d",
                             TwoFactorEnabled = false,
                             UserName = "OmeganAdmin"
                         });
@@ -697,12 +700,21 @@ namespace Omegan.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<double>("InitialDivision")
+                        .HasColumnType("double");
+
                     b.Property<string>("LastModifiedBy")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("LastModifiedDate")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<double>("MonthlyBudget")
+                        .HasColumnType("double");
+
+                    b.Property<int>("NumberCompanies")
+                        .HasColumnType("int");
 
                     b.Property<double>("TRMValue")
                         .HasColumnType("double");

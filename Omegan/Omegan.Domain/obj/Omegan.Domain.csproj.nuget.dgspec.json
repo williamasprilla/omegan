@@ -10,15 +10,14 @@
         "projectUniqueName": "D:\\Fedegan\\Omegan\\Omegan.Domain\\Omegan.Domain.csproj",
         "projectName": "Omegan.Domain",
         "projectPath": "D:\\Fedegan\\Omegan\\Omegan.Domain\\Omegan.Domain.csproj",
-        "packagesPath": "C:\\Users\\wasprilla\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\william.asprilla.MVM\\.nuget\\packages\\",
         "outputPath": "D:\\Fedegan\\Omegan\\Omegan.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\wasprilla\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\william.asprilla.MVM\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -28,7 +27,8 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/XM-Mercado/REGFRO/_packaging/XM-REGFRO/nuget/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {

@@ -150,10 +150,7 @@ namespace Omegan.Infrastructure.Services
             string to = request.Email;
             string subject = "Recuperar contraseña";
             string EmailBody = "Señor usuario su nueva contraseña es : " + "Colombia123+-";
-            //string from = "wasprilla@hotmail.com";
-            //string servidor = "smtp.office365.com";
-            //string password = "";
-            //int port = 587;
+            
             await email.Send(to, subject, EmailBody);
 
             return true;

@@ -70,6 +70,29 @@ namespace Omegan.Infrastructure.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "Countrys",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    nameCountry = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    CurrentValue = table.Column<double>(type: "double", nullable: false),
+                    State = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CreatedBy = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    LastModifiedDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    LastModifiedBy = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Countrys", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -89,6 +112,29 @@ namespace Omegan.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Trm",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    TRMValue = table.Column<double>(type: "double", nullable: false),
+                    MonthlyBudget = table.Column<double>(type: "double", nullable: false),
+                    NumberCompanies = table.Column<int>(type: "int", nullable: false),
+                    InitialDivision = table.Column<double>(type: "double", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CreatedBy = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    LastModifiedDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    LastModifiedBy = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Trm", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -235,6 +281,7 @@ namespace Omegan.Infrastructure.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     UserId = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    State = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     CreatedBy = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -262,6 +309,7 @@ namespace Omegan.Infrastructure.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     PortShipment = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    IdDestinationCountry = table.Column<int>(type: "int", nullable: false),
                     DestinationCountry = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ShippingDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
@@ -322,6 +370,38 @@ namespace Omegan.Infrastructure.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "Compensation",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    ExporterDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    AnnouncementNumber = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    AnnouncementDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    DestinationCountry = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    CompanyId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CreatedBy = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    LastModifiedDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    LastModifiedBy = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Compensation", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Compensation_Companies_CompanyId",
+                        column: x => x.CompanyId,
+                        principalTable: "Companies",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "ProductAnnouncements",
                 columns: table => new
                 {
@@ -347,25 +427,53 @@ namespace Omegan.Infrastructure.Migrations
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
+            migrationBuilder.CreateTable(
+                name: "ProductCompensation",
+                columns: table => new
+                {
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    CompensationId = table.Column<int>(type: "int", nullable: false),
+                    KilogramsExported = table.Column<double>(type: "double", nullable: false),
+                    OffsetKilogram = table.Column<double>(type: "double", nullable: false),
+                    Subtotal = table.Column<double>(type: "double", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductCompensation", x => new { x.ProductId, x.CompensationId });
+                    table.ForeignKey(
+                        name: "FK_ProductCompensation_Compensation_CompensationId",
+                        column: x => x.CompensationId,
+                        principalTable: "Compensation",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductCompensation_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "10096115-e173-4e82-903f-8b4c8f8e2ceb", "47ac954c-30fc-4505-bfe0-69fd417203fe", "Coordinacion Operactiva", "COORDINACION OPERACTIVA" },
-                    { "3a52dfb8-8595-487e-bd07-2e876c8291a5", "424a2a5e-8c89-4145-aa71-0e32e1b9ff7b", "Auditoria Interna", "AUDITORIA INTERNA" },
-                    { "93296f46-5fd1-4b67-bb8d-9a9008adc8e6", "4a5f0882-b42b-45e0-916d-cbd13ff86d36", "Representante Lejal", "Representante Lejal" },
-                    { "9cd3b078-3254-4c05-b404-e527ec616c89", "be4ea0b3-f422-4bb3-94a2-86f711409541", "Profesional I", "PROFESIONAL I" },
-                    { "a0b13f5f-1fdc-4937-99ac-91c4a5c8e1bc", "27b9a705-3bbd-48f3-b261-f0b51ae96eb4", "Comite Directivo", "COMITE DIRECTIVO" },
-                    { "aebfc368-0c43-4b94-8cce-26c277ec2e33", "9b909a35-4f10-414f-b31a-ea520f191495", "Empresa Exportadora", "EMPRESA EXPORTADORA" },
-                    { "b344f3b4-1df4-449e-8553-9dd7640820a2", "26be2d8e-ed2e-4ede-87ea-46776c5416e5", "Secretaria Tecnica", "SECRETARIA TECNICA" },
-                    { "b947fb18-600f-4057-b05e-d306abffedb6", "2f3b2048-b5d3-4215-a70c-ca6d31bb0f60", "Administrator", "ADMINISTRATOR" }
+                    { "10096115-e173-4e82-903f-8b4c8f8e2ceb", "d69a79cd-1ccc-4033-acb0-df0ab0280e91", "Coordinacion Operactiva", "COORDINACION OPERACTIVA" },
+                    { "3a52dfb8-8595-487e-bd07-2e876c8291a5", "7144cff9-6d08-461b-a10b-7c47d7c16f42", "Auditoria Interna", "AUDITORIA INTERNA" },
+                    { "93296f46-5fd1-4b67-bb8d-9a9008adc8e6", "4b6fa706-9d02-4d77-8e57-ca627ade32d9", "Representante Lejal", "Representante Lejal" },
+                    { "9cd3b078-3254-4c05-b404-e527ec616c89", "b39908a6-d9b2-46b2-9ada-3e808bdc039c", "Profesional I", "PROFESIONAL I" },
+                    { "a0b13f5f-1fdc-4937-99ac-91c4a5c8e1bc", "e3055302-6d5c-4575-867f-600c968bf452", "Comite Directivo", "COMITE DIRECTIVO" },
+                    { "aebfc368-0c43-4b94-8cce-26c277ec2e33", "9d68e69a-a718-4916-b5d4-c10929c213f8", "Empresa Exportadora", "EMPRESA EXPORTADORA" },
+                    { "b344f3b4-1df4-449e-8553-9dd7640820a2", "04940fa4-414b-40a8-8454-b69a12d1a583", "Secretaria Tecnica", "SECRETARIA TECNICA" },
+                    { "b947fb18-600f-4057-b05e-d306abffedb6", "5998c8ce-38a3-4144-bbce-64f7b134d756", "Administrator", "ADMINISTRATOR" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FullName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "7fa985ac-095c-469b-b98d-8e09a947d66a", 0, "785a703b-ddc2-45de-8df1-ccf0fe3edd94", "admin@locahost.com", true, "Omegan Admin", false, null, "admin@locahost.com", "omeganadmin", "AQAAAAEAACcQAAAAELF8cQgzS04CmII+YyR7JHMm14QsipBfpDv5nr2cZt96nLjLWRn5fjdmVhBqzQ23Zg==", "3175226569", false, "da17fb08-df21-4e54-96a8-110f279a7ee2", false, "OmeganAdmin" });
+                values: new object[] { "7fa985ac-095c-469b-b98d-8e09a947d66a", 0, "a0b7cb0c-a2c1-469d-a34a-1391b13139cf", "admin@locahost.com", true, "Omegan Admin", false, null, "admin@locahost.com", "omeganadmin", "AQAAAAEAACcQAAAAELHwXtE2NP2Vli08jo646TKYtIcqiI14GpnQJBE+Dx/mW5e/fXPbLBm8XwrFCE+O+w==", "3175226569", false, "fcc2e459-8591-4aba-94bf-2a399b9e267d", false, "OmeganAdmin" });
 
             migrationBuilder.InsertData(
                 table: "Products",
@@ -441,9 +549,19 @@ namespace Omegan.Infrastructure.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Compensation_CompanyId",
+                table: "Compensation",
+                column: "CompanyId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ProductAnnouncements_AnnouncementId",
                 table: "ProductAnnouncements",
                 column: "AnnouncementId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductCompensation_CompensationId",
+                table: "ProductCompensation",
+                column: "CompensationId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -467,13 +585,25 @@ namespace Omegan.Infrastructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Countrys");
+
+            migrationBuilder.DropTable(
                 name: "ProductAnnouncements");
+
+            migrationBuilder.DropTable(
+                name: "ProductCompensation");
+
+            migrationBuilder.DropTable(
+                name: "Trm");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Announcement");
+
+            migrationBuilder.DropTable(
+                name: "Compensation");
 
             migrationBuilder.DropTable(
                 name: "Products");
