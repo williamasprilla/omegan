@@ -16,6 +16,8 @@ using Omegan.Application.Features.Compensation.Querys;
 using Omegan.Application.Features.Countries.Commands.CreateCountry;
 using Omegan.Application.Features.Countries.Commands.DeleteCountry;
 using Omegan.Application.Features.Countries.Commands.UpdateCountry;
+using Omegan.Application.Features.Products.Commands.CreateProduct;
+using Omegan.Application.Features.Products.Commands.UpdateProducts;
 using Omegan.Application.Features.Products.Queries.GetProductList;
 using Omegan.Application.Features.TRM.Commands.CreateTRM;
 using Omegan.Application.Features.TRM.Commands.UpdateTRM;
@@ -74,6 +76,11 @@ namespace Omegan.Application.Mapping
             CreateMap<Compensation, CompensationCompanyDTO>();
             CreateMap<CreateCompensationCommandMapper, Compensation>();
             CreateMap<UpdateCompensationCommandMapper, Compensation>();
+
+            //Products
+            CreateMap<Product, ProductoDTO>();
+            CreateMap<CreateProductsCommandMapper, Product>();
+            CreateMap<UpdateProductsCommandMapper, Product>();
 
             //Announcement
             CreateMap<Announcement, AnnouncementDTO>()
