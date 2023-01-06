@@ -70,7 +70,6 @@ C:\Users\cristian.cardona\source\repos\Omegan\Omegan.API\obj\Debug\net6.0\Omegan
 C:\Users\cristian.cardona\source\repos\Omegan\Omegan.API\obj\Debug\net6.0\ref\Omegan.API.dll
 C:\Users\cristian.cardona\source\repos\Omegan\Omegan.API\bin\Debug\net6.0\Ardalis.Specification.dll
 C:\Users\cristian.cardona\source\repos\Omegan\Omegan.API\bin\Debug\net6.0\Ardalis.Specification.EntityFrameworkCore.dll
-D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\refint\Omegan.API.dll
 D:\Fedegan\Omegan\Omegan.API\bin\Debug\net6.0\appsettings.Development.json
 D:\Fedegan\Omegan\Omegan.API\bin\Debug\net6.0\appsettings.json
 D:\Fedegan\Omegan\Omegan.API\bin\Debug\net6.0\Omegan.API.exe
@@ -139,6 +138,7 @@ D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\staticwebassets.development.json
 D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\scopedcss\bundle\Omegan.API.styles.css
 D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\Omegan.API.csproj.CopyComplete
 D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\Omegan.API.dll
+D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\refint\Omegan.API.dll
 D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\Omegan.API.pdb
 D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\Omegan.API.genruntimeconfig.cache
 D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\ref\Omegan.API.dll

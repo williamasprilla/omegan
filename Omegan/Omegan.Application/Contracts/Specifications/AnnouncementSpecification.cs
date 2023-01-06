@@ -13,7 +13,7 @@ namespace Omegan.Application.Contracts.Specifications
     {
         public AnnouncementSpecification(int AnnouncementId)
         {
-            Query.Include(pa => pa.ProductAnnouncements)
+            Query.Include(pa => pa.ProductAnnouncements!)
                  .ThenInclude(p => p.Product);
 
             Query.Where(c => c.Id == AnnouncementId);

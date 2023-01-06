@@ -2,10 +2,16 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Omegan.Application.Features.Announcements.Commands.UpdateAnnouncement;
+using Omegan.Application.Features.Announcements.Queries.GetAnnouncementByCompany;
+using Omegan.Application.Features.Announcements.Queries.GetAnnouncementByCompanyStateQuery;
+using Omegan.Application.Features.Announcements.Queries.GetAnnouncementsById;
 using Omegan.Application.Features.Companies.Queries.GetAllCompanyAnnouncements;
 using Omegan.Application.Features.Compensation.Commands.CreateCompensation;
 using Omegan.Application.Features.Compensation.Commands.UpdateCompensation;
 using Omegan.Application.Features.Compensation.Querys;
+using Omegan.Application.Features.Compensation.Querys.GetCompensationByCompany;
+using Omegan.Application.Features.Compensation.Querys.GetCompensationByCompanyStateQuery;
+using Omegan.Application.Features.Compensation.Querys.GetCompensationById;
 using Omegan.Application.Utils;
 using System.Net;
 
@@ -50,6 +56,34 @@ namespace Omegan.API.Controllers
             return new OkObjectResult(new ResultResponse(compensation) { Message = string.Format(ResultResponse.ENTITY_GET, compensation) });
         }
 
+
+
+        [HttpGet("GetCompensationsById")]
+        public async Task<IActionResult> GetCompensationsById(int id)
+        {
+            var query = new GetCompensationByIdQuery(id);
+            var compensation = await _mediator.Send(query);
+            return new OkObjectResult(new ResultResponse(compensation) { Message = string.Format(ResultResponse.ENTITY_GET, compensation) });
+        }
+
+
+
+        [HttpGet("GetCompensationByCompany")]
+        public async Task<IActionResult> GetCompensationByCompany(int idCompany)
+        {
+            var query = new GetCompensationByCompanyQuery(idCompany);
+            var compensation = await _mediator.Send(query);
+            return new OkObjectResult(new ResultResponse(compensation) { Message = string.Format(ResultResponse.ENTITY_GET, compensation) });
+        }
+
+
+        [HttpGet("GetCompensationByCompanyState")]
+        public async Task<IActionResult> GetCompensationByCompanyState(int idCompany, int State)
+        {
+            var query = new GetCompensationByCompanyStateQuery(idCompany, State);
+            var compensation = await _mediator.Send(query);
+            return new OkObjectResult(new ResultResponse(compensation) { Message = string.Format(ResultResponse.ENTITY_GET, compensation) });
+        }
 
 
     }

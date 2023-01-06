@@ -13,6 +13,7 @@ using Omegan.Application.Features.Companies.Queries.GetCountries;
 using Omegan.Application.Features.Compensation.Commands.CreateCompensation;
 using Omegan.Application.Features.Compensation.Commands.UpdateCompensation;
 using Omegan.Application.Features.Compensation.Querys;
+using Omegan.Application.Features.Compensation.Querys.GetCompensationById;
 using Omegan.Application.Features.Countries.Commands.CreateCountry;
 using Omegan.Application.Features.Countries.Commands.DeleteCountry;
 using Omegan.Application.Features.Countries.Commands.UpdateCountry;
@@ -90,6 +91,13 @@ namespace Omegan.Application.Mapping
           .ForMember(x => x.ProductsList, options => options.MapFrom(MapProductList1));
 
 
+            //Compensation
+            CreateMap<Compensation, CompensationDTO>()
+           .ForMember(x => x.ProductsList, options => options.MapFrom(MapProductList2));
+
+          //  CreateMap<Compensation, CompensationDTO>()
+          //.ForMember(x => x.ProductsList, options => options.MapFrom(MapProductList1));
+
 
         }
 
@@ -123,6 +131,24 @@ namespace Omegan.Application.Mapping
             return result;
         }
 
+
+        private object MapProductList2(Compensation compensation, CompensationDTO compensationDTO)
+        {
+            var result = new List<ProductkDTO>();
+
+            if (compensationDTO == null) { return result; }
+
+            foreach (var product in compensation.ProductCompensation!)
+            {
+                result.Add(new ProductkDTO() { Id = product.ProductId, TariffItem = product.Product!.TariffItem, Description = product.Product.Description, 
+                                               Kilogram = Convert.ToDecimal(product.KilogramsExported),  
+                                               OffsetKilogram = product.OffsetKilogram,
+                                               Subtotal = product.Subtotal
+                                               });
+            }
+
+            return result;
+        }
 
 
         //private List<ProductoDTO> MapProductList(Announcement announcement , AnnouncementOuputDTO announcementOuputDTO)

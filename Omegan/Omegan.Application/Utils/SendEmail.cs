@@ -16,9 +16,9 @@ namespace Omegan.Application.Utils
             try
             {
                 //Leer los valores desde el app.settings
-                string from = "wasprilla.asprilla@hotmail.com";
-                string servidor = "smtp.office365.com";
-                string password = "Desarrollo2022+-";
+                string from = "wasprilla200511@gmail.com";  //"wasprilla.asprilla@hotmail.com";
+                string servidor = "smtp.gmail.com";
+                string password = "nafeezlcroabvahe"; //"Isa_2021";
                 int port = 587;
 
                 // Se crea el mensaje
@@ -44,7 +44,7 @@ namespace Omegan.Application.Utils
 
                 // Establece la configuraci?n del cliente
                 cliente.DeliveryMethod = SmtpDeliveryMethod.Network;
-                cliente.EnableSsl = false;
+                cliente.EnableSsl = true;
                 cliente.UseDefaultCredentials = false;
                 cliente.Credentials = new NetworkCredential(from, password);
 

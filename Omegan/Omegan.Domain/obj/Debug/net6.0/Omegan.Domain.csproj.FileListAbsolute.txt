@@ -11,6 +11,7 @@ C:\Users\cristian.cardona\source\repos\Omegan\Omegan.Domain\obj\Debug\net6.0\ref
 C:\Users\cristian.cardona\source\repos\Omegan\Omegan.Domain\obj\Debug\net6.0\Omegan.Domain.pdb
 C:\Users\cristian.cardona\source\repos\Omegan\Omegan.Domain\obj\Debug\net6.0\ref\Omegan.Domain.dll
 D:\Fedegan\Omegan\Omegan.Domain\bin\Debug\net6.0\Omegan.Domain.deps.json
+D:\Fedegan\Omegan\Omegan.Domain\bin\Debug\net6.0\Omegan.Domain.runtimeconfig.json
 D:\Fedegan\Omegan\Omegan.Domain\bin\Debug\net6.0\Omegan.Domain.dll
 D:\Fedegan\Omegan\Omegan.Domain\bin\Debug\net6.0\Omegan.Domain.pdb
 D:\Fedegan\Omegan\Omegan.Domain\obj\Debug\net6.0\Omegan.Domain.csproj.AssemblyReference.cache
@@ -21,4 +22,5 @@ D:\Fedegan\Omegan\Omegan.Domain\obj\Debug\net6.0\Omegan.Domain.csproj.CoreCompil
 D:\Fedegan\Omegan\Omegan.Domain\obj\Debug\net6.0\Omegan.Domain.dll
 D:\Fedegan\Omegan\Omegan.Domain\obj\Debug\net6.0\refint\Omegan.Domain.dll
 D:\Fedegan\Omegan\Omegan.Domain\obj\Debug\net6.0\Omegan.Domain.pdb
+D:\Fedegan\Omegan\Omegan.Domain\obj\Debug\net6.0\Omegan.Domain.genruntimeconfig.cache
 D:\Fedegan\Omegan\Omegan.Domain\obj\Debug\net6.0\ref\Omegan.Domain.dll

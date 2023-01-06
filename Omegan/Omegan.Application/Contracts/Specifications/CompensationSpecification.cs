@@ -15,6 +15,8 @@ namespace Omegan.Application.Contracts.Specifications
         {
             Query.Include(n => n.ProductCompensation!)
                  .ThenInclude(pa => pa.Product);
+
+
         }
 
     }

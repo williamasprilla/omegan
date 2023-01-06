@@ -35,12 +35,12 @@ namespace Omegan.API.Controllers
 
             //Datos Tabla TRM para calculos
             var querytrm = new GetTRMListQuery();
-            var trm = await _mediator.Send(querytrm);
+            List<TrmDTO> trm = await _mediator.Send(querytrm);
             int contcompany = 0;
 
             //Obtener compañias activas
             var queryCompanies = new GetAllCompanyAnnouncementsQuery(2);
-            var company = await _mediator.Send(queryCompanies);
+            List<CompanyAnnouncementsDTO> company = await _mediator.Send(queryCompanies);
             Round round = new Round();
             
             foreach (var _company in company) 
@@ -73,8 +73,8 @@ namespace Omegan.API.Controllers
                 //Si el total anunciado por la compañia es menor o igual al total asignado para el mes
                 if(TotalCompany <= trm.First().InitialDivision)
                 {
-                    decimal porcentaje = Convert.ToDecimal(((TotalCompany * 100) / trm.First().InitialDivision));
-                    percent = decimal.Round(porcentaje, 2);
+                    //decimal porcentaje = Convert.ToDecimal(((TotalCompany * 100) / trm.First().InitialDivision));
+                    percent = decimal.Round(100, 2);
 
                    
                     Residue += (trm.First().InitialDivision - TotalCompany);
@@ -84,7 +84,10 @@ namespace Omegan.API.Controllers
                     {
                         Company = _company.NameCompany,
                         Amount = TotalCompany,
-                        Residue = Residue
+                        Residue = Residue,
+                        Percent = percent,
+                        Alert = false
+
                     };
 
                     lstPreaprobado.Add(aprovved);
@@ -94,7 +97,27 @@ namespace Omegan.API.Controllers
                 }
                 else
                 {
-                    _warning = true;
+                    //_warning = true;
+                    decimal porcentaje = Convert.ToDecimal(((TotalCompany * 100) / trm.First().InitialDivision));
+                    percent = decimal.Round(porcentaje, 2);
+
+
+                    Residue += (trm.First().InitialDivision - TotalCompany);
+
+
+                    var aprovved = new PreapprovedData()
+                    {
+                        Company = _company.NameCompany,
+                        Amount = TotalCompany,
+                        Residue = 0,
+                        Percent = percent,
+                        Alert= true
+
+                    };
+
+                    lstPreaprobado.Add(aprovved);
+
+
                 }
 
 
@@ -106,10 +129,60 @@ namespace Omegan.API.Controllers
                 contcompany += 1;
             }
 
+            if(_warning)
+            {
+                //se debe calcular round 1
+                Round1(lstPreaprobado, trm);
+
+            }
+
             return new OkObjectResult(new ResultResponse(lstRound) { Message = string.Format(ResultResponse.ENTITY_GET, lstRound) });
         }
 
         
+
+
+
+
+        private List<PreapprovedData> Round1(List<PreapprovedData> preaprobadoInicial, List<TrmDTO> ValueTableTrm)
+        {
+            //return new PreapprovedData() { };
+
+            foreach(var item in preaprobadoInicial)
+            {
+                if(item.Alert)// Se ubica la compañia a la que se le debe sumar valores
+                {
+                    foreach(var item2 in preaprobadoInicial ) //Se recorre de nuevo para ubicar de donde sumarle a la compañia que le falta
+                    {
+                        item.Amount += item2.Residue;
+                        if(item.Amount >= ValueTableTrm.First().InitialDivision)  //
+                        {
+
+                            item.Amount = ValueTableTrm.First().InitialDivision;
+                            item.Residue=0;
+                            item.Percent = 100;
+                            item.Alert = false;
+                            item2.Residue = item.Amount - ValueTableTrm.First().InitialDivision;
+                        }
+                        else
+                        {
+                            //item.Amount += item2.Residue;
+                            item.Amount = ValueTableTrm.First().InitialDivision;
+                            item.Residue = 0;
+                            item.Percent = 100;
+                            item.Alert = false;
+                            item2.Residue = item.Amount;
+
+
+                        }
+
+                    }
+                }
+            }
+
+            return preaprobadoInicial;
+
+        }
 
     }
 }
