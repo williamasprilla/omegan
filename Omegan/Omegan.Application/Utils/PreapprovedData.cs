@@ -10,8 +10,24 @@ namespace Omegan.Application.Utils
     {
         public string Company { get; set; }= string.Empty;
         public double Amount { get; set; }
-        public double Residue { get; set; }
+        //public double Residue { get; set; }
         public decimal Percent { get; set; }
-        public bool Alert { get; set; }
+        //public bool Alert { get; set; }
+        //public double sumaTotal { get; set; }
+
+        public Totales? datosTotales { get; set; }
+
+    }
+
+
+
+    public class Totales
+    {
+        public double Excedente1 { get; set; }
+        public double Excedente2 { get; set; }
+        public double ExcedenteIndividual { get; set; }
+        public double SumaTotalPreaprobado { get; set; }
+        public double SumaTotalRound1 { get; set; }
+
     }
 }

@@ -17,6 +17,8 @@ namespace Omegan.API.Controllers
     public class CalculateController : ApiControllerBase
     {
         private IMediator _mediator;
+        Round lstRound = new Round();
+
         public CalculateController(IMediator mediator)
         {   
             _mediator = mediator;
@@ -28,10 +30,12 @@ namespace Omegan.API.Controllers
             double TotalCompany = 0;
             double AddAnnouncementCountry = 0;
             List<PreapprovedData> lstPreaprobado = new List<PreapprovedData>();
-            Round lstRound = new Round();
+
             decimal percent = 0;
-            double Residue = 0;
-            bool _warning = false;
+            //double Residue = 0;
+            double SumaTotal = 0;
+            Totales totales = new Totales();
+            PreapprovedData preapprovedData= new PreapprovedData();
 
             //Datos Tabla TRM para calculos
             var querytrm = new GetTRMListQuery();
@@ -50,22 +54,29 @@ namespace Omegan.API.Controllers
                 var querycountry = new GetAllCountriesQuery();
                 var country = await _mediator.Send(querycountry);
 
-                foreach(var co in country)
+
+                var query = new GetAnnouncementByCompanyStateQuery(_company.Id, 2);
+                var announcement = await _mediator.Send(query);
+
+                foreach (var co in country)
                 {
-                    var query = new GetAnnouncementByCompanyStateQuery(_company.Id, 2);
-                    var announcement = await _mediator.Send(query);
+                    //var query = new GetAnnouncementByCompanyStateQuery(_company.Id, 2);
+                    //var announcement = await _mediator.Send(query);
                     foreach(var ann in announcement)
                     {
                        if(co.Id == ann.IdDestinationCountry)
                        {
                             foreach(var product in ann.ProductsList!)
                             {
-                                AddAnnouncementCountry += (trm.First().TRMValue * (co.CurrentValue/1000) * Convert.ToDouble(product.Kilogram));
+                                //AddAnnouncementCountry += (trm.First().TRMValue * (co.CurrentValue/1000) * Convert.ToDouble(product.Kilogram));
+                                AddAnnouncementCountry += (co.CurrentValue / 1000) * Convert.ToDouble(product.Kilogram);
                             }
 
                        }
                     }
-                
+
+                    AddAnnouncementCountry = (AddAnnouncementCountry * trm.First().TRMValue);
+
                     TotalCompany +=  Math.Round(AddAnnouncementCountry,2);
                     AddAnnouncementCountry = 0;
                 }
@@ -76,113 +87,202 @@ namespace Omegan.API.Controllers
                     //decimal porcentaje = Convert.ToDecimal(((TotalCompany * 100) / trm.First().InitialDivision));
                     percent = decimal.Round(100, 2);
 
-                   
-                    Residue += (trm.First().InitialDivision - TotalCompany);
-
+                    SumaTotal = SumaTotal + TotalCompany;
                   
                     var aprovved = new PreapprovedData()
                     {
                         Company = _company.NameCompany,
                         Amount = TotalCompany,
-                        Residue = Residue,
-                        Percent = percent,
-                        Alert = false
-
+                        //Residue = Residue,
+                        Percent = percent
+                        
                     };
 
                     lstPreaprobado.Add(aprovved);
 
-                    //_warning
-
                 }
                 else
                 {
-                    //_warning = true;
                     decimal porcentaje = Convert.ToDecimal(((TotalCompany * 100) / trm.First().InitialDivision));
                     percent = decimal.Round(porcentaje, 2);
 
-
-                    Residue += (trm.First().InitialDivision - TotalCompany);
-
+                    SumaTotal = SumaTotal + TotalCompany;
 
                     var aprovved = new PreapprovedData()
                     {
                         Company = _company.NameCompany,
                         Amount = TotalCompany,
-                        Residue = 0,
-                        Percent = percent,
-                        Alert= true
-
+                        //Residue = 0,
+                        Percent = percent
+                        
                     };
 
                     lstPreaprobado.Add(aprovved);
-
-
                 }
 
 
 
-                lstRound.lstRound1 = lstPreaprobado;
+                lstRound.lstPreapproved = lstPreaprobado;
                 
-
                 TotalCompany = 0;
                 contcompany += 1;
-            }
 
-            if(_warning)
-            {
-                //se debe calcular round 1
-                Round1(lstPreaprobado, trm);
 
             }
+
+            lstRound.TotalPreaprobado = SumaTotal;
+
+            lstRound.lstRound1 = CalculoRound1(lstPreaprobado, trm);
+
 
             return new OkObjectResult(new ResultResponse(lstRound) { Message = string.Format(ResultResponse.ENTITY_GET, lstRound) });
         }
 
-        
 
 
 
 
-        private List<PreapprovedData> Round1(List<PreapprovedData> preaprobadoInicial, List<TrmDTO> ValueTableTrm)
+        private List<PreapprovedData> CalculoRound1(List<PreapprovedData> preaprobadoInicial, List<TrmDTO> ValueTableTrm)
         {
-            //return new PreapprovedData() { };
+            List<PreapprovedData> lstPreaprobado = new List<PreapprovedData>();
+            //Totales totales = new Totales();
+            //PreapprovedData preapprovedData = new PreapprovedData();
+            double SumaTotal = 0;
 
-            foreach(var item in preaprobadoInicial)
+            foreach (var item in preaprobadoInicial)
             {
-                if(item.Alert)// Se ubica la compañia a la que se le debe sumar valores
-                {
-                    foreach(var item2 in preaprobadoInicial ) //Se recorre de nuevo para ubicar de donde sumarle a la compañia que le falta
-                    {
-                        item.Amount += item2.Residue;
-                        if(item.Amount >= ValueTableTrm.First().InitialDivision)  //
-                        {
-
-                            item.Amount = ValueTableTrm.First().InitialDivision;
-                            item.Residue=0;
-                            item.Percent = 100;
-                            item.Alert = false;
-                            item2.Residue = item.Amount - ValueTableTrm.First().InitialDivision;
-                        }
-                        else
-                        {
-                            //item.Amount += item2.Residue;
-                            item.Amount = ValueTableTrm.First().InitialDivision;
-                            item.Residue = 0;
-                            item.Percent = 100;
-                            item.Alert = false;
-                            item2.Residue = item.Amount;
-
-
-                        }
-
-                    }
+               //item.Amount += item2.Residue;
+               if (item.Amount >= ValueTableTrm.First().InitialDivision)  //
+               {
+                  item.Amount = ValueTableTrm.First().InitialDivision;
                 }
+               else 
+               {
+                  item.Amount = item.Amount;
+                    //SumaTotal = SumaTotal + item.Amount;
+                }
+
+
+
+                var aprovved = new PreapprovedData()
+                {
+                    Company = item.Company,
+                    Amount = item.Amount,
+                    Percent = item.Percent,
+                };
+
+                SumaTotal = SumaTotal + item.Amount;
+                lstPreaprobado.Add(aprovved);
+
             }
 
-            return preaprobadoInicial;
+
+            lstRound.TotalRound1 = SumaTotal;
+            lstRound.Excedente1 = (ValueTableTrm.First().MonthlyBudget - Convert.ToDouble(lstRound.TotalRound1));
+            
+
+            return lstPreaprobado;
 
         }
+
+
+
+        private List<PreapprovedData> Round2(List<PreapprovedData> preaprobadoInicial, List<TrmDTO> ValueTableTrm)
+        {
+            List<PreapprovedData> lstPreaprobado = new List<PreapprovedData>();
+            double SumaTotal = 0;
+
+            foreach (var item in preaprobadoInicial)
+            {
+                //item.Amount += item2.Residue;
+                if (item.Amount >= ValueTableTrm.First().InitialDivision)  //
+                {
+                    item.Amount = ValueTableTrm.First().InitialDivision;
+                    //item.Residue = 0;
+                    //item.Percent = 100;
+                    //item.Alert = false;
+                    //item2.Residue = item.Amount - ValueTableTrm.First().InitialDivision;
+                    SumaTotal = SumaTotal + ValueTableTrm.First().InitialDivision;
+                }
+                else
+                {
+                    //item.Amount += item2.Residue;
+                    item.Amount = item.Amount;
+                    //item.Residue = 0;
+                    //item.Percent = 100;
+                    //item.Alert = false;
+                    //item2.Residue = item.Amount;
+                    SumaTotal = SumaTotal + item.Amount;
+                }
+
+
+
+                
+                var aprovved = new PreapprovedData()
+                {
+                    Company = item.Company,
+                    Amount = item.Amount,
+                    //Residue = item.Residue,
+                    Percent = item.Percent,
+                    //Alert = true
+
+                };
+
+                lstPreaprobado.Add(aprovved);
+
+                aprovved.datosTotales!.SumaTotalRound1 = SumaTotal;
+                
+                //lstPreaprobado.Add(new PreapprovedData() { Company = "Total", sumaTotal = SumaTotal });
+            }
+
+
+
+
+            return lstPreaprobado;
+
+        }
+
+
+
+        //private List<PreapprovedData> Round1(List<PreapprovedData> preaprobadoInicial, List<TrmDTO> ValueTableTrm)
+        //{
+        //    //return new PreapprovedData() { };
+
+        //    foreach (var item in preaprobadoInicial)
+        //    {
+        //        if (item.Alert)// Se ubica la compañia a la que se le debe sumar valores
+        //        {
+        //            foreach (var item2 in preaprobadoInicial) //Se recorre de nuevo para ubicar de donde sumarle a la compañia que le falta
+        //            {
+        //                //item.Amount += item2.Residue;
+        //                if (item.Amount >= ValueTableTrm.First().InitialDivision)  //
+        //                {
+
+        //                    item.Amount = ValueTableTrm.First().InitialDivision;
+        //                    item.Residue = 0;
+        //                    item.Percent = 100;
+        //                    item.Alert = false;
+        //                    //item2.Residue = item.Amount - ValueTableTrm.First().InitialDivision;
+        //                }
+        //                else
+        //                {
+        //                    //item.Amount += item2.Residue;
+        //                    item.Amount = ValueTableTrm.First().InitialDivision;
+        //                    item.Residue = 0;
+        //                    item.Percent = 100;
+        //                    item.Alert = false;
+        //                    //item2.Residue = item.Amount;
+
+
+        //                }
+
+        //            }
+        //        }
+        //    }
+
+        //    return preaprobadoInicial;
+
+        //}
 
     }
 }
