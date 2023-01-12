@@ -87,14 +87,14 @@ namespace Omegan.API.Controllers
             {
                 Id = id
             };
-
-            var resultArchives = await _mediator.Send(commandArchives);
-
             //
             var commandArchives = new DeleteArchivesCommandMapper
             {
                 CompanyId = id
             };
+
+            var resultArchives = await _mediator.Send(commandArchives);
+
             var resultCompany = await _mediator.Send(command);
 
             //
