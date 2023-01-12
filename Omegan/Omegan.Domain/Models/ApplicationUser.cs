@@ -8,6 +8,7 @@ namespace Omegan.Domain.Models
     {
         public string FullName { get; set; } = string.Empty;
 
-        public  virtual Company? Company { get; set; } 
+        public  virtual Company? Company { get; set; }
+
     }
 }

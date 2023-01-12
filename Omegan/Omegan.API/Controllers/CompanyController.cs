@@ -1,12 +1,17 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Omegan.Application.Contracts.Identity;
+using Omegan.Application.Features.Archives.Commands.DeleteArchives;
 using Omegan.Application.Features.Companies.Commands.CreateCompany;
+using Omegan.Application.Features.Companies.Commands.DeleteCompany;
 using Omegan.Application.Features.Companies.Commands.UpdateCompany;
 using Omegan.Application.Features.Companies.Queries.GetAllCompanyAnnouncements;
 using Omegan.Application.Features.Companies.Queries.GetCompanyById;
 using Omegan.Application.Features.Companies.Queries.GetCompanyByIdWithArchives;
 using Omegan.Application.Features.Companies.Queries.GetCompanyByUserId;
+using Omegan.Application.Features.Countries.Commands.DeleteCountry;
 using Omegan.Application.Features.Countries.Commands.UpdateCountry;
+using Omegan.Application.Models.Identity;
 using Omegan.Application.Utils;
 using System.Net;
 
@@ -16,12 +21,15 @@ namespace Omegan.API.Controllers
     {
 
         private IMediator _mediator;
+        private readonly IAuthService _authService;
 
 
-        public CompanyController(IMediator mediator)
+        public CompanyController(IMediator mediator, IAuthService authService)
         {
             _mediator = mediator;
+            _authService = authService;
         }
+
 
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [HttpPost("RegisterCompany")]
@@ -69,7 +77,38 @@ namespace Omegan.API.Controllers
         }
 
 
-        
+        [HttpDelete("{id}", Name = "DeleteCompany")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> DeleteCompany(int id)
+        {
+            var command = new DeleteCompanyCommandMapper
+            {
+                Id = id
+            };
+
+            var resultArchives = await _mediator.Send(commandArchives);
+
+            //
+            var commandArchives = new DeleteArchivesCommandMapper
+            {
+                CompanyId = id
+            };
+            var resultCompany = await _mediator.Send(command);
+
+            //
+            var commandDel = new DeleteUserRequest
+            {
+                UserId = resultCompany
+            };
+
+            //Elimina usuario de tabla aspnet user
+            var result = await _authService.DeleteUser(commandDel);
+
+            return new OkObjectResult(new ResultResponse(resultArchives) { Message = string.Format(ResultResponse.ENTITY_INSERT_OK, resultArchives) });
+        }
+
 
     }
 }

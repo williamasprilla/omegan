@@ -1,4 +1,5 @@
-﻿using Omegan.Application.Models.Identity;
+﻿using Microsoft.AspNetCore.Identity;
+using Omegan.Application.Models.Identity;
 
 namespace Omegan.Application.Contracts.Identity
 {
@@ -6,9 +7,10 @@ namespace Omegan.Application.Contracts.Identity
     {
         Task<AuthResponse> Login(AuthRequest request);
         Task<RegistrationResponse> Register(RegistrationRequest request);
-
         Task<bool> ResetPassword(ResetPasswordRequest request);
         Task<GetUsersByIdResponse> GetUsersById(GetUsersByIdRequest request);
-        
+        Task<IdentityResult> DeleteUser(DeleteUserRequest request);
+
+
     }
 }

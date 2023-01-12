@@ -4,7 +4,9 @@ using Omegan.Application.Features.Announcements.Commands;
 using Omegan.Application.Features.Announcements.Commands.UpdateAnnouncement;
 using Omegan.Application.Features.Announcements.Queries.GetAnnouncementById;
 using Omegan.Application.Features.Archives.Commands.CreateArchive;
+using Omegan.Application.Features.Archives.Commands.DeleteArchives;
 using Omegan.Application.Features.Companies.Commands.CreateCompany;
+using Omegan.Application.Features.Companies.Commands.DeleteCompany;
 using Omegan.Application.Features.Companies.Commands.UpdateCompany;
 using Omegan.Application.Features.Companies.Queries.GetAllCompanyAnnouncements;
 using Omegan.Application.Features.Companies.Queries.GetCompanyByIdWithArchives;
@@ -82,6 +84,13 @@ namespace Omegan.Application.Mapping
             CreateMap<Product, ProductoDTO>();
             CreateMap<CreateProductsCommandMapper, Product>();
             CreateMap<UpdateProductsCommandMapper, Product>();
+
+
+            CreateMap<DeleteCompanyCommandMapper, Company>();
+            CreateMap<DeleteArchivesCommandMapper, Archive>();
+
+            
+
 
             //Announcement
             CreateMap<Announcement, AnnouncementDTO>()

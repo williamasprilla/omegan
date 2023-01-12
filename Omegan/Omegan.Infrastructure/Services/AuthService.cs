@@ -173,5 +173,34 @@ namespace Omegan.Infrastructure.Services
             };
 
         }
+
+
+
+        public async Task<IdentityResult> DeleteUser(DeleteUserRequest request)
+        {
+            var user = await _userManager.FindByIdAsync(request.UserId);
+
+            //var UserDel =  new GetUsersByIdResponse
+            //{
+            //    Email = user.Email,
+            //    UserId = user.Id,
+            //    Username = user.UserName,
+            //    FullName = user.FullName,
+            //    PhoneNumber = user.PhoneNumber
+            //};
+
+
+
+            var result = await _userManager.DeleteAsync(user);
+            if (result.Succeeded)
+            {
+                return result;
+            }
+
+            throw new Exception($"{result.Errors}");
+
+        }
+
+
     }
 }

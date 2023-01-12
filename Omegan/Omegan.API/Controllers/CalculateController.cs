@@ -32,7 +32,7 @@ namespace Omegan.API.Controllers
             List<PreapprovedData> lstPreaprobado = new List<PreapprovedData>();
 
             decimal percent = 0;
-            //double Residue = 0;
+            
             double SumaTotal = 0;
             Totales totales = new Totales();
             PreapprovedData preapprovedData= new PreapprovedData();
@@ -93,7 +93,6 @@ namespace Omegan.API.Controllers
                     {
                         Company = _company.NameCompany,
                         Amount = TotalCompany,
-                        //Residue = Residue,
                         Percent = percent
                         
                     };
@@ -135,6 +134,9 @@ namespace Omegan.API.Controllers
             lstRound.lstRound1 = CalculoRound1(lstPreaprobado, trm);
 
 
+            lstRound = CeroUno(lstRound);
+
+
             return new OkObjectResult(new ResultResponse(lstRound) { Message = string.Format(ResultResponse.ENTITY_GET, lstRound) });
         }
 
@@ -145,8 +147,7 @@ namespace Omegan.API.Controllers
         private List<PreapprovedData> CalculoRound1(List<PreapprovedData> preaprobadoInicial, List<TrmDTO> ValueTableTrm)
         {
             List<PreapprovedData> lstPreaprobado = new List<PreapprovedData>();
-            //Totales totales = new Totales();
-            //PreapprovedData preapprovedData = new PreapprovedData();
+            double Excedentes = 0;
             double SumaTotal = 0;
 
             foreach (var item in preaprobadoInicial)
@@ -163,11 +164,11 @@ namespace Omegan.API.Controllers
                 }
 
 
-
                 var aprovved = new PreapprovedData()
                 {
                     Company = item.Company,
                     Amount = item.Amount,
+                    //Excedentes = 
                     Percent = item.Percent,
                 };
 
@@ -182,6 +183,39 @@ namespace Omegan.API.Controllers
             
 
             return lstPreaprobado;
+
+        }
+
+
+        private Round CeroUno(Round lstRound)
+        {
+            List<PreapprovedData> lstpreaprobado = new List<PreapprovedData>();
+            List<PreapprovedData> lstRound1 = new List<PreapprovedData>();
+
+            lstpreaprobado = (List<PreapprovedData>)lstRound.lstPreapproved!;
+
+            lstRound1 = (List<PreapprovedData>)lstRound.lstRound1!;
+
+            //for(int i = 0; i <= lstpreaprobado.Count; i++)
+            //{
+            //    /lstRound1.FindIndex
+            //}
+
+
+
+            if(lstpreaprobado.First().Amount == lstRound1.First().Amount)
+            {
+                lstRound1.First().CeroUnoCol = 0;
+            }
+            else
+            {
+                lstRound1.First().CeroUnoCol = 1;
+            }
+
+
+            
+
+            return lstRound;
 
         }
 

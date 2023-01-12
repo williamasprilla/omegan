@@ -16,6 +16,8 @@ namespace Omegan.Domain
 
         public int State { get; set; }
 
+        public bool Ejecucion { get; set; }
+
         public int CompanyId { get; set; }
 
         public virtual Company? Company { get; set; } 

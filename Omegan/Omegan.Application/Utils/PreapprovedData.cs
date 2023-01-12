@@ -10,7 +10,9 @@ namespace Omegan.Application.Utils
     {
         public string Company { get; set; }= string.Empty;
         public double Amount { get; set; }
-        //public double Residue { get; set; }
+
+        public int CeroUnoCol { get; set; }
+        public double Excedentes { get; set; }
         public decimal Percent { get; set; }
         //public bool Alert { get; set; }
         //public double sumaTotal { get; set; }

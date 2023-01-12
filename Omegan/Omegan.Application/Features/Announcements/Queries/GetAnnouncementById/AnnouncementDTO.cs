@@ -19,6 +19,5 @@ namespace Omegan.Application.Features.Announcements.Queries.GetAnnouncementById
         public int CompanyId { get; set; }
         public List<ProductkDTO>? ProductsList { get; set; }
 
-      
     }
 }

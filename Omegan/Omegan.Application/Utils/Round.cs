@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,7 @@ namespace Omegan.Application.Utils
         public object? Excedente2 { get; set; }
         public object? TotalRound1 { get; set; }
         public object? TotalRound2 { get; set; }
+
     }
 
 }
