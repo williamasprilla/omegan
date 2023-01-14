@@ -13,5 +13,6 @@ namespace Omegan.Domain
         public double MonthlyBudget { get; set; }
         public int NumberCompanies { get; set; }
         public double InitialDivision { get; set; }
+        public int State { get; set; }
     }
 }
