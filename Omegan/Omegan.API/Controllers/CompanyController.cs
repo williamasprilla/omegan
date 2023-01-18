@@ -6,6 +6,7 @@ using Omegan.Application.Features.Companies.Commands.CreateCompany;
 using Omegan.Application.Features.Companies.Commands.DeleteCompany;
 using Omegan.Application.Features.Companies.Commands.UpdateCompany;
 using Omegan.Application.Features.Companies.Queries.GetAllCompanyAnnouncements;
+using Omegan.Application.Features.Companies.Queries.GetAllCompanyCompensationsQuery;
 using Omegan.Application.Features.Companies.Queries.GetCompanyById;
 using Omegan.Application.Features.Companies.Queries.GetCompanyByIdWithArchives;
 using Omegan.Application.Features.Companies.Queries.GetCompanyByUserId;
@@ -108,6 +109,18 @@ namespace Omegan.API.Controllers
 
             return new OkObjectResult(new ResultResponse(resultArchives) { Message = string.Format(ResultResponse.ENTITY_INSERT_OK, resultArchives) });
         }
+
+
+
+
+        //[HttpGet("GetAllCompanyCompensations")]
+        //public async Task<IActionResult> GetAllCompanyCompensations(int state)
+        //{
+        //    var query = new GetAllCompanyCompensationQuery(state);
+        //    var company = await _mediator.Send(query);
+        //    return new OkObjectResult(new ResultResponse(company) { Message = string.Format(ResultResponse.ENTITY_GET, company) });
+        //}
+
 
 
     }

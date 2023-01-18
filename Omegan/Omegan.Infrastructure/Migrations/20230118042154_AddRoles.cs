@@ -27,7 +27,7 @@ namespace Omegan.Infrastructure.Migrations
                 keyColumn: "Id",
                 keyValue: "93296f46-5fd1-4b67-bb8d-9a9008adc8e6",
                 columns: new[] { "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "23ec2a96-23c2-4783-a3d3-4e19b5aced8a", "Representante Legal", "Representante Legal" });
+                values: new object[] { "23ec2a96-23c2-4783-a3d3-4e19b5aced8a", "Representante Lejal", "Representante Lejal" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetRoles",

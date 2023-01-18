@@ -77,13 +77,13 @@ namespace Omegan.API.Controllers
         }
 
 
-        [HttpGet("GetCompensationByCompanyState")]
-        public async Task<IActionResult> GetCompensationByCompanyState(int idCompany, int State)
-        {
-            var query = new GetCompensationByCompanyStateQuery(idCompany, State);
-            var compensation = await _mediator.Send(query);
-            return new OkObjectResult(new ResultResponse(compensation) { Message = string.Format(ResultResponse.ENTITY_GET, compensation) });
-        }
+        //[HttpGet("GetCompensationByCompanyState")]
+        //public async Task<IActionResult> GetCompensationByCompanyState(int idCompany, int State)
+        //{
+        //    var query = new GetCompensationByCompanyStateQuery(idCompany, State);
+        //    var compensation = await _mediator.Send(query);
+        //    return new OkObjectResult(new ResultResponse(compensation) { Message = string.Format(ResultResponse.ENTITY_GET, compensation) });
+        //}
 
 
     }

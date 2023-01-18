@@ -18,6 +18,15 @@ namespace Omegan.Application.Utils
 
 
 
+        public enum EstadosCompanies
+        {
+            Creada  = 0,
+            AProbada = 1,
+            AprobadaConvenio = 2,
+            RadicacionDocExportacion = 3
+        }
+
+
 
         public enum DiasSemana
         {

@@ -9,7 +9,6 @@ namespace Omegan.Application.DTOs
     public class ProductCompensationInputDTO
     {
         public int ProductId { get; set; }
-        public decimal Kilogram { get; set; }
         public double KilogramsExported { get; set; }
         public double OffsetKilogram { get; set; }
         public double Subtotal { get; set; }

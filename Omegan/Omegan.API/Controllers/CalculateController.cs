@@ -10,6 +10,7 @@ using Omegan.Application.Features.TRM.Queries;
 using Omegan.Application.Utils;
 using Omegan.Domain;
 using System.Linq;
+using static Omegan.Application.Utils.Enumeraciones;
 
 namespace Omegan.API.Controllers
 {
@@ -150,9 +151,134 @@ namespace Omegan.API.Controllers
 
 
 
+        //[HttpGet("GetCompensation")]
+        //public async Task<IActionResult> GetCompensation()
+        //{
+        //    double TotalCompany = 0;
+        //    double AddAnnouncementCountry = 0;
+        //    List<PreapprovedData> lstPreaprobado = new List<PreapprovedData>();
+
+        //    decimal percent = 0;
+
+        //    double SumaTotal = 0;
+        //    Totales totales = new Totales();
+        //    PreapprovedData preapprovedData = new PreapprovedData();
+
+        //    //Datos Tabla TRM para calculos
+        //    var querytrm = new GetTRMListQuery();
+        //    List<TrmDTO> trm = await _mediator.Send(querytrm);
+        //    int contcompany = 0;
+
+        //    //Obtener compañias activas
+            
+        //    var queryCompanies = new GetAllCompanyAnnouncementsQuery((int) EstadosCompanies.AprobadaConvenio);
+        //    List<CompanyAnnouncementsDTO> company = await _mediator.Send(queryCompanies);
+        //    Round round = new Round();
+
+        //    foreach (var _company in company)
+        //    {
+
+        //        //Datos del pais
+        //        var querycountry = new GetAllCountriesQuery();
+        //        var country = await _mediator.Send(querycountry);
 
 
-        
+        //        var query = new GetAnnouncementByCompanyStateQuery(_company.Id, 2);
+        //        var announcement = await _mediator.Send(query);
+
+        //        foreach (var co in country)
+        //        {
+        //            //var query = new GetAnnouncementByCompanyStateQuery(_company.Id, 2);
+        //            //var announcement = await _mediator.Send(query);
+        //            foreach (var ann in announcement)
+        //            {
+        //                if (co.Id == ann.IdDestinationCountry)
+        //                {
+        //                    foreach (var product in ann.ProductsList!)
+        //                    {
+        //                        //AddAnnouncementCountry += (trm.First().TRMValue * (co.CurrentValue/1000) * Convert.ToDouble(product.Kilogram));
+        //                        AddAnnouncementCountry += (co.CurrentValue / 1000) * Convert.ToDouble(product.Kilogram);
+        //                    }
+
+        //                }
+        //            }
+
+        //            AddAnnouncementCountry = (AddAnnouncementCountry * trm.First().TRMValue);
+
+        //            TotalCompany += Math.Round(AddAnnouncementCountry, 2);
+        //            AddAnnouncementCountry = 0;
+        //        }
+
+        //        //Si el total anunciado por la compañia es menor o igual al total asignado para el mes
+        //        if (TotalCompany <= trm.First().InitialDivision)
+        //        {
+        //            //decimal porcentaje = Convert.ToDecimal(((TotalCompany * 100) / trm.First().InitialDivision));
+        //            percent = decimal.Round(100, 2);
+
+        //            SumaTotal = SumaTotal + TotalCompany;
+
+        //            var aprovved = new PreapprovedData()
+        //            {
+        //                Company = _company.NameCompany,
+        //                Amount = TotalCompany,
+        //                Percent = percent
+
+        //            };
+
+        //            lstPreaprobado.Add(aprovved);
+
+        //        }
+        //        else
+        //        {
+        //            decimal porcentaje = Convert.ToDecimal(((TotalCompany * 100) / trm.First().InitialDivision));
+        //            percent = decimal.Round(porcentaje, 2);
+
+        //            SumaTotal = SumaTotal + TotalCompany;
+
+        //            var aprovved = new PreapprovedData()
+        //            {
+        //                Company = _company.NameCompany,
+        //                Amount = TotalCompany,
+        //                //Residue = 0,
+        //                Percent = percent
+
+        //            };
+
+        //            lstPreaprobado.Add(aprovved);
+        //        }
+
+
+
+        //        lstRound.lstPreapproved = lstPreaprobado;
+
+        //        TotalCompany = 0;
+        //        contcompany += 1;
+
+
+        //    }
+
+        //    lstRound.TotalPreaprobado = SumaTotal;
+
+
+
+        //    lstRound.lstRound1 = CalculoRound1(lstPreaprobado, trm);
+
+
+        //    lstRound = CeroUno(lstRound);
+
+
+        //    lstRound.lstRound2 = CalculoRound2(lstRound, trm);
+
+        //    lstRound.LstExcedentes = Excedentes(lstRound);
+
+        //    lstRound.lstFinal = CalculoFinal(lstRound);
+
+        //    return new OkObjectResult(new ResultResponse(lstRound) { Message = string.Format(ResultResponse.ENTITY_GET, lstRound) });
+        //}
+
+
+
+
         private List<PreapprovedData> CalculoRound1(List<PreapprovedData> preaprobadoInicial, List<TrmDTO> ValueTableTrm)
         {
             //List<PreapprovedData> lstPreaprobado = new List<PreapprovedData>();

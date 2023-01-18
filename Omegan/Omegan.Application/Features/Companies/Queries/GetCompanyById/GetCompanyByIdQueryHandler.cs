@@ -31,9 +31,7 @@ namespace Omegan.Application.Features.Companies.Queries.GetCompanyById
         {
             var specification = new CompanySpecification(request.Id);
 
-            //var company = await _companyRepository.FirstAsync(specification, cancellationToken);
             var company = await _companyRepository.FirstOrDefaultAsync(specification, cancellationToken);
-
 
             var result = _mapper.Map<CompanyDTO>(company);
 

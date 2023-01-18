@@ -28,8 +28,8 @@ namespace Omegan.Infrastructure.Configuration
                 new IdentityRole
                 {
                     Id = "93296f46-5fd1-4b67-bb8d-9a9008adc8e6",
-                    Name = "Representante Legal",
-                    NormalizedName = "Representante Legal"
+                    Name = "Representante Lejal",
+                    NormalizedName = "Representante Lejal"
                 },
 
                 new IdentityRole
@@ -49,8 +49,8 @@ namespace Omegan.Infrastructure.Configuration
                 new IdentityRole
                 {
                     Id = "10096115-e173-4e82-903f-8b4c8f8e2ceb",
-                    Name = "Coordinacion Operativa",
-                    NormalizedName = "COORDINACION OPERATIVA"
+                    Name = "Coordinacion Operactiva",
+                    NormalizedName = "COORDINACION OPERACTIVA"
                 },
 
                 new IdentityRole

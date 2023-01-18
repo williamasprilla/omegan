@@ -13,7 +13,11 @@ namespace Omegan.Application.Contracts.Specifications
     {
         public CompanySpecificationState(int state)
         {
-            Query.Where(c => c.State == state);
+            if(state != 999)
+            {
+                Query.Where(c => c.State == state);
+            }
+              
         }
     }
 }
