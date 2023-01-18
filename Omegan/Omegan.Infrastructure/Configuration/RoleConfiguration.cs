@@ -28,8 +28,8 @@ namespace Omegan.Infrastructure.Configuration
                 new IdentityRole
                 {
                     Id = "93296f46-5fd1-4b67-bb8d-9a9008adc8e6",
-                    Name = "Representante Lejal",
-                    NormalizedName = "Representante Lejal"
+                    Name = "Representante Legal",
+                    NormalizedName = "Representante Legal"
                 },
 
                 new IdentityRole
@@ -49,8 +49,8 @@ namespace Omegan.Infrastructure.Configuration
                 new IdentityRole
                 {
                     Id = "10096115-e173-4e82-903f-8b4c8f8e2ceb",
-                    Name = "Coordinacion Operactiva",
-                    NormalizedName = "COORDINACION OPERACTIVA"
+                    Name = "Coordinacion Operativa",
+                    NormalizedName = "COORDINACION OPERATIVA"
                 },
 
                 new IdentityRole
@@ -65,6 +65,19 @@ namespace Omegan.Infrastructure.Configuration
                     Id = "3a52dfb8-8595-487e-bd07-2e876c8291a5",
                     Name = "Auditoria Interna",
                     NormalizedName = "AUDITORIA INTERNA"
+                }
+                ,
+                new IdentityRole
+                {
+                   Id = "3a03991c-5128-4011-85bd-5886dd9f0906",
+                   Name = "Asistente  Compensaciones",
+                   NormalizedName = "ASISTENTE DE COMPENSACIONES"
+                },
+                new IdentityRole
+                {
+                   Id = "a02a081e-e197-40a3-85a4-3f4cfc853961",
+                   Name = "Contabilidad",
+                   NormalizedName = "CONTABILIDAD"
                 }
             );
         }
