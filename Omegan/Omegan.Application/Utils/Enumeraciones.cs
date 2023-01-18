@@ -8,11 +8,26 @@ namespace Omegan.Application.Utils
 {
     public class Enumeraciones
     {
-        enum EstadosEnunciados
+        public enum EstadosAnuncios
         {
-            Creacion = 1,
-            Aprobado = 2,
+            Creacido = 2,
+            Eliminado = 0,
+            Desactivado = 1
             
+        }
+
+
+
+
+        public enum DiasSemana
+        {
+            Monday = 1,
+            Tuesday = 2,
+            Wednesday = 3,
+            Thrsday = 4,
+            Friday = 5,
+            Saturday = 6,
+            Sunday  = 0
         }
 
     }

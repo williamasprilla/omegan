@@ -46,7 +46,7 @@ namespace Omegan.Application.Features.Companies.Commands.DeleteCompany
 
             _logger.LogInformation($"El {request.Id} fue eliminado con exito");
 
-            return userID;   //Unit.Value;
+            return userID; 
         }
     }
 }

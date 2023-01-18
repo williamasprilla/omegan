@@ -13,6 +13,7 @@ namespace Omegan.Application.Features.Compensation.Commands.CreateCompensation
         public DateTime ExporterDate { get; set; }
         public string AnnouncementNumber { get; set; } = string.Empty;
         public DateTime AnnouncementDate { get; set; }
+        public int IdDestinationCountry { get; set; }
         public string DestinationCountry { get; set; } = string.Empty;
         public int CompanyId { get; set; }
         public List<ProductCompensationInputDTO>? ProductsCompensation { get; set; }

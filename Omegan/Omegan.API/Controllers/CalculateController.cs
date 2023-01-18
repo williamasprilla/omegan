@@ -131,11 +131,19 @@ namespace Omegan.API.Controllers
 
             lstRound.TotalPreaprobado = SumaTotal;
 
+           
+
             lstRound.lstRound1 = CalculoRound1(lstPreaprobado, trm);
 
 
             lstRound = CeroUno(lstRound);
 
+
+            lstRound.lstRound2 = CalculoRound2(lstRound, trm);
+
+            lstRound.LstExcedentes = Excedentes(lstRound);
+
+            lstRound.lstFinal = CalculoFinal(lstRound);
 
             return new OkObjectResult(new ResultResponse(lstRound) { Message = string.Format(ResultResponse.ENTITY_GET, lstRound) });
         }
@@ -144,10 +152,14 @@ namespace Omegan.API.Controllers
 
 
 
+        
         private List<PreapprovedData> CalculoRound1(List<PreapprovedData> preaprobadoInicial, List<TrmDTO> ValueTableTrm)
         {
-            List<PreapprovedData> lstPreaprobado = new List<PreapprovedData>();
-            double Excedentes = 0;
+            //List<PreapprovedData> lstPreaprobado = new List<PreapprovedData>();
+            List<PreapprovedData> LstRound1 = new List<PreapprovedData>();
+            //LstRound1 = null;
+            //double Excedentes = 0;
+            double amountRound1 = 0;
             double SumaTotal = 0;
 
             foreach (var item in preaprobadoInicial)
@@ -155,11 +167,12 @@ namespace Omegan.API.Controllers
                //item.Amount += item2.Residue;
                if (item.Amount >= ValueTableTrm.First().InitialDivision)  //
                {
-                  item.Amount = ValueTableTrm.First().InitialDivision;
+                    //item.Amount = ValueTableTrm.First().InitialDivision;
+                    amountRound1 = ValueTableTrm.First().InitialDivision;
                 }
                else 
                {
-                  item.Amount = item.Amount;
+                    amountRound1 = item.Amount;
                     //SumaTotal = SumaTotal + item.Amount;
                 }
 
@@ -167,13 +180,13 @@ namespace Omegan.API.Controllers
                 var aprovved = new PreapprovedData()
                 {
                     Company = item.Company,
-                    Amount = item.Amount,
+                    Amount = amountRound1,
                     //Excedentes = 
                     Percent = item.Percent,
                 };
 
-                SumaTotal = SumaTotal + item.Amount;
-                lstPreaprobado.Add(aprovved);
+                SumaTotal = SumaTotal + amountRound1;  // item.Amount;
+                LstRound1!.Add(aprovved);
 
             }
 
@@ -182,13 +195,14 @@ namespace Omegan.API.Controllers
             lstRound.Excedente1 = (ValueTableTrm.First().MonthlyBudget - Convert.ToDouble(lstRound.TotalRound1));
             
 
-            return lstPreaprobado;
+            return LstRound1!;
 
         }
 
 
         private Round CeroUno(Round lstRound)
         {
+            int contador = 0;
             List<PreapprovedData> lstpreaprobado = new List<PreapprovedData>();
             List<PreapprovedData> lstRound1 = new List<PreapprovedData>();
 
@@ -196,24 +210,22 @@ namespace Omegan.API.Controllers
 
             lstRound1 = (List<PreapprovedData>)lstRound.lstRound1!;
 
-            //for(int i = 0; i <= lstpreaprobado.Count; i++)
-            //{
-            //    /lstRound1.FindIndex
-            //}
-
-
-
-            if(lstpreaprobado.First().Amount == lstRound1.First().Amount)
+            for (int i = 0; i < lstpreaprobado.Count; i++)
             {
-                lstRound1.First().CeroUnoCol = 0;
-            }
-            else
-            {
-                lstRound1.First().CeroUnoCol = 1;
-            }
 
+                if (lstpreaprobado[i].Amount == lstRound1[i].Amount)
+                {
+                    //lstRound1.First().CeroUnoCol = 0;
+                    contador += 0;
+                }
+                else
+                {
+                    contador += 1;
+                }
 
-            
+                lstRound.NumEmpresasExcede = contador;
+
+            }
 
             return lstRound;
 
@@ -221,102 +233,172 @@ namespace Omegan.API.Controllers
 
 
 
-        private List<PreapprovedData> Round2(List<PreapprovedData> preaprobadoInicial, List<TrmDTO> ValueTableTrm)
+        private List<PreapprovedData> CalculoRound2(Round lstData, List<TrmDTO> ValueTableTrm)
         {
-            List<PreapprovedData> lstPreaprobado = new List<PreapprovedData>();
+            List<PreapprovedData> LstRound2 = new List<PreapprovedData>();
+            //LstRound1 = null;
+            //double Excedentes = 0;
+            double amountRound2 = 0;
             double SumaTotal = 0;
 
-            foreach (var item in preaprobadoInicial)
+            List<PreapprovedData> lstPreaprobado = new List<PreapprovedData>();
+            List<PreapprovedData> lstRound1 = new List<PreapprovedData>();
+
+            lstPreaprobado = (List<PreapprovedData>)lstData.lstPreapproved!;
+            lstRound1 = (List<PreapprovedData>)lstData.lstRound1!;
+
+
+            for (var i=0; i < lstPreaprobado.Count; i++ )
             {
-                //item.Amount += item2.Residue;
-                if (item.Amount >= ValueTableTrm.First().InitialDivision)  //
-                {
-                    item.Amount = ValueTableTrm.First().InitialDivision;
-                    //item.Residue = 0;
-                    //item.Percent = 100;
-                    //item.Alert = false;
-                    //item2.Residue = item.Amount - ValueTableTrm.First().InitialDivision;
-                    SumaTotal = SumaTotal + ValueTableTrm.First().InitialDivision;
-                }
-                else
-                {
-                    //item.Amount += item2.Residue;
-                    item.Amount = item.Amount;
-                    //item.Residue = 0;
-                    //item.Percent = 100;
-                    //item.Alert = false;
-                    //item2.Residue = item.Amount;
-                    SumaTotal = SumaTotal + item.Amount;
-                }
-
-
-
                 
+                if (lstPreaprobado[i].Amount  == lstRound1[i].Amount)
+                {
+                    amountRound2 = lstRound1[i].Amount;
+                }
+                else 
+                  if(lstPreaprobado[i].Amount > lstRound1[i].Amount)
+                  {
+                    amountRound2 = lstRound1[i].Amount + 0;    //lstData.Excedente1;
+                    //SumaTotal = SumaTotal + item.Amount;
+                  }
+
+
                 var aprovved = new PreapprovedData()
                 {
-                    Company = item.Company,
-                    Amount = item.Amount,
-                    //Residue = item.Residue,
-                    Percent = item.Percent,
-                    //Alert = true
-
+                    Company = lstPreaprobado[i].Company,
+                    Amount = amountRound2,
+                    //Excedentes = 
+                    Percent = lstPreaprobado[i].Percent,
                 };
 
-                lstPreaprobado.Add(aprovved);
+                SumaTotal = SumaTotal + amountRound2;  // item.Amount;
+                LstRound2!.Add(aprovved);
 
-                aprovved.datosTotales!.SumaTotalRound1 = SumaTotal;
-                
-                //lstPreaprobado.Add(new PreapprovedData() { Company = "Total", sumaTotal = SumaTotal });
             }
 
 
+            lstRound.TotalRound1 = SumaTotal;
+            lstRound.Excedente1 = (ValueTableTrm.First().MonthlyBudget - Convert.ToDouble(lstRound.TotalRound1));
+            lstRound.ExcedenteIndivd = Convert.ToDouble(lstRound.Excedente1) - Convert.ToDouble(lstRound.NumEmpresasExcede);
 
 
-            return lstPreaprobado;
+            return LstRound2!;
+
+        }
+
+
+        private List<double> Excedentes(Round lstData)
+        {
+            List<double> LstExcedente = new List<double>();
+            double excedente = 0;
+
+            List<PreapprovedData> lstPreaprobado = new List<PreapprovedData>();
+            List<PreapprovedData> lstRound2 = new List<PreapprovedData>();
+
+            lstPreaprobado = (List<PreapprovedData>)lstData.lstPreapproved!;
+            lstRound2 = (List<PreapprovedData>)lstData.lstRound2!;
+
+
+            for (var i = 0; i < lstPreaprobado.Count; i++)
+            {
+                if (lstPreaprobado[i].Amount == lstRound2[i].Amount)
+                {
+                    excedente = (lstPreaprobado[i].Amount - lstRound2[i].Amount) * (-1);
+                    LstExcedente.Add(excedente);
+                }
+            }
+
+            return LstExcedente!;
 
         }
 
 
 
-        //private List<PreapprovedData> Round1(List<PreapprovedData> preaprobadoInicial, List<TrmDTO> ValueTableTrm)
-        //{
-        //    //return new PreapprovedData() { };
+        private List<double> Excedentes1(Round lstData)
+        {
+            List<double> LstExcedente = new List<double>();
+            List<double> LstExcedente1 = new List<double>();
+            double excedente = 0;
+            double excedente1 = 0;
 
-        //    foreach (var item in preaprobadoInicial)
-        //    {
-        //        if (item.Alert)// Se ubica la compañia a la que se le debe sumar valores
-        //        {
-        //            foreach (var item2 in preaprobadoInicial) //Se recorre de nuevo para ubicar de donde sumarle a la compañia que le falta
-        //            {
-        //                //item.Amount += item2.Residue;
-        //                if (item.Amount >= ValueTableTrm.First().InitialDivision)  //
-        //                {
+            List<PreapprovedData> lstPreaprobado = new List<PreapprovedData>();
+            List<PreapprovedData> lstRound2 = new List<PreapprovedData>();
 
-        //                    item.Amount = ValueTableTrm.First().InitialDivision;
-        //                    item.Residue = 0;
-        //                    item.Percent = 100;
-        //                    item.Alert = false;
-        //                    //item2.Residue = item.Amount - ValueTableTrm.First().InitialDivision;
-        //                }
-        //                else
-        //                {
-        //                    //item.Amount += item2.Residue;
-        //                    item.Amount = ValueTableTrm.First().InitialDivision;
-        //                    item.Residue = 0;
-        //                    item.Percent = 100;
-        //                    item.Alert = false;
-        //                    //item2.Residue = item.Amount;
+            lstPreaprobado = (List<PreapprovedData>)lstData.lstPreapproved!;
+            lstRound2 = (List<PreapprovedData>)lstData.lstRound2!;
 
 
-        //                }
+            for (var i = 0; i < lstPreaprobado.Count; i++)
+            {
 
-        //            }
-        //        }
-        //    }
+                if (lstPreaprobado[i].Amount == lstRound2[i].Amount)
+                {
 
-        //    return preaprobadoInicial;
+                    excedente = (lstPreaprobado[i].Amount - lstRound2[i].Amount) * (-1);
+                    if (excedente > 0)
+                    {
+                        excedente1 = excedente;
+                    }
+                    else
+                    {
+                        excedente1 = 0;
+                    }
+                   
+                    LstExcedente1.Add(excedente1);
 
-        //}
+                }
+
+            }
+
+            return LstExcedente!;
+
+        }
+
+
+        private List<PreapprovedData> CalculoFinal(Round lstData)
+        {
+            List<PreapprovedData> LstFinal = new List<PreapprovedData>();
+            double amountFinal = 0;
+            double SumaTotalFinal = 0;
+
+            List<PreapprovedData> lstPreaprobado = new List<PreapprovedData>();
+            List<PreapprovedData> lstRound2 = new List<PreapprovedData>();
+
+            lstPreaprobado = (List<PreapprovedData>)lstData.lstPreapproved!;
+            lstRound2 = (List<PreapprovedData>)lstData.lstRound2!;
+
+
+            for (var i = 0; i < lstPreaprobado.Count; i++)
+            {
+
+                if (lstRound2[i].Amount < lstPreaprobado[i].Amount)
+                {
+                    amountFinal = (lstRound2[i].Amount + Convert.ToDouble(lstData.ExcedenteIndivd));
+                }
+                else
+                {
+                    amountFinal = lstPreaprobado[i].Amount;
+                }
+                    
+
+
+                var aprovved = new PreapprovedData()
+                {
+                    Company = lstPreaprobado[i].Company,
+                    Amount = amountFinal,
+                    Percent = lstPreaprobado[i].Percent,
+                };
+
+                SumaTotalFinal = SumaTotalFinal + amountFinal;
+                LstFinal!.Add(aprovved);
+
+            }
+
+            lstRound.TotalFinal = SumaTotalFinal;
+
+            return LstFinal!;
+
+        }
 
     }
 }

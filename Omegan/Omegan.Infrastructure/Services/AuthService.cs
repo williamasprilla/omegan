@@ -180,17 +180,6 @@ namespace Omegan.Infrastructure.Services
         {
             var user = await _userManager.FindByIdAsync(request.UserId);
 
-            //var UserDel =  new GetUsersByIdResponse
-            //{
-            //    Email = user.Email,
-            //    UserId = user.Id,
-            //    Username = user.UserName,
-            //    FullName = user.FullName,
-            //    PhoneNumber = user.PhoneNumber
-            //};
-
-
-
             var result = await _userManager.DeleteAsync(user);
             if (result.Succeeded)
             {

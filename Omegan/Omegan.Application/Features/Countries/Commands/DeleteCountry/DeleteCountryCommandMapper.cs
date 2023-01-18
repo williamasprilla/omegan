@@ -11,6 +11,5 @@ namespace Omegan.Application.Features.Countries.Commands.DeleteCountry
     {
         public int Id { get; set; }
        
-
     }
 }

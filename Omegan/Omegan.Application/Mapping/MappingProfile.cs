@@ -60,6 +60,7 @@ namespace Omegan.Application.Mapping
 
             //Archive
             CreateMap<Archive, ArchivesByCompanyDTO>();
+            CreateMap<Archive, ArchiveDTO>();
             CreateMap<CreateCountryCommandMapper, Country>();
             CreateMap<UpdateCountryCommandMapper, Country>();
             CreateMap<DeleteCountryCommandMapper, Country>();

@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Announcements\Queries\GetAnnouncementByState\" />
     <Folder Include="Features\Compensation\Commands\DeleteCompensation\" />
     <Folder Include="Features\TRM\Commands\DeleteTRM\" />
   </ItemGroup>
