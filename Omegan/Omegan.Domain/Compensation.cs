@@ -10,6 +10,7 @@ namespace Omegan.Domain
     public class Compensation: AuditableEntity, IEntity<int>
     {
         public DateTime ExporterDate { get; set; }
+        public DateTime FilingDate { get; set; }
         public int AnnouncementNumber { get; set; }
         public DateTime AnnouncementDate { get; set; }
         public int IdDestinationCountry { get; set; }

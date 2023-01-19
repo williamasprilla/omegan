@@ -12,10 +12,13 @@ namespace Omegan.Application.Features.Compensation.Commands.UpdateCompensation
     {
         public int Id { get; set; }
         public DateTime ExporterDate { get; set; }
-        public string AnnouncementNumber { get; set; } = string.Empty;
+        public DateTime FilingDate { get; set; }
+        public int AnnouncementNumber { get; set; }
         public DateTime AnnouncementDate { get; set; }
         public int IdDestinationCountry { get; set; }
         public string DestinationCountry { get; set; } = string.Empty;
+        public int State { get; set; }
+        public bool Ejecucion { get; set; }
         public int CompanyId { get; set; }
 
     }
