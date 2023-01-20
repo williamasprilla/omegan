@@ -1,14 +1,18 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Omegan.Application.DTOs;
 using Omegan.Application.Features.Announcements.Queries.GetAnnouncementByCompany;
 using Omegan.Application.Features.Announcements.Queries.GetAnnouncementByCompanyStateQuery;
 using Omegan.Application.Features.Announcements.Queries.GetAnnouncementsById;
 using Omegan.Application.Features.Companies.Queries.GetAllCompanyAnnouncements;
 using Omegan.Application.Features.Companies.Queries.GetCountries;
+using Omegan.Application.Features.Compensation.Querys.GetCompensationByCompanyStateQuery;
+using Omegan.Application.Features.Compensation.Querys.GetCompensationById;
 using Omegan.Application.Features.TRM.Queries;
 using Omegan.Application.Utils;
 using Omegan.Domain;
+using System.Collections.Generic;
 using System.Linq;
 using static Omegan.Application.Utils.Enumeraciones;
 
@@ -151,130 +155,60 @@ namespace Omegan.API.Controllers
 
 
 
-        //[HttpGet("GetCompensation")]
-        //public async Task<IActionResult> GetCompensation()
-        //{
-        //    double TotalCompany = 0;
-        //    double AddAnnouncementCountry = 0;
-        //    List<PreapprovedData> lstPreaprobado = new List<PreapprovedData>();
+        [HttpGet("GetCompensation")]
+        public async Task<IActionResult> GetCompensation()
+        {
+            List<LiquidationCompensationOutputDTO> lstLiquidatinCompensation = new List<LiquidationCompensationOutputDTO>();
 
-        //    decimal percent = 0;
+            //Datos Tabla TRM para calculos
+            var querytrm = new GetTRMListQuery();
+            List<TrmDTO> trm = await _mediator.Send(querytrm);
 
-        //    double SumaTotal = 0;
-        //    Totales totales = new Totales();
-        //    PreapprovedData preapprovedData = new PreapprovedData();
+            var queryCompanies = new GetAllCompanyAnnouncementsQuery((int)EstadosCompanies.AprobadaConvenio);
+            List<CompanyAnnouncementsDTO> company = await _mediator.Send(queryCompanies);
+            List<ProductkDTO> lstProducts = new List<ProductkDTO>();
+            foreach (var _company in company)
+            {
+                var query = new GetCompensationByCompanyStateQuery(_company.Id,2);
+                List<CompensationDTO> compensation = await _mediator.Send(query);
 
-        //    //Datos Tabla TRM para calculos
-        //    var querytrm = new GetTRMListQuery();
-        //    List<TrmDTO> trm = await _mediator.Send(querytrm);
-        //    int contcompany = 0;
+                if (compensation.Count > 0)
+                {
 
-        //    //Obtener compañias activas
-            
-        //    var queryCompanies = new GetAllCompanyAnnouncementsQuery((int) EstadosCompanies.AprobadaConvenio);
-        //    List<CompanyAnnouncementsDTO> company = await _mediator.Send(queryCompanies);
-        //    Round round = new Round();
+                    var llstProducts = compensation[0].ProductsList!;
 
-        //    foreach (var _company in company)
-        //    {
+                    for(int i = 0; i< llstProducts.Count; i++)
+                    {
+                        var _compensation = new LiquidationCompensationOutputDTO
+                        {
+                            CompanyId = _company.Id,
+                            AnnouncementNumber = Convert.ToInt32(compensation[0].AnnouncementNumber),
+                            Id = compensation[0].Id,
+                            TRM = trm.First().TRMValue,
+                            FilingDate = compensation[0].CreatedDate,
+                            liquidationDate = DateTime.Now.ToShortDateString(),
+                            Exporter = _company.NameCompany,
+                            ProductCompensated = llstProducts[i].Description,
+                            TariffItem= llstProducts[i].OffsetKilogram.ToString(),
+                            Agreement = _company.Id.ToString(),
+                            ExporterDate = compensation[0].ExporterDate,
+                            DestinationCountry = compensation[0].DestinationCountry,
+                            MonthCompensate = DateTime.Now.ToString("MMMM"),
+                            KilogramsExported = llstProducts[i].Kilogram,
+                            OffsetKilogram = llstProducts[i].OffsetKilogram,
+                            OffsetValueKilogram = (trm.First().TRMValue * llstProducts[i].OffsetKilogram),
+                            CompensationValue = (llstProducts[i].OffsetKilogram) * (trm.First().TRMValue * llstProducts[i].OffsetKilogram)
 
-        //        //Datos del pais
-        //        var querycountry = new GetAllCountriesQuery();
-        //        var country = await _mediator.Send(querycountry);
+                        };
 
+                        lstLiquidatinCompensation.Add(_compensation);
+                    }
 
-        //        var query = new GetAnnouncementByCompanyStateQuery(_company.Id, 2);
-        //        var announcement = await _mediator.Send(query);
+                }
+            }
 
-        //        foreach (var co in country)
-        //        {
-        //            //var query = new GetAnnouncementByCompanyStateQuery(_company.Id, 2);
-        //            //var announcement = await _mediator.Send(query);
-        //            foreach (var ann in announcement)
-        //            {
-        //                if (co.Id == ann.IdDestinationCountry)
-        //                {
-        //                    foreach (var product in ann.ProductsList!)
-        //                    {
-        //                        //AddAnnouncementCountry += (trm.First().TRMValue * (co.CurrentValue/1000) * Convert.ToDouble(product.Kilogram));
-        //                        AddAnnouncementCountry += (co.CurrentValue / 1000) * Convert.ToDouble(product.Kilogram);
-        //                    }
-
-        //                }
-        //            }
-
-        //            AddAnnouncementCountry = (AddAnnouncementCountry * trm.First().TRMValue);
-
-        //            TotalCompany += Math.Round(AddAnnouncementCountry, 2);
-        //            AddAnnouncementCountry = 0;
-        //        }
-
-        //        //Si el total anunciado por la compañia es menor o igual al total asignado para el mes
-        //        if (TotalCompany <= trm.First().InitialDivision)
-        //        {
-        //            //decimal porcentaje = Convert.ToDecimal(((TotalCompany * 100) / trm.First().InitialDivision));
-        //            percent = decimal.Round(100, 2);
-
-        //            SumaTotal = SumaTotal + TotalCompany;
-
-        //            var aprovved = new PreapprovedData()
-        //            {
-        //                Company = _company.NameCompany,
-        //                Amount = TotalCompany,
-        //                Percent = percent
-
-        //            };
-
-        //            lstPreaprobado.Add(aprovved);
-
-        //        }
-        //        else
-        //        {
-        //            decimal porcentaje = Convert.ToDecimal(((TotalCompany * 100) / trm.First().InitialDivision));
-        //            percent = decimal.Round(porcentaje, 2);
-
-        //            SumaTotal = SumaTotal + TotalCompany;
-
-        //            var aprovved = new PreapprovedData()
-        //            {
-        //                Company = _company.NameCompany,
-        //                Amount = TotalCompany,
-        //                //Residue = 0,
-        //                Percent = percent
-
-        //            };
-
-        //            lstPreaprobado.Add(aprovved);
-        //        }
-
-
-
-        //        lstRound.lstPreapproved = lstPreaprobado;
-
-        //        TotalCompany = 0;
-        //        contcompany += 1;
-
-
-        //    }
-
-        //    lstRound.TotalPreaprobado = SumaTotal;
-
-
-
-        //    lstRound.lstRound1 = CalculoRound1(lstPreaprobado, trm);
-
-
-        //    lstRound = CeroUno(lstRound);
-
-
-        //    lstRound.lstRound2 = CalculoRound2(lstRound, trm);
-
-        //    lstRound.LstExcedentes = Excedentes(lstRound);
-
-        //    lstRound.lstFinal = CalculoFinal(lstRound);
-
-        //    return new OkObjectResult(new ResultResponse(lstRound) { Message = string.Format(ResultResponse.ENTITY_GET, lstRound) });
-        //}
+            return new OkObjectResult(new ResultResponse(lstLiquidatinCompensation) { Message = string.Format(ResultResponse.ENTITY_GET, lstLiquidatinCompensation) });
+        }
 
 
 

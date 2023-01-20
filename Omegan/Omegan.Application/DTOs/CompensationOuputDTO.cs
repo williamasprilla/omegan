@@ -11,6 +11,7 @@ namespace Omegan.Application.DTOs
     {
         public int Id { get; set; }
         public DateTime ExporterDate { get; set; }
+        public DateTime FilingDate { get; set; }
         public int AnnouncementNumber { get; set; }
         public DateTime AnnouncementDate { get; set; }
         public int IdDestinationCountry { get; set; }
@@ -20,6 +21,8 @@ namespace Omegan.Application.DTOs
         public int CompanyId { get; set; }
         public virtual Company? Company { get; set; }
         public ICollection<ProductCompensation>? ProductCompensation { get; set; }
+
+
 
     }
 }
