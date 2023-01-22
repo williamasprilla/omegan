@@ -8,7 +8,7 @@
         /// <summary>
         /// Indicador de Exito o fracaso de la acción.
         /// </summary>
-        public bool Success { get; private set; }
+        public bool Success { get; set; }
         /// <summary>
         /// Objeto de Error que se report en el mensaje de respuesta.
         /// </summary>

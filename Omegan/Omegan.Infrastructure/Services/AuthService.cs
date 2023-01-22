@@ -32,14 +32,25 @@ namespace Omegan.Infrastructure.Services
 
             if (user == null)
             {
-                throw new Exception($"El usuario con email {request.Email} no existe");
+                var resp = new AuthResponse
+                {
+                    MensajeError = ($"El usuario con email {request.Email} no existe")
+                };
+
+                return (resp);
+                
             }
 
             var resultado = await _signInManager.PasswordSignInAsync(user.UserName, request.Password, false, lockoutOnFailure: false);
 
             if (!resultado.Succeeded)
             {
-                throw new Exception($"Las credenciales son incorrectas");
+                var resp = new AuthResponse
+                {
+                    MensajeError = ($"Las credenciales son incorrectas")
+                };
+
+                return (resp);
             }
 
             var token = await GenerateToken(user);
@@ -59,13 +70,23 @@ namespace Omegan.Infrastructure.Services
             var existingUser = await _userManager.FindByNameAsync(request.Username);
             if (existingUser != null)
             {
-                throw new Exception($"El username ya fue tomado por otra cuenta");
+                //throw new Exception($"El username ya fue tomado por otra cuenta");
+                var resp = new RegistrationResponse
+                {
+                    MensajeError = ($"El username ya fue tomado por otra cuenta")
+                };
+                return resp;
             }
 
             var existingEmail = await _userManager.FindByEmailAsync(request.Email);
             if (existingEmail != null)
             {
-                throw new Exception($"El email ya fue tomado por otra cuenta");
+                //throw new Exception($"El email ya fue tomado por otra cuenta");
+                var resp = new RegistrationResponse
+                {
+                    MensajeError = ($"El email ya fue tomado por otra cuenta")
+                };
+                return resp;
             }
 
             var user = new ApplicationUser

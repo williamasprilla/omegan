@@ -21,7 +21,13 @@ namespace Omegan.API.Controllers
         {
             var result = await _authService.Login(request);
 
-            return new OkObjectResult(new ResultResponse(result));
+            if(!string.IsNullOrEmpty(result.MensajeError))
+            {
+                return new OkObjectResult(new ResultResponse(result) { Success = false, Message = string.Format(result.MensajeError, result) });
+            }
+            return new OkObjectResult(new ResultResponse(result) { Message = string.Format(ResultResponse.ENTITY_INSERT_OK, result.Id) });
+
+
         }
 
         [HttpPost("Register")]
@@ -29,6 +35,10 @@ namespace Omegan.API.Controllers
         {
             var result = await _authService.Register(request);
 
+            if (!string.IsNullOrEmpty(result.MensajeError))
+            {
+                return new OkObjectResult(new ResultResponse(result) { Success = false, Message = string.Format(result.MensajeError, result) });
+            }
             return new OkObjectResult(new ResultResponse(result) { Message = string.Format(ResultResponse.ENTITY_INSERT_OK, result.UserId) });
         }
 

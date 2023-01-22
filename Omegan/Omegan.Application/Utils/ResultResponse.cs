@@ -26,6 +26,13 @@
         /// </summary>
         public const string ENTITY_NOT_FOUND = "La entidad '{0}' no existe dentro del sistema.";
 
+
+        /// <summary>
+        /// Mensaje adición correnta de la entidad
+        /// </summary>
+        public const string ENTITY_LOGIN_FAILED = "Usuario o password incorrectos";
+
+
         /// <summary>
         /// Mensaje adición correnta de la entidad
         /// </summary>

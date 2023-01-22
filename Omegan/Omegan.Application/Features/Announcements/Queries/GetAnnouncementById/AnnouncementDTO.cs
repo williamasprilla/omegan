@@ -14,6 +14,7 @@ namespace Omegan.Application.Features.Announcements.Queries.GetAnnouncementById
         public int IdDestinationCountry { get; set; }
         public string DestinationCountry { get; set; } = string.Empty;
         public DateTime ShippingDate { get; set; }
+        public DateTime CreatedDate { get; set; }
         public string Observation { get; set; } = string.Empty;
         public int State { get; set; }
         public int CompanyId { get; set; }
