@@ -17,6 +17,7 @@ namespace Omegan.Application.Features.Announcements.Queries.GetAnnouncementById
         public DateTime CreatedDate { get; set; }
         public string Observation { get; set; } = string.Empty;
         public int State { get; set; }
+        public int Ejecucion { get; set; }
         public int CompanyId { get; set; }
         public List<ProductkDTO>? ProductsList { get; set; }
 

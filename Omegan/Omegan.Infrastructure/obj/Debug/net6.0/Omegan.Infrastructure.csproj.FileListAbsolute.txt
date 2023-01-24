@@ -17,6 +17,11 @@ C:\Users\cristian.cardona\source\repos\Omegan\Omegan.Infrastructure\obj\Debug\ne
 C:\Users\cristian.cardona\source\repos\Omegan\Omegan.Infrastructure\obj\Debug\net6.0\ref\Omegan.Infrastructure.dll
 C:\Users\cristian.cardona\source\repos\Omegan\Omegan.Infrastructure\bin\Debug\net6.0\Omegan.Infrastructure.runtimeconfig.json
 C:\Users\cristian.cardona\source\repos\Omegan\Omegan.Infrastructure\obj\Debug\net6.0\Omegan.Infrastructure.genruntimeconfig.cache
+D:\Fedegan\Omegan\Omegan.Infrastructure\obj\Debug\net6.0\Omegan.Infrastructure.csproj.AssemblyReference.cache
+D:\Fedegan\Omegan\Omegan.Infrastructure\obj\Debug\net6.0\Omegan.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\Fedegan\Omegan\Omegan.Infrastructure\obj\Debug\net6.0\Omegan.Infrastructure.AssemblyInfoInputs.cache
+D:\Fedegan\Omegan\Omegan.Infrastructure\obj\Debug\net6.0\Omegan.Infrastructure.AssemblyInfo.cs
+D:\Fedegan\Omegan\Omegan.Infrastructure\obj\Debug\net6.0\Omegan.Infrastructure.csproj.CoreCompileInputs.cache
 D:\Fedegan\Omegan\Omegan.Infrastructure\bin\Debug\net6.0\Omegan.Infrastructure.deps.json
 D:\Fedegan\Omegan\Omegan.Infrastructure\bin\Debug\net6.0\Omegan.Infrastructure.runtimeconfig.json
 D:\Fedegan\Omegan\Omegan.Infrastructure\bin\Debug\net6.0\Omegan.Infrastructure.dll
@@ -25,11 +30,6 @@ D:\Fedegan\Omegan\Omegan.Infrastructure\bin\Debug\net6.0\Omegan.Application.dll
 D:\Fedegan\Omegan\Omegan.Infrastructure\bin\Debug\net6.0\Omegan.Domain.dll
 D:\Fedegan\Omegan\Omegan.Infrastructure\bin\Debug\net6.0\Omegan.Application.pdb
 D:\Fedegan\Omegan\Omegan.Infrastructure\bin\Debug\net6.0\Omegan.Domain.pdb
-D:\Fedegan\Omegan\Omegan.Infrastructure\obj\Debug\net6.0\Omegan.Infrastructure.csproj.AssemblyReference.cache
-D:\Fedegan\Omegan\Omegan.Infrastructure\obj\Debug\net6.0\Omegan.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
-D:\Fedegan\Omegan\Omegan.Infrastructure\obj\Debug\net6.0\Omegan.Infrastructure.AssemblyInfoInputs.cache
-D:\Fedegan\Omegan\Omegan.Infrastructure\obj\Debug\net6.0\Omegan.Infrastructure.AssemblyInfo.cs
-D:\Fedegan\Omegan\Omegan.Infrastructure\obj\Debug\net6.0\Omegan.Infrastructure.csproj.CoreCompileInputs.cache
 D:\Fedegan\Omegan\Omegan.Infrastructure\obj\Debug\net6.0\Omegan.Infrastructure.csproj.CopyComplete
 D:\Fedegan\Omegan\Omegan.Infrastructure\obj\Debug\net6.0\Omegan.Infrastructure.dll
 D:\Fedegan\Omegan\Omegan.Infrastructure\obj\Debug\net6.0\refint\Omegan.Infrastructure.dll

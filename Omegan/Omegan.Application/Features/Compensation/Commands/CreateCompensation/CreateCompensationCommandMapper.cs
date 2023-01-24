@@ -21,7 +21,7 @@ namespace Omegan.Application.Features.Compensation.Commands.CreateCompensation
         public bool Ejecucion { get; set; }
         public int CompanyId { get; set; }
         public List<ProductCompensationInputDTO>? ProductsCompensation { get; set; }
-
+       
 
     }
 }

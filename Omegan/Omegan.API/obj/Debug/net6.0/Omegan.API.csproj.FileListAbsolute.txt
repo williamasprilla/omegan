@@ -70,6 +70,12 @@ C:\Users\cristian.cardona\source\repos\Omegan\Omegan.API\obj\Debug\net6.0\Omegan
 C:\Users\cristian.cardona\source\repos\Omegan\Omegan.API\obj\Debug\net6.0\ref\Omegan.API.dll
 C:\Users\cristian.cardona\source\repos\Omegan\Omegan.API\bin\Debug\net6.0\Ardalis.Specification.dll
 C:\Users\cristian.cardona\source\repos\Omegan\Omegan.API\bin\Debug\net6.0\Ardalis.Specification.EntityFrameworkCore.dll
+D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\Omegan.API.csproj.AssemblyReference.cache
+D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\Omegan.API.GeneratedMSBuildEditorConfig.editorconfig
+D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\Omegan.API.AssemblyInfoInputs.cache
+D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\Omegan.API.AssemblyInfo.cs
+D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\Omegan.API.csproj.CoreCompileInputs.cache
+D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\Omegan.API.MvcApplicationPartsAssemblyInfo.cache
 D:\Fedegan\Omegan\Omegan.API\bin\Debug\net6.0\appsettings.Development.json
 D:\Fedegan\Omegan\Omegan.API\bin\Debug\net6.0\appsettings.json
 D:\Fedegan\Omegan\Omegan.API\bin\Debug\net6.0\Omegan.API.exe
@@ -121,13 +127,6 @@ D:\Fedegan\Omegan\Omegan.API\bin\Debug\net6.0\Omegan.Infrastructure.dll
 D:\Fedegan\Omegan\Omegan.API\bin\Debug\net6.0\Omegan.Application.pdb
 D:\Fedegan\Omegan\Omegan.API\bin\Debug\net6.0\Omegan.Infrastructure.pdb
 D:\Fedegan\Omegan\Omegan.API\bin\Debug\net6.0\Omegan.Domain.pdb
-D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\Omegan.API.csproj.AssemblyReference.cache
-D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\Omegan.API.GeneratedMSBuildEditorConfig.editorconfig
-D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\Omegan.API.AssemblyInfoInputs.cache
-D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\Omegan.API.AssemblyInfo.cs
-D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\Omegan.API.csproj.CoreCompileInputs.cache
-D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\Omegan.API.MvcApplicationPartsAssemblyInfo.cs
-D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\Omegan.API.MvcApplicationPartsAssemblyInfo.cache
 D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\staticwebassets\msbuild.Omegan.API.Microsoft.AspNetCore.StaticWebAssets.props
 D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\staticwebassets\msbuild.build.Omegan.API.props
 D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Omegan.API.props
@@ -142,3 +141,4 @@ D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\refint\Omegan.API.dll
 D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\Omegan.API.pdb
 D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\Omegan.API.genruntimeconfig.cache
 D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\ref\Omegan.API.dll
+D:\Fedegan\Omegan\Omegan.API\obj\Debug\net6.0\Omegan.API.MvcApplicationPartsAssemblyInfo.cs

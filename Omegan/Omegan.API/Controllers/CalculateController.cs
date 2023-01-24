@@ -48,7 +48,7 @@ namespace Omegan.API.Controllers
             int contcompany = 0;
 
             //Obtener compañias activas
-            var queryCompanies = new GetAllCompanyAnnouncementsQuery(2);
+            var queryCompanies = new GetAllCompanyAnnouncementsQuery((int)EstadosCompanies.AprobadaConvenio);
             List<CompanyAnnouncementsDTO> company = await _mediator.Send(queryCompanies);
             Round round = new Round();
             
@@ -169,7 +169,7 @@ namespace Omegan.API.Controllers
             List<ProductkDTO> lstProducts = new List<ProductkDTO>();
             foreach (var _company in company)
             {
-                var query = new GetCompensationByCompanyStateQuery(_company.Id,2);
+                var query = new GetCompensationByCompanyStateQuery(_company.Id, (int)EstadosCompanies.RadicacionDocExportacion);
                 List<CompensationDTO> compensation = await _mediator.Send(query);
 
                 if (compensation.Count > 0)

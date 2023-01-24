@@ -11,13 +11,22 @@ namespace Omegan.Application.Contracts.Specifications
     public class CompensationSpecificationId: Specification<Compensation>
     {
 
+        //public CompensationSpecificationId(int CompensationId)
+        //{
+        //    Query.Include(pa => pa.ProductCompensation!)
+        //         .ThenInclude(p => p.Product);
+
+        //    Query.Where(c => c.Id == CompensationId);
+        //}
         public CompensationSpecificationId(int CompensationId)
         {
             Query.Include(pa => pa.ProductCompensation!)
                  .ThenInclude(p => p.Product);
 
-            Query.Where(c => c.Id == CompensationId);
+            Query.Where(c => c.AnnouncementNumber == CompensationId);
         }
+
+
 
     }
 }

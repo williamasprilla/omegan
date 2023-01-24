@@ -19,10 +19,9 @@ namespace Omegan.Application.DTOs
         public int State { get; set; }
         public bool Ejecucion { get; set; }
         public int CompanyId { get; set; }
-        public virtual Company? Company { get; set; }
-        public ICollection<ProductCompensation>? ProductCompensation { get; set; }
-
-
+        //public virtual Company? Company { get; set; }
+        //public ICollection<ProductCompensation>? ProductCompensation { get; set; }
+        public List<ProductkDTO>? ProductsList { get; set; }
 
     }
 }

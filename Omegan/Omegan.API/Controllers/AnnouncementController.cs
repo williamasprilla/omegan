@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Omegan.Application.Features.Announcements.Commands;
 using Omegan.Application.Features.Announcements.Commands.UpdateAnnouncement;
+using Omegan.Application.Features.Announcements.Commands.UpdateStateAnnouncementById;
 using Omegan.Application.Features.Announcements.Queries.GetAnnouncementByCompany;
 using Omegan.Application.Features.Announcements.Queries.GetAnnouncementByCompanyStateQuery;
 using Omegan.Application.Features.Announcements.Queries.GetAnnouncementsById;
@@ -44,6 +45,14 @@ namespace Omegan.API.Controllers
         }
 
 
+        [HttpPut("UpdateStateAnnouncementById")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> UpdateStateAnnouncementById([FromBody] UpdateStateAnnouncementByIdCommandMapper command)
+        {
+            var result = await _mediator.Send(command);
+            return new OkObjectResult(new ResultResponse(result) { Message = string.Format(ResultResponse.ENTITY_INSERT_OK, result) });
+        }
 
 
         [HttpGet("GetAnnouncementsById")]

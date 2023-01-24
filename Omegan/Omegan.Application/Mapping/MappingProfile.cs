@@ -2,6 +2,7 @@
 using Omegan.Application.DTOs;
 using Omegan.Application.Features.Announcements.Commands;
 using Omegan.Application.Features.Announcements.Commands.UpdateAnnouncement;
+using Omegan.Application.Features.Announcements.Commands.UpdateStateAnnouncementById;
 using Omegan.Application.Features.Announcements.Queries.GetAnnouncementById;
 using Omegan.Application.Features.Archives.Commands.CreateArchive;
 using Omegan.Application.Features.Archives.Commands.DeleteArchives;
@@ -56,6 +57,9 @@ namespace Omegan.Application.Mapping
                 .ForMember(x => x.ProductCompensation, options => options.MapFrom(MapProductCompensation));
 
 
+            //CreateMap<Compensation, CompensationOuputDTO>()
+            //.ForMember(x => x.ProductsList, options => options.MapFrom(MapProductList2));
+
 
 
             //Archive
@@ -70,6 +74,8 @@ namespace Omegan.Application.Mapping
             CreateMap<UpdateCompanyCommandMapper, Company>();
             CreateMap<CreateArchiveCommandMapper, Archive>();
             CreateMap<UpdateAnnouncementCommandMapper, Announcement>();
+            //CreateMap<UpdateStateAnnouncementByIdCommandMapper, Announcement>();
+            
 
             //TRM
             CreateMap<Trm, TrmDTO>();
@@ -105,8 +111,8 @@ namespace Omegan.Application.Mapping
             CreateMap<Compensation, CompensationDTO>()
            .ForMember(x => x.ProductsList, options => options.MapFrom(MapProductList2));
 
-          //  CreateMap<Compensation, CompensationDTO>()
-          //.ForMember(x => x.ProductsList, options => options.MapFrom(MapProductList1));
+          ////  CreateMap<Compensation, CompensationDTO>()
+          ////.ForMember(x => x.ProductsList, options => options.MapFrom(MapProductList2));
 
 
         }
@@ -194,7 +200,7 @@ namespace Omegan.Application.Mapping
             return result;
         }
 
-
+        //ProductsCompensation
         private List<ProductCompensation> MapProductCompensation(CreateCompensationCommandMapper createCompensationCommandMapper,
            Compensation compensation)
         {

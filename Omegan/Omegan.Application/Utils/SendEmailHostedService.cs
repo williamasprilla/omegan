@@ -22,7 +22,7 @@ namespace Omegan.Application.Utils
                 //Consultar lista de empresas
                 //Extraer el correo del rep legal
                 //Enviar correos a todas las empresas
-                //Enviar correo notificacion d eenvio de documentos
+                //Enviar correo notificacion de envio de documentos
 
                 
                 string to = "wasprilla@hotmail.com";
