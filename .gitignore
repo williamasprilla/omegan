@@ -104,6 +104,8 @@ ipch/
 *.opensdf
 *.sdf
 *.cachefile
+*.cache
+.editorconfig
 *.VC.db
 *.VC.VC.opendb
 
