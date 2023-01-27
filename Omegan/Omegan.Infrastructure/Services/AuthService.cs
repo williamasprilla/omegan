@@ -158,6 +158,7 @@ namespace Omegan.Infrastructure.Services
         {
             var user = await _userManager.FindByEmailAsync(request.Email);
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
             var resetPassResult = await _userManager.ResetPasswordAsync(user, token, "Colombia123+-");
 
             if(!resetPassResult.Succeeded)

@@ -23,7 +23,7 @@ namespace Omegan.API.Controllers
         {
             _mediator = mediator;
         }
-
+         
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [HttpPost("RegisterAnnouncement")]
         public async Task<IActionResult> CreateCompany([FromBody] CreateAnnouncementCommandMapper command)
