@@ -11,7 +11,7 @@
             string lowercase = "abcdefghijklmnopqrstuvwxyz";
             string uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             string numbers = "1234567890";
-            string characters = "-_*";
+            string characters = "-*";
 
             int lengthLowercaseString = lowercase.Length;
             int lengthLowercase = 4;            
