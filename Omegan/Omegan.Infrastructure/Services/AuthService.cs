@@ -8,6 +8,7 @@ using Omegan.Application.Models.Identity;
 using Omegan.Application.Utils;
 using Omegan.Domain.Models;
 using System.IdentityModel.Tokens.Jwt;
+using System.Runtime.Intrinsics.Arm;
 using System.Security.Claims;
 using System.Text;
 
@@ -158,26 +159,29 @@ namespace Omegan.Infrastructure.Services
         {
             var user = await _userManager.FindByEmailAsync(request.Email);
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            
+            Login login = new Login();
+            var passwordRandom = login.PasswordGenerate();
 
-            var resetPassResult = await _userManager.ResetPasswordAsync(user, token, "Colombia123+-");
+            var resetPassResult = await _userManager.ResetPasswordAsync(user, token, passwordRandom);
 
             if(!resetPassResult.Succeeded)
             {
                 return false;
             }
 
-
-
             SendEmail email = new SendEmail();
             string to = request.Email;
             string subject = "Recuperar contraseña";
-            string EmailBody = "Señor usuario su nueva contraseña es : " + "Colombia123+-";
-            
+            string EmailBody = "Señor usuario su nueva contraseña es : " + passwordRandom;
+            await email.Send(to, subject, EmailBody);
+
+            to = "cristian.vargas.co@gmail.com";
+            subject = "Contraseña de usuario nuevo";
+            EmailBody = "El usuario: " + request.Email + "cuanta con la nueva contraseña : " + passwordRandom;
             await email.Send(to, subject, EmailBody);
 
             return true;
-
-
         }
 
         public async Task<GetUsersByIdResponse> GetUsersById(GetUsersByIdRequest request)
