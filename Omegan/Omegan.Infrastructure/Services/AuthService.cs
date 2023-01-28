@@ -161,7 +161,7 @@ namespace Omegan.Infrastructure.Services
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
             
             Login login = new Login();
-            var passwordRandom = login.PasswordGenerate();
+            var passwordRandom = await login.PasswordGenerate();
 
             var resetPassResult = await _userManager.ResetPasswordAsync(user, token, passwordRandom);
 
