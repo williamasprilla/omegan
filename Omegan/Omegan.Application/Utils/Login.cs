@@ -1,17 +1,25 @@
-﻿namespace Omegan.Application.Utils
+﻿using Microsoft.Extensions.Configuration;
+
+namespace Omegan.Application.Utils
 {
     public class Login
     {
+        private readonly IConfiguration _configuration;
+
+        public Login(IConfiguration configuration) {
+            _configuration = configuration;
+        }
+
         public async Task<string> PasswordGenerate()
         {
             string passwordRandom = string.Empty;
             Random rdn = new Random();
             char letter;
             
-            string lowercase = "abcdefghijklmnopqrstuvwxyz";
-            string uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            string numbers = "1234567890";
-            string characters = "-*";
+            string lowercase = _configuration.GetSection("PasswordGenerate")["lowercase"];
+            string uppercase = _configuration.GetSection("PasswordGenerate")["uppercase"];
+            string numbers = _configuration.GetSection("PasswordGenerate")["numbers"];
+            string characters = _configuration.GetSection("PasswordGenerate")["characters"];
 
             int lengthLowercaseString = lowercase.Length;
             int lengthLowercase = 4;            

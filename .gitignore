@@ -363,3 +363,4 @@ MigrationBackup/
 /Omegan.Application/*.pdb
 /Omegan.Domain/bin
 /Omegan.Domain/obj
+/Omegan/.vs
