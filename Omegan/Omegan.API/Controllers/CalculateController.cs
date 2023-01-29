@@ -30,7 +30,7 @@ namespace Omegan.API.Controllers
         }
 
         [HttpGet("GetPreaprobado")]
-        public async Task<IActionResult> GetPreaprobado()
+        public async Task<IActionResult> GetPreaprobado(bool action)
         {
             double TotalCompany = 0;
             double AddAnnouncementCountry = 0;
@@ -74,7 +74,7 @@ namespace Omegan.API.Controllers
                             foreach(var product in ann.ProductsList!)
                             {
                                 //AddAnnouncementCountry += (trm.First().TRMValue * (co.CurrentValue/1000) * Convert.ToDouble(product.Kilogram));
-                                AddAnnouncementCountry += (co.CurrentValue / 1000) * Convert.ToDouble(product.Kilogram);
+                                AddAnnouncementCountry += (co.CurrentValue / 1000) * (Convert.ToDouble(product.Kilogram * 1000));
                             }
 
                        }
