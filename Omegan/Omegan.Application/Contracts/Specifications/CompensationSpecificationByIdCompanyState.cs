@@ -15,7 +15,7 @@ namespace Omegan.Application.Contracts.Specifications
     {
         public CompensationSpecificationByIdCompanyState(int CompanytId, int state)
         {
-            Query.Include(pa => pa.ProductCompensation!)
+            Query.Include(pa => pa.ProductCompensations!)
                  .ThenInclude(p => p.Product);
 
             Query.Where(c => c.CompanyId == CompanytId && c.State == state);

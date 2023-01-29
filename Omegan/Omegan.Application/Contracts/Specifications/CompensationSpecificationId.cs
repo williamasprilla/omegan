@@ -20,7 +20,7 @@ namespace Omegan.Application.Contracts.Specifications
         //}
         public CompensationSpecificationId(int CompensationId)
         {
-            Query.Include(pa => pa.ProductCompensation!)
+            Query.Include(pa => pa.ProductCompensations!)
                  .ThenInclude(p => p.Product);
 
             Query.Where(c => c.AnnouncementNumber == CompensationId);

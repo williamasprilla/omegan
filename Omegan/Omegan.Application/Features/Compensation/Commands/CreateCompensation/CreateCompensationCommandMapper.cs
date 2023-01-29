@@ -20,8 +20,9 @@ namespace Omegan.Application.Features.Compensation.Commands.CreateCompensation
         public int State { get; set; }
         public bool Ejecucion { get; set; }
         public int CompanyId { get; set; }
-        public List<ProductCompensationInputDTO>? ProductsCompensation { get; set; }
-       
+        public List<ProductCompensationInputDTO>? ProductsCompensations { get; set; }
+        //public ICollection<ProductCompensation>? ProductsCompensations { get; set; }
+
 
     }
 }

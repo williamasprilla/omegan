@@ -61,7 +61,7 @@ namespace Omegan.Infrastructure.Persistence
         public DbSet<Country> Countrys => Set<Country>();
         public DbSet<Trm> Trm => Set<Trm>();
         public DbSet<Compensation> Compensation => Set<Compensation>();
-        public DbSet<ProductCompensation> ProductCompensation => Set<ProductCompensation>();
+        public DbSet<ProductCompensation> ProductCompensations => Set<ProductCompensation>();
 
     }
 }

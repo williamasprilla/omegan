@@ -10,10 +10,9 @@ namespace Omegan.Domain
 
         public string Type { get; set; } = string.Empty;
 
-        public bool State { get; set; } 
-
+        public bool State { get; set; }
+        public int Group { get; set; }
         public int CompanyId { get; set; }
-
         public virtual Company? Company { get; set; }
     }
 }

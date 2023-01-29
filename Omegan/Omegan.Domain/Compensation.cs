@@ -19,6 +19,7 @@ namespace Omegan.Domain
         public bool Ejecucion { get; set; }
         public int CompanyId { get; set; }
         public virtual Company? Company { get; set; }
-        public ICollection<ProductCompensation>? ProductCompensation { get; set; }
+        public ICollection<ProductCompensation>? ProductCompensations { get; set; }
+        //public List<ProductCompensationInputDTO>? ProductsCompensation { get; set; }
     }
 }

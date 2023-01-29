@@ -13,6 +13,7 @@ namespace Omegan.Application.Features.Archives.Commands.CreateArchive
         public string Base64 { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty;
         public bool State { get; set; }
+        public int Group { get; set; }
         public int CompanyId { get; set; }
     }
 }

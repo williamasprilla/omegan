@@ -12,7 +12,7 @@ namespace Omegan.Application.Contracts.Specifications
     {
         public CompensationSpecificationByIdCompany(int CompanytId)
         {
-            Query.Include(pa => pa.ProductCompensation!)
+            Query.Include(pa => pa.ProductCompensations!)
                  .ThenInclude(p => p.Product);
 
             Query.Where(c => c.Id == CompanytId);

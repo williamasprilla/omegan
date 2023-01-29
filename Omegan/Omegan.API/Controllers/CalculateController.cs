@@ -189,7 +189,7 @@ namespace Omegan.API.Controllers
                             liquidationDate = DateTime.Now.ToShortDateString(),
                             Exporter = _company.NameCompany,
                             ProductCompensated = llstProducts[i].Description,
-                            TariffItem= llstProducts[i].OffsetKilogram.ToString(),
+                            //TariffItem= llstProducts[i].OffsetKilogram.ToString(),
                             Agreement = _company.Id.ToString(),
                             ExporterDate = compensation[0].ExporterDate,
                             DestinationCountry = compensation[0].DestinationCountry,

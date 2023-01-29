@@ -13,7 +13,7 @@ namespace Omegan.Application.Contracts.Specifications
     {
         public CompensationSpecification()
         {
-            Query.Include(n => n.ProductCompensation!)
+            Query.Include(n => n.ProductCompensations!)
                  .ThenInclude(pa => pa.Product);
 
 

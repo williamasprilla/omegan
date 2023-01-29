@@ -16,6 +16,6 @@ namespace Omegan.Application.Features.Compensation.Querys
         public string DestinationCountry { get; set; } = string.Empty;
         public int CompanyId { get; set; }
         public virtual Company? Company { get; set; }
-        public ICollection<ProductCompensation>? ProductCompensation { get; set; }
+        public ICollection<ProductCompensation>? ProductCompensations { get; set; }
     }
 }

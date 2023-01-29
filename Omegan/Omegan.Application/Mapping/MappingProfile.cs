@@ -54,7 +54,7 @@ namespace Omegan.Application.Mapping
 
 
             CreateMap<CreateCompensationCommandMapper, Compensation>()
-                .ForMember(x => x.ProductCompensation, options => options.MapFrom(MapProductCompensation));
+                .ForMember(x => x.ProductCompensations, options => options.MapFrom(MapProductCompensation));
 
 
             //CreateMap<Compensation, CompensationOuputDTO>()
@@ -111,8 +111,8 @@ namespace Omegan.Application.Mapping
             CreateMap<Compensation, CompensationDTO>()
            .ForMember(x => x.ProductsList, options => options.MapFrom(MapProductList2));
 
-          ////  CreateMap<Compensation, CompensationDTO>()
-          ////.ForMember(x => x.ProductsList, options => options.MapFrom(MapProductList2));
+            //  CreateMap<Compensation, CompensationDTO>()
+            //.ForMember(x => x.ProductsList, options => options.MapFrom(MapProductList2));
 
 
         }
@@ -154,7 +154,7 @@ namespace Omegan.Application.Mapping
 
             if (compensationDTO == null) { return result; }
 
-            foreach (var product in compensation.ProductCompensation!)
+            foreach (var product in compensation.ProductCompensations!)
             {
                 result.Add(new ProductkDTO() { Id = product.ProductId, TariffItem = product.Product!.TariffItem, Description = product.Product.Description, 
                                                Kilogram = Convert.ToDecimal(product.KilogramsExported),  
@@ -206,12 +206,12 @@ namespace Omegan.Application.Mapping
         {
             var result = new List<ProductCompensation>();
 
-            if (createCompensationCommandMapper.ProductsCompensation == null)
+            if (createCompensationCommandMapper.ProductsCompensations == null)
             {
                 return result;
             }
 
-            foreach (var product in createCompensationCommandMapper.ProductsCompensation)
+            foreach (var product in createCompensationCommandMapper.ProductsCompensations)
             {
                 result.Add(new ProductCompensation() { ProductId = product.ProductId, KilogramsExported = product.KilogramsExported, OffsetKilogram = product.OffsetKilogram, Subtotal=product.Subtotal });
             }
