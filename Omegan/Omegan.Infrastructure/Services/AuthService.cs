@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Linq;
@@ -8,6 +9,7 @@ using Omegan.Application.Models.Identity;
 using Omegan.Application.Utils;
 using Omegan.Domain.Models;
 using System.IdentityModel.Tokens.Jwt;
+using System.Runtime.Intrinsics.Arm;
 using System.Security.Claims;
 using System.Text;
 
@@ -18,12 +20,14 @@ namespace Omegan.Infrastructure.Services
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly JwtSettings _jwtSettings;
+        private readonly IConfiguration _configuration;
 
-        public AuthService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IOptions<JwtSettings> jwtSettings)
+        public AuthService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IOptions<JwtSettings> jwtSettings, IConfiguration configuration)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _jwtSettings = jwtSettings.Value;
+            _configuration = configuration;
         }
 
         public async Task<AuthResponse> Login(AuthRequest request)
@@ -158,26 +162,30 @@ namespace Omegan.Infrastructure.Services
         {
             var user = await _userManager.FindByEmailAsync(request.Email);
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            
+            Login login = new Login(_configuration);
+            var passwordRandom = await login.PasswordGenerate();
 
-            var resetPassResult = await _userManager.ResetPasswordAsync(user, token, "Colombia123+-");
+            var resetPassResult = await _userManager.ResetPasswordAsync(user, token, passwordRandom);
 
             if(!resetPassResult.Succeeded)
             {
                 return false;
             }
 
-
-
             SendEmail email = new SendEmail();
             string to = request.Email;
             string subject = "Recuperar contraseña";
-            string EmailBody = "Señor usuario su nueva contraseña es : " + "Colombia123+-";
-            
+            string EmailBody = "Señor usuario su nueva contraseña es : " + passwordRandom;
+            await email.Send(to, subject, EmailBody);
+
+
+            to = _configuration.GetSection("EmailSettings")["EmailTest"];
+            subject = "Contraseña de usuario nuevo";
+            EmailBody = "El usuario: " + request.Email + " cuenta con la nueva contraseña : " + passwordRandom;
             await email.Send(to, subject, EmailBody);
 
             return true;
-
-
         }
 
         public async Task<GetUsersByIdResponse> GetUsersById(GetUsersByIdRequest request)

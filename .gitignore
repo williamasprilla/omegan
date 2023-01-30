@@ -9,6 +9,8 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.dll
+*.dpb
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -357,5 +359,8 @@ MigrationBackup/
 .ionide/
 
 /Omegan.Application/bin
+/Omegan.Application/*.dll
+/Omegan.Application/*.pdb
 /Omegan.Domain/bin
 /Omegan.Domain/obj
+/Omegan/.vs
