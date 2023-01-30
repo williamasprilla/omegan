@@ -182,7 +182,7 @@ namespace Omegan.Infrastructure.Services
 
             to = _configuration.GetSection("EmailSettings")["EmailTest"];
             subject = "Contraseña de usuario nuevo";
-            EmailBody = "El usuario: " + request.Email + "cuanta con la nueva contraseña : " + passwordRandom;
+            EmailBody = "El usuario: " + request.Email + " cuenta con la nueva contraseña : " + passwordRandom;
             await email.Send(to, subject, EmailBody);
 
             return true;
